@@ -11,7 +11,7 @@ function Header() {
                     version="1.1"
                     viewBox="0 0 512 512"
                     stroke="black"
-                    stroke-width="5"
+                    strokeWidth="10"
                 >
                     <g>
                         <path
