@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -345,6 +347,25 @@ export default function DailyEmotionHistory({
                                       </StyledTableCell>
                                       <StyledTableCell align="center">
                                           {row.time}
+                                          <IconButton
+                                              onClick={() => {
+                                                  setData({
+                                                      ...data,
+                                                      [new Date().toLocaleDateString(
+                                                          'en-GB',
+                                                      )]: data[
+                                                          new Date().toLocaleDateString(
+                                                              'en-GB',
+                                                          )
+                                                      ].filter(
+                                                          (entry) =>
+                                                              entry !== row,
+                                                      ),
+                                                  });
+                                              }}
+                                          >
+                                              <DeleteIcon />
+                                          </IconButton>
                                       </StyledTableCell>
                                   </StyledTableRow>
                               ),
