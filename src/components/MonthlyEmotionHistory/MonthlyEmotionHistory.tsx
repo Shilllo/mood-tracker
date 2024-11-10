@@ -5,7 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Modal from '@mui/material/Modal';
 import { Card, CardContent, Typography, Box } from '@mui/material';
-// import EmotionCards from '../EmotionCard/EmotionCard';
+import mixColorForDay from '../../utils/mixColorForDay';
 
 const style = {
     position: 'absolute',
@@ -75,6 +75,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
     const handleClose = () => {
         setOpen(false);
     };
+    // console.log(mixColorForDay(currentRecord));
     return (
         <div className="monthly-emotion-history">
             <Modal open={open} onClose={handleClose}>
@@ -84,7 +85,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                         variant="h6"
                         component="h2"
                     >
-                        {currentDay}
+                        {currentDay.slice(0, 2)} {currentMonth}
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         {JSON.stringify(currentRecord) ? (
