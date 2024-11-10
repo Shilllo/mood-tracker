@@ -147,7 +147,6 @@ function dataToWordCloud(data: EmotionData) {
 function WordCloudComponent({ data }: { data: EmotionData }) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const wordData = dataToWordCloud(data);
-
     useEffect(() => {
         if (canvasRef.current) {
             const canvas = canvasRef.current;
