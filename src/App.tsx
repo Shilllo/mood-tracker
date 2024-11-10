@@ -18,26 +18,7 @@ function App() {
         return storedData
             ? JSON.parse(storedData)
             : {
-                  '10/11/2024': [
-                      {
-                          emotion: 'HAPPINESS',
-                          description:
-                              'Spent quality time with friends or family',
-                          time: '19:00',
-                      },
-                      {
-                          emotion: 'SADNESS',
-                          description:
-                              'Had a disagreement or felt misunderstood by someone close',
-                          time: '14:00',
-                      },
-                      {
-                          emotion: 'ANXIETY',
-                          description:
-                              'Faced an upcoming deadline or project at work or school',
-                          time: '02:00',
-                      },
-                  ],
+                  '10/11/2024': [],
               };
     });
 
