@@ -4,15 +4,15 @@ import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import { Card, CardContent, Typography, Box } from '@mui/material';
+// import EmotionCards from '../EmotionCard/EmotionCard';
 
 const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 1000,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -87,9 +87,49 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                         {currentDay}
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        {JSON.stringify(currentRecord)
-                            ? JSON.stringify(currentRecord)
-                            : 'No record found'}
+                        {JSON.stringify(currentRecord) ? (
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    justifyContent: 'center',
+                                    gap: 2,
+                                    flexDirection: 'row',
+                                }}
+                            >
+                                {currentRecord.map((entry, index) => (
+                                    <Card
+                                        key={index}
+                                        variant="outlined"
+                                        sx={{ width: 450 }}
+                                    >
+                                        <CardContent>
+                                            <Typography
+                                                variant="h5"
+                                                component="div"
+                                                gutterBottom
+                                            >
+                                                {entry.emotion}
+                                            </Typography>
+                                            <Typography
+                                                variant="body2"
+                                                color="text.secondary"
+                                            >
+                                                {entry.description}
+                                            </Typography>
+                                            <Typography
+                                                variant="subtitle1"
+                                                color="text.primary"
+                                            >
+                                                Time: {entry.time}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </Box>
+                        ) : (
+                            'No record found'
+                        )}
                     </Typography>
                 </Box>
             </Modal>
