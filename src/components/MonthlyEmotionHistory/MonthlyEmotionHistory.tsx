@@ -5,8 +5,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Modal from '@mui/material/Modal';
 import { Card, CardContent, Typography, Box } from '@mui/material';
-import mixColorForDay from '../../utils/mixColorForDay';
-
 const style = {
     position: 'absolute',
     top: '50%',
