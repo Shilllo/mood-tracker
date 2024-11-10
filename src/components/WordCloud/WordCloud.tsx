@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, HTMLCanvasElement } from 'react';
+import { useEffect, useRef } from 'react';
 import WordCloud from 'wordcloud';
 
 interface EmotionData {
@@ -147,7 +147,6 @@ function dataToWordCloud(data: EmotionData) {
 function WordCloudComponent({ data }: { data: EmotionData }) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const wordData = dataToWordCloud(data);
-
     useEffect(() => {
         if (canvasRef.current) {
             const canvas = canvasRef.current;
@@ -163,7 +162,7 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                 context.scale(ratio, ratio);
             }
             WordCloud(canvasRef.current, {
-                list: wordData,
+                list: wordData as [string, number][],
                 gridSize: Math.round(10 * ratio),
                 weightFactor: 50 * ratio,
                 fontFamily: 'Arial',
