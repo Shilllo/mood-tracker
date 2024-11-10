@@ -1,6 +1,6 @@
 import './Header.css';
-
-function Header() {
+import { Button } from '@mui/material';
+function Header({ exportData }: { exportData: () => void }) {
     return (
         <div className="header">
             <h1 className="header-title">EmoTracker</h1>
@@ -32,6 +32,22 @@ function Header() {
                         />
                     </g>
                 </svg>
+            </div>
+            <div
+                style={{
+                    display: 'flex',
+                    gap: '10px',
+                    right: '100px',
+                    position: 'absolute',
+                }}
+            >
+                <Button
+                    variant="contained"
+                    onClick={exportData}
+                    sx={{ backgroundColor: 'black' }}
+                >
+                    Export data
+                </Button>
             </div>
         </div>
     );
