@@ -156,25 +156,52 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
             // Увеличиваем размер canvas в зависимости от плотности пикселей
             canvas.width = 1000 * ratio;
             canvas.height = 600 * ratio;
-            canvas.style.width = '1000px';
-            canvas.style.height = '600px';
+            canvas.style.width = '1000';
+            canvas.style.height = '600';
             if (context) {
                 context.scale(ratio, ratio);
             }
             WordCloud(canvasRef.current, {
                 list: wordData as [string, number][],
-                gridSize: Math.round(10 * ratio),
+                gridSize: Math.round(20 * ratio),
                 weightFactor: 50 * ratio,
                 fontFamily: 'Arial',
                 color: () =>
                     '#' + Math.floor(Math.random() * 16777215).toString(16),
                 rotateRatio: 0.5,
-                backgroundColor: '#ffffff',
+                backgroundColor: '#FFFFFF',
             });
         }
     }, [wordData]);
 
-    return <canvas ref={canvasRef} style={{ alignSelf: 'center' }} />;
+    return (
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}
+        >
+            <p
+                style={{
+                    textAlign: 'center',
+                    fontSize: '20px',
+                    fontWeight: 'bold',
+                }}
+            >
+                WordCloud
+            </p>
+            <canvas
+                ref={canvasRef}
+                style={{
+                    alignSelf: 'center',
+                    display: 'flex',
+                    marginLeft: '100px',
+                }}
+            />
+        </div>
+    );
 }
 
 export default WordCloudComponent;
