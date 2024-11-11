@@ -39,7 +39,13 @@ function App() {
         return storedData
             ? JSON.parse(storedData)
             : {
-                  '10/11/2024': [],
+                  '11/11/2024': [
+                      {
+                          emotion: 'positive',
+                          description: 'Счастье',
+                          time: '10:00',
+                      },
+                  ],
               };
     });
 

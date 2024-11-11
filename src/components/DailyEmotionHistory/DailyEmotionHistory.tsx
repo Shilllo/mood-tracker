@@ -285,7 +285,8 @@ export default function DailyEmotionHistory({
                                 emotion &&
                                 description &&
                                 time &&
-                                emotionCategory
+                                emotionCategory &&
+                                data[new Date().toLocaleDateString('en-GB')]
                             ) {
                                 handleClose();
                                 setData({
@@ -302,6 +303,14 @@ export default function DailyEmotionHistory({
                                             time: time,
                                         },
                                     ],
+                                });
+                            } else if (
+                                !data[new Date().toLocaleDateString('en-GB')]
+                            ) {
+                                setData({
+                                    ...data,
+                                    [new Date().toLocaleDateString('en-GB')]:
+                                        [],
                                 });
                             }
                         }}
