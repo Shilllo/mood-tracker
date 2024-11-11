@@ -163,7 +163,7 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
             }
             WordCloud(canvasRef.current, {
                 list: wordData as [string, number][],
-                gridSize: Math.round(20 * ratio),
+                gridSize: Math.round(10 * ratio),
                 weightFactor: 50 * ratio,
                 fontFamily: 'Arial',
                 color: () =>
@@ -183,21 +183,12 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                 justifyContent: 'center',
             }}
         >
-            <p
-                style={{
-                    textAlign: 'center',
-                    fontSize: '20px',
-                    fontWeight: 'bold',
-                }}
-            >
-                WordCloud
-            </p>
             <canvas
                 ref={canvasRef}
                 style={{
                     alignSelf: 'center',
                     display: 'flex',
-                    marginLeft: '100px',
+                    // marginLeft: '100px',
                 }}
             />
         </div>

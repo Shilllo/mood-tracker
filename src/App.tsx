@@ -4,6 +4,8 @@ import DailyEmotionHistory from './components/DailyEmotionHistory/DailyEmotionHi
 import MonthlyEmotionHistory from './components/MonthlyEmotionHistory/MonthlyEmotionHistory';
 import * as React from 'react';
 import WordCloudCompoment from './components/WordCloud/WordCloud';
+import Streaks from './components/Streaks/Streaks';
+
 type EmotionData = {
     [key: string]: {
         emotion: string;
@@ -63,6 +65,8 @@ function App() {
             >
                 {new Date().toLocaleDateString('en-GB')}
             </h2>
+
+            <Streaks data={data} />
 
             <DailyEmotionHistory data={data} setData={setData} />
 
