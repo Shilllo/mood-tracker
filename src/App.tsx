@@ -1,11 +1,11 @@
-import './App.css';
-import Header from './components/Header/Header';
-import DailyEmotionHistory from './components/DailyEmotionHistory/DailyEmotionHistory';
-import MonthlyEmotionHistory from './components/MonthlyEmotionHistory/MonthlyEmotionHistory';
-import * as React from 'react';
-import WordCloudCompoment from './components/WordCloud/WordCloud';
-import Streaks from './components/Streaks/Streaks';
-import Statistic from './components/Statistic/Statistic';
+import "./App.css";
+import Header from "./components/Header/Header";
+import DailyEmotionHistory from "./components/DailyEmotionHistory/DailyEmotionHistory";
+import MonthlyEmotionHistory from "./components/MonthlyEmotionHistory/MonthlyEmotionHistory";
+import * as React from "react";
+import WordCloudCompoment from "./components/WordCloud/WordCloud";
+import Streaks from "./components/Streaks/Streaks";
+import Statistic from "./components/Statistic/Statistic";
 type EmotionData = {
     [key: string]: {
         emotion: string;
@@ -15,10 +15,10 @@ type EmotionData = {
 };
 // Экспорт данных
 const exportData = () => {
-    const data = localStorage.getItem('emotionData');
-    const blob = new Blob([data ?? ''], { type: 'application/json' });
+    const data = localStorage.getItem("emotionData");
+    const blob = new Blob([data ?? ""], { type: "application/json" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
     a.download = `mood-tracker-data-${new Date().toLocaleDateString()}.json`;
     a.click();
@@ -27,28 +27,28 @@ const exportData = () => {
 
 function App() {
     const [data, setData] = React.useState<EmotionData>(() => {
-        const storedData = localStorage.getItem('emotionData');
+        const storedData = localStorage.getItem("emotionData");
         return storedData
             ? JSON.parse(storedData)
             : {
-                  '11/11/2024': [
+                  "11/11/2024": [
                       {
-                          emotion: 'SADNESS',
+                          emotion: "SADNESS",
                           description:
-                              'Felt disappointed after receiving negative feedback on a project.',
-                          time: '15:00',
+                              "Felt disappointed after receiving negative feedback on a project.",
+                          time: "15:00",
                       },
                       {
-                          emotion: 'JOY',
+                          emotion: "JOY",
                           description:
-                              'Watched a funny movie and laughed a lot.',
-                          time: '21:00',
+                              "Watched a funny movie and laughed a lot.",
+                          time: "21:00",
                       },
                       {
-                          emotion: 'ANTICIPATION',
+                          emotion: "ANTICIPATION",
                           description:
-                              'Felt excited and eager while waiting for a long-anticipated event or meeting.',
-                          time: '11:00',
+                              "Felt excited and eager while waiting for a long-anticipated event or meeting.",
+                          time: "11:00",
                       },
                   ],
               };
@@ -56,7 +56,7 @@ function App() {
 
     // Сохранение данных в localStorage при изменении состояния
     React.useEffect(() => {
-        localStorage.setItem('emotionData', JSON.stringify(data));
+        localStorage.setItem("emotionData", JSON.stringify(data));
     }, [data]);
     return (
         <div className="App">
@@ -64,9 +64,9 @@ function App() {
 
             <h2
                 className="current-date"
-                style={{ textAlign: 'center', marginTop: '0px' }}
+                style={{ textAlign: "center", marginTop: "0px" }}
             >
-                {new Date().toLocaleDateString('en-GB')}
+                {new Date().toLocaleDateString("en-GB")}
             </h2>
 
             <Streaks data={data} />
@@ -77,7 +77,6 @@ function App() {
 
             <Statistic data={data} />
 
-            {/* <TestStat /> */}
             <WordCloudCompoment data={data} />
         </div>
     );
