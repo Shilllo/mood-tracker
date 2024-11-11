@@ -10,7 +10,7 @@ type EmotionData = {
 
 export default function Statistic({ data }: { data: EmotionData }) {
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
             <PieChartStat data={data} />
             <TopEmotionsRadarChart data={data} />
         </div>
