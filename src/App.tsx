@@ -5,7 +5,7 @@ import MonthlyEmotionHistory from './components/MonthlyEmotionHistory/MonthlyEmo
 import * as React from 'react';
 import WordCloudCompoment from './components/WordCloud/WordCloud';
 import Streaks from './components/Streaks/Streaks';
-
+import Statistic from './components/Statistic/Statistic';
 type EmotionData = {
     [key: string]: {
         emotion: string;
@@ -20,20 +20,10 @@ const exportData = () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'mood-tracker-data.json';
+    a.download = `mood-tracker-data-${new Date().toLocaleDateString()}.json`;
     a.click();
     URL.revokeObjectURL(url);
 };
-
-// Импорт данных
-// const importData = (file) => {
-//     const reader = new FileReader();
-//     reader.onload = (event) => {
-//         const importedData = JSON.parse(event.target.result);
-//         localStorage.setItem('mood-tracker-v2', JSON.stringify(importedData));
-//     };
-//     reader.readAsText(file);
-// };
 
 function App() {
     const [data, setData] = React.useState<EmotionData>(() => {
@@ -72,6 +62,9 @@ function App() {
 
             <MonthlyEmotionHistory data={data} />
 
+            <Statistic data={data} />
+
+            {/* <TestStat /> */}
             <WordCloudCompoment data={data} />
         </div>
     );
