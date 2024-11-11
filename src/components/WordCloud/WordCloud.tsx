@@ -201,20 +201,22 @@ function dataToWordCloud(
     if (emotionCategory === "all") {
         Object.values(data).map((item) => {
             item.map((entry) => {
-                const description = entry.description
-                    .toLowerCase()
-                    .replace(/[^\p{L}\s]/gu, "")
-                    .replace(/\s+/g, " ")
-                    .split(" ");
-                description.forEach((word) => {
-                    if (!englishStopWords.includes(word)) {
-                        if (words[word]) {
-                            words[word] += 1;
-                        } else {
-                            words[word] = 1;
+                if (timeCategories[timeCategory].includes(entry.time)) {
+                    const description = entry.description
+                        .toLowerCase()
+                        .replace(/[^\p{L}\s]/gu, "")
+                        .replace(/\s+/g, " ")
+                        .split(" ");
+                    description.forEach((word) => {
+                        if (!englishStopWords.includes(word)) {
+                            if (words[word]) {
+                                words[word] += 1;
+                            } else {
+                                words[word] = 1;
+                            }
                         }
-                    }
-                });
+                    });
+                }
             });
         });
     } else if (
