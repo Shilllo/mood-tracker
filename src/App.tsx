@@ -33,9 +33,22 @@ function App() {
             : {
                   '11/11/2024': [
                       {
-                          emotion: 'positive',
-                          description: 'Счастье',
-                          time: '10:00',
+                          emotion: 'SADNESS',
+                          description:
+                              'Felt disappointed after receiving negative feedback on a project.',
+                          time: '15:00',
+                      },
+                      {
+                          emotion: 'JOY',
+                          description:
+                              'Watched a funny movie and laughed a lot.',
+                          time: '21:00',
+                      },
+                      {
+                          emotion: 'STRESS',
+                          description:
+                              'Had a busy day at work with tight deadlines.',
+                          time: '11:00',
                       },
                   ],
               };
