@@ -45,9 +45,9 @@ function App() {
                           time: '21:00',
                       },
                       {
-                          emotion: 'STRESS',
+                          emotion: 'ANTICIPATION',
                           description:
-                              'Had a busy day at work with tight deadlines.',
+                              'Felt excited and eager while waiting for a long-anticipated event or meeting.',
                           time: '11:00',
                       },
                   ],
