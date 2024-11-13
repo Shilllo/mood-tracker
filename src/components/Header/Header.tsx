@@ -13,7 +13,14 @@ function Header({
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
     return (
-        <div className="header">
+        <div
+            className="header"
+            style={{
+                position: 'relative',
+                width: 'min(2000px, 80%)',
+                alignSelf: 'center',
+            }}
+        >
             <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
