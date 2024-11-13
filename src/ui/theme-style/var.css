@@ -1,0 +1,29 @@
+:root {
+    --background: #ffffff;
+    --text-color: #000;
+    --background-date: #e0e0e0;
+    --background-date-hover: #d6d5d5;
+    --border-input: #e0e0e0;
+    --menu-item-background: #fff;
+    --table-row-odd: #f2f2f2;
+    --table-row-even: #fff;
+    --table-head-color: #b4b4b4;
+    --border-table: #b4b4b4;
+    --delete-icon: #696464;
+    --background-wordcloud: #fff;
+}
+
+[data-theme='dark'] {
+    --background: #252424;
+    --text-color: #b4b4b4;
+    --background-date: #494747;
+    --background-date-hover: #6b6b6b;
+    --border-input: #6b6b6b;
+    --menu-item-background: #252424;
+    --table-row-odd: #2f2f2f;
+    --table-row-even: #363535;
+    --table-head-color: #b4b4b4;
+    --border-table: #5e5a5a;
+    --delete-icon: #ccc8c8;
+    --background-wordcloud: #252424;
+}

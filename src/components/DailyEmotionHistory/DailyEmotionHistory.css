@@ -1,0 +1,16 @@
+@import url('/src/ui/theme-style/var.css');
+
+.MuiList-root {
+    background-color: var(--menu-item-background);
+}
+
+.MuiMenuItem-root {
+    color: var(--text-color);
+}
+
+.css-1tktgsa-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+    background-color: var(--menu-item-background) !important;
+}
+/* * {
+    color: var(--text-color);
+} */

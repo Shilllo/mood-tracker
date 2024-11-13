@@ -1,11 +1,11 @@
-import "./App.css";
-import Header from "./components/Header/Header";
-import DailyEmotionHistory from "./components/DailyEmotionHistory/DailyEmotionHistory";
-import MonthlyEmotionHistory from "./components/MonthlyEmotionHistory/MonthlyEmotionHistory";
-import * as React from "react";
-import WordCloudCompoment from "./components/WordCloud/WordCloud";
-import Streaks from "./components/Streaks/Streaks";
-import Statistic from "./components/Statistic/Statistic";
+import './App.css';
+import Header from './components/Header/Header';
+import DailyEmotionHistory from './components/DailyEmotionHistory/DailyEmotionHistory';
+import MonthlyEmotionHistory from './components/MonthlyEmotionHistory/MonthlyEmotionHistory';
+import * as React from 'react';
+import WordCloudCompoment from './components/WordCloud/WordCloud';
+import Streaks from './components/Streaks/Streaks';
+import Statistic from './components/Statistic/Statistic';
 type EmotionData = {
     [key: string]: {
         emotion: string;
@@ -15,10 +15,10 @@ type EmotionData = {
 };
 // Экспорт данных
 const exportData = () => {
-    const data = localStorage.getItem("emotionData");
-    const blob = new Blob([data ?? ""], { type: "application/json" });
+    const data = localStorage.getItem('emotionData');
+    const blob = new Blob([data ?? ''], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
     a.download = `mood-tracker-data-${new Date().toLocaleDateString()}.json`;
     a.click();
@@ -27,67 +27,67 @@ const exportData = () => {
 
 function App() {
     const [data, setData] = React.useState<EmotionData>(() => {
-        const storedData = localStorage.getItem("emotionData");
+        const storedData = localStorage.getItem('emotionData');
         return storedData
             ? JSON.parse(storedData)
             : {
-                  "10/11/2024": [
+                  '10/11/2024': [
                       {
-                          emotion: "HAPPINESS",
+                          emotion: 'HAPPINESS',
                           description:
-                              "Spent time with friends and enjoyed a great meal together.",
-                          time: "12:00",
+                              'Spent time with friends and enjoyed a great meal together.',
+                          time: '12:00',
                       },
                       {
-                          emotion: "ANXIETY",
+                          emotion: 'ANXIETY',
                           description:
-                              "Felt nervous about an upcoming presentation at work.",
-                          time: "09:30",
+                              'Felt nervous about an upcoming presentation at work.',
+                          time: '09:30',
                       },
                       {
-                          emotion: "LOVE",
+                          emotion: 'LOVE',
                           description:
-                              "Had a meaningful conversation with a loved one.",
-                          time: "20:00",
-                      },
-                  ],
-                  "11/11/2024": [
-                      {
-                          emotion: "SADNESS",
-                          description:
-                              "Felt disappointed after receiving negative feedback on a project.",
-                          time: "15:00",
-                      },
-                      {
-                          emotion: "JOY",
-                          description:
-                              "Watched a funny movie and laughed a lot.",
-                          time: "21:00",
-                      },
-                      {
-                          emotion: "STRESS",
-                          description:
-                              "Had a busy day at work with tight deadlines.",
-                          time: "11:00",
+                              'Had a meaningful conversation with a loved one.',
+                          time: '20:00',
                       },
                   ],
-                  "12/11/2024": [
+                  '11/11/2024': [
                       {
-                          emotion: "CONTENTMENT",
-                          description: "Had a relaxing evening reading a book.",
-                          time: "18:30",
+                          emotion: 'SADNESS',
+                          description:
+                              'Felt disappointed after receiving negative feedback on a project.',
+                          time: '15:00',
                       },
                       {
-                          emotion: "FRUSTRATION",
+                          emotion: 'JOY',
                           description:
-                              "Struggled with fixing a bug in the code for hours.",
-                          time: "14:00",
+                              'Watched a funny movie and laughed a lot.',
+                          time: '21:00',
                       },
                       {
-                          emotion: "CALM",
+                          emotion: 'STRESS',
                           description:
-                              "Enjoyed a peaceful morning walk in the park.",
-                          time: "08:00",
+                              'Had a busy day at work with tight deadlines.',
+                          time: '11:00',
+                      },
+                  ],
+                  '12/11/2024': [
+                      {
+                          emotion: 'CONTENTMENT',
+                          description: 'Had a relaxing evening reading a book.',
+                          time: '18:30',
+                      },
+                      {
+                          emotion: 'FRUSTRATION',
+                          description:
+                              'Struggled with fixing a bug in the code for hours.',
+                          time: '14:00',
+                      },
+                      {
+                          emotion: 'CALM',
+                          description:
+                              'Enjoyed a peaceful morning walk in the park.',
+                          time: '08:00',
                       },
                   ],
               };
@@ -95,7 +95,7 @@ function App() {
 
     // Сохранение данных в localStorage при изменении состояния
     React.useEffect(() => {
-        localStorage.setItem("emotionData", JSON.stringify(data));
+        localStorage.setItem('emotionData', JSON.stringify(data));
     }, [data]);
     return (
         <div className="App">
@@ -103,9 +103,13 @@ function App() {
 
             <h2
                 className="current-date"
-                style={{ textAlign: "center", marginTop: "0px" }}
+                style={{
+                    textAlign: 'center',
+                    marginTop: '0px',
+                    color: 'var(--text-color',
+                }}
             >
-                {new Date().toLocaleDateString("en-GB")}
+                {new Date().toLocaleDateString('en-GB')}
             </h2>
 
             <Streaks data={data} />

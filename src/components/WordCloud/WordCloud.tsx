@@ -3,6 +3,7 @@ import WordCloud from 'wordcloud';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
+import './WordCloud.css';
 
 interface EmotionData {
     [key: string]: {
@@ -118,6 +119,8 @@ const englishStopWords = [
     'either',
     'neither',
     'both',
+    'I',
+    'i',
 ];
 
 const emotions = {
@@ -286,6 +289,7 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
         timeCategory,
         period,
     );
+
     useEffect(() => {
         if (canvasRef.current) {
             const canvas = canvasRef.current;
@@ -300,6 +304,10 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
             if (context) {
                 context.scale(ratio, ratio);
             }
+            const backgroundColor =
+                document.documentElement.getAttribute('data-theme') === 'dark'
+                    ? '#252424'
+                    : '#ffffff';
             WordCloud(canvasRef.current, {
                 list: wordData as [string, number][],
                 gridSize: Math.round(10 * ratio),
@@ -308,7 +316,7 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                 color: () =>
                     '#' + Math.floor(Math.random() * 16777215).toString(16),
                 rotateRatio: 0.5,
-                backgroundColor: '#FFFFFF',
+                backgroundColor: backgroundColor,
             });
         }
     }, [wordData]);
@@ -353,6 +361,8 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '10px',
+                    marginRight: '50px',
+                    color: 'var(--text-color)',
                 }}
             >
                 <h3>Word Cloud Filters</h3>
@@ -363,14 +373,38 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                     variant="outlined"
                     defaultValue="all"
                     sx={{
-                        width: '200px',
+                        input: { color: 'var(--text-color)' }, // Цвет текста
+                        label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                        '.MuiOutlinedInput-root': {
+                            '& fieldset': {
+                                borderColor: 'var(--border-input)', // Цвет рамки
+                            },
+                            '&:hover fieldset': {
+                                borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                            },
+                        },
+                        '.MuiInputLabel-root': {
+                            color: 'var(--text-color)', // Цвет метки (label)
+                        },
+                        '.MuiInputBase-root': {
+                            color: 'var(--text-color)', // Цвет текста
+                        },
                     }}
                     value={emotionCategory}
                     onChange={handleEmotionCategoryChange}
                 >
                     {['positive', 'negative', 'neutral', 'all'].map(
                         (option) => (
-                            <MenuItem key={option} value={option}>
+                            <MenuItem
+                                key={option}
+                                value={option}
+                                sx={{
+                                    color: 'var(--text-color)',
+                                }}
+                            >
                                 {option}
                             </MenuItem>
                         ),
@@ -383,14 +417,38 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                     variant="outlined"
                     defaultValue="all"
                     sx={{
-                        width: '200px',
+                        input: { color: 'var(--text-color)' }, // Цвет текста
+                        label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                        '.MuiOutlinedInput-root': {
+                            '& fieldset': {
+                                borderColor: 'var(--border-input)', // Цвет рамки
+                            },
+                            '&:hover fieldset': {
+                                borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                            },
+                        },
+                        '.MuiInputLabel-root': {
+                            color: 'var(--text-color)', // Цвет метки (label)
+                        },
+                        '.MuiInputBase-root': {
+                            color: 'var(--text-color)', // Цвет текста
+                        },
                     }}
                     value={timeCategory}
                     onChange={handleTimeCategoryChange}
                 >
                     {['morning', 'afternoon', 'evening', 'night', 'all'].map(
                         (option) => (
-                            <MenuItem key={option} value={option}>
+                            <MenuItem
+                                key={option}
+                                value={option}
+                                sx={{
+                                    color: 'var(--text-color)',
+                                }}
+                            >
                                 {option}
                             </MenuItem>
                         ),
@@ -404,12 +462,37 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                     defaultValue="day"
                     sx={{
                         width: '200px',
+                        input: { color: 'var(--text-color)' }, // Цвет текста
+                        label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                        '.MuiOutlinedInput-root': {
+                            '& fieldset': {
+                                borderColor: 'var(--border-input)', // Цвет рамки
+                            },
+                            '&:hover fieldset': {
+                                borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                            },
+                        },
+                        '.MuiInputLabel-root': {
+                            color: 'var(--text-color)', // Цвет метки (label)
+                        },
+                        '.MuiInputBase-root': {
+                            color: 'var(--text-color)', // Цвет текста
+                        },
                     }}
                     value={period}
                     onChange={handlePeriodChange}
                 >
                     {['day', 'week', 'month', 'year'].map((option) => (
-                        <MenuItem key={option} value={option}>
+                        <MenuItem
+                            key={option}
+                            value={option}
+                            sx={{
+                                color: 'var(--text-color)',
+                            }}
+                        >
                             {option}
                         </MenuItem>
                     ))}

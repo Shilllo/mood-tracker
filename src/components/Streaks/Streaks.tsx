@@ -17,17 +17,41 @@ export default function Streaks({ data }: { data: EmotionData }) {
             {/* Количество дней подряд, когда пользователь вносил записи без пропусков. */}
             <Streak name="Current Streak" score={streaks.currentStreak} />
 
-            <div style={{ alignSelf: 'center', fontWeight: 'bold' }}>|</div>
+            <div
+                style={{
+                    alignSelf: 'center',
+                    fontWeight: 'bold',
+                    color: 'var(--text-color)',
+                }}
+            >
+                |
+            </div>
 
             {/* Самая длинная серия дней подряд, когда пользователь вносил записи. */}
             <Streak name="Longest Streak" score={streaks.longestStreak} />
 
-            <div style={{ alignSelf: 'center', fontWeight: 'bold' }}>|</div>
+            <div
+                style={{
+                    alignSelf: 'center',
+                    fontWeight: 'bold',
+                    color: 'var(--text-color)',
+                }}
+            >
+                |
+            </div>
 
             {/* Общее количество уникальных дней, за которые были внесены записи, независимо от подряд идущих дней. */}
             <Streak name="Total Days Logged" score={streaks.totalDaysLogged} />
 
-            <div style={{ alignSelf: 'center', fontWeight: 'bold' }}>|</div>
+            <div
+                style={{
+                    alignSelf: 'center',
+                    fontWeight: 'bold',
+                    color: 'var(--text-color)',
+                }}
+            >
+                |
+            </div>
 
             {/* Процент дней, в которые пользователь делал записи, относительно всего периода использования приложения. */}
             <Streak name="Consistency Score" score={streaks.consistencyScore} />

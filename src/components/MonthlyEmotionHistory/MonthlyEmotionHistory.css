@@ -1,3 +1,5 @@
+@import url('/src/ui/theme-style/var.css');
+
 .monthly-emotion-history {
     display: flex;
     flex-direction: column;
@@ -14,14 +16,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f2f2f2;
+    background-color: var(--background-date);
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
     cursor: pointer;
+    color: var(--text-color);
+    height: 25px;
 }
 
 .date:hover {
-    background-color: #e0e0e0;
+    background-color: var(--background-date-hover);
     transition: 0.5s;
+}
+
+#modal-modal-title,
+#modal-modal-description {
+    color: var(--text-color);
 }
