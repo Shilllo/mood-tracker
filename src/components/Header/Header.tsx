@@ -19,8 +19,19 @@ function Header({
                 position: 'relative',
                 width: 'min(2000px, 80%)',
                 alignSelf: 'center',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
             }}
         >
+            <div>
+                <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <Switcher theme={theme} handleChange={handleChange} />
+                </motion.div>
+            </div>
             <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -33,20 +44,10 @@ function Header({
                     EmoTracker
                 </h1>
             </motion.div>
-            <div style={{ position: 'absolute', left: '100px' }}>
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    <Switcher theme={theme} handleChange={handleChange} />
-                </motion.div>
-            </div>
             <div
                 style={{
                     display: 'flex',
                     gap: '10px',
-                    right: '100px',
-                    position: 'absolute',
                 }}
             >
                 <motion.div

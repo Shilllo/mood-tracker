@@ -200,6 +200,7 @@ export default function DailyEmotionHistory({
         <TableContainer
             sx={{
                 width: 'min(2000px, 80%)',
+
                 alignSelf: 'center',
                 display: 'flex',
                 flexDirection: 'column',
@@ -511,7 +512,7 @@ export default function DailyEmotionHistory({
                                       <StyledTableCell align="center">
                                           {row.time}
                                           <motion.div
-                                              whileHover={{ scale: 1.2 }}
+                                              whileHover={{ scale: 1.15 }}
                                               whileTap={{ scale: 0.95 }}
                                           >
                                               <IconButton
@@ -545,12 +546,11 @@ export default function DailyEmotionHistory({
                         : null}
                 </TableBody>
             </Table>
-            <div style={{ padding: '10px', margin: '10px' }}>
+            <div style={{ padding: '20px', margin: '20px' }}>
                 <motion.div
                     whileHover={{ scale: 1.03 }}
                     // whileTap={{ scale: 0.95 }}
                     style={{
-                        cursor: 'pointer',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -561,8 +561,8 @@ export default function DailyEmotionHistory({
                             alignSelf: 'center',
                             backgroundColor: 'black',
                             margin: '10px',
-                            width: '70%',
-                            height: '40px',
+                            width: '50%',
+                            height: '60px',
                         }}
                         variant="contained"
                         onClick={handleOpen}
