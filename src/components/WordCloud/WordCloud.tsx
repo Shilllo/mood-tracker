@@ -315,12 +315,13 @@ function WordCloudComponent({
             WordCloud(canvasRef.current, {
                 list: wordData as [string, number][],
                 gridSize: Math.round(10 * ratio),
-                weightFactor: 50 * ratio,
+                weightFactor: 15 * ratio,
                 fontFamily: 'Arial',
                 color: () =>
                     '#' + Math.floor(Math.random() * 16777215).toString(16),
                 rotateRatio: 0.5,
                 backgroundColor: backgroundColor,
+                shape: 'star',
             });
         }
     }, [wordData, theme]);
@@ -519,6 +520,7 @@ function WordCloudComponent({
                 style={{
                     alignSelf: 'center',
                     display: 'flex',
+                    // marginBottom: '1000px',
                 }}
             />
         </div>

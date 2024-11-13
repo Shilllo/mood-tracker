@@ -1,4 +1,4 @@
-import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 
 const renderCustomizedLabel = ({
     cx,

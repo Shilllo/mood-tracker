@@ -5,7 +5,6 @@ import {
     PolarAngleAxis,
     PolarRadiusAxis,
     Tooltip,
-    Legend,
 } from 'recharts';
 
 type EmotionData = {
