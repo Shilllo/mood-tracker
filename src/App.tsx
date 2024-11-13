@@ -33,63 +33,154 @@ function App() {
         return storedData
             ? JSON.parse(storedData)
             : {
-                  '10/11/2024': [
+                  '13/11/2024': [
                       {
                           emotion: 'HAPPINESS',
                           description:
-                              'Spent time with friends and enjoyed a great meal together.',
-                          time: '12:00',
+                              'Had a wonderful breakfast with family and shared some laughs.',
+                          time: '08:00',
                       },
                       {
                           emotion: 'ANXIETY',
                           description:
-                              'Felt nervous about an upcoming presentation at work.',
-                          time: '09:30',
+                              'Felt anxious about the upcoming job interview in the afternoon.',
+                          time: '10:00',
+                      },
+                      {
+                          emotion: 'PRIDE',
+                          description:
+                              'Felt proud after completing a challenging workout session.',
+                          time: '12:00',
                       },
                       {
                           emotion: 'LOVE',
                           description:
-                              'Had a meaningful conversation with a loved one.',
-                          time: '20:00',
+                              'Received a heartwarming message from a close friend.',
+                          time: '14:00',
                       },
-                  ],
-                  '11/11/2024': [
                       {
-                          emotion: 'SADNESS',
+                          emotion: 'ANGER',
                           description:
-                              'Felt disappointed after receiving negative feedback on a project.',
-                          time: '15:00',
+                              'Got frustrated after a long argument with a colleague.',
+                          time: '16:00',
                       },
                       {
                           emotion: 'JOY',
                           description:
-                              'Watched a funny movie and laughed a lot.',
-                          time: '21:00',
+                              'Watched a hilarious video and couldn’t stop laughing.',
+                          time: '18:00',
+                      },
+                      {
+                          emotion: 'SURPRISE',
+                          description:
+                              'Received an unexpected gift from a friend.',
+                          time: '20:00',
+                      },
+                      {
+                          emotion: 'CALM',
+                          description:
+                              'Ended the day with a relaxing meditation session.',
+                          time: '22:00',
+                      },
+                  ],
+                  '14/11/2024': [
+                      {
+                          emotion: 'SADNESS',
+                          description:
+                              'Felt down after remembering an old, sad memory.',
+                          time: '09:00',
+                      },
+                      {
+                          emotion: 'CONTENTMENT',
+                          description:
+                              'Had a peaceful lunch outdoors, enjoying the weather.',
+                          time: '12:00',
+                      },
+                      {
+                          emotion: 'CURIOSITY',
+                          description:
+                              'Became curious about a new topic after reading an interesting article.',
+                          time: '13:00',
                       },
                       {
                           emotion: 'STRESS',
                           description:
-                              'Had a busy day at work with tight deadlines.',
-                          time: '11:00',
+                              'Had a stressful afternoon due to tight deadlines at work.',
+                          time: '15:00',
                       },
-                  ],
-                  '12/11/2024': [
                       {
-                          emotion: 'CONTENTMENT',
-                          description: 'Had a relaxing evening reading a book.',
-                          time: '18:30',
+                          emotion: 'RELIEF',
+                          description:
+                              'Felt relieved after resolving a major issue at work.',
+                          time: '17:00',
+                      },
+                      {
+                          emotion: 'NOSTALGIA',
+                          description:
+                              'Listened to an old song that brought back childhood memories.',
+                          time: '19:00',
                       },
                       {
                           emotion: 'FRUSTRATION',
                           description:
-                              'Struggled with fixing a bug in the code for hours.',
+                              'Got stuck in traffic for over an hour, feeling annoyed.',
+                          time: '20:00',
+                      },
+                      {
+                          emotion: 'EUPHORIA',
+                          description:
+                              'Experienced a moment of euphoria after a successful presentation.',
+                          time: '22:00',
+                      },
+                  ],
+                  '15/11/2024': [
+                      {
+                          emotion: 'CONFUSION',
+                          description:
+                              'Felt confused while trying to learn a new concept in programming.',
+                          time: '08:00',
+                      },
+                      {
+                          emotion: 'GRATITUDE',
+                          description:
+                              'Felt grateful after receiving help from a colleague on a difficult task.',
+                          time: '10:00',
+                      },
+                      {
+                          emotion: 'FEAR',
+                          description:
+                              'Felt fear during a scary scene while watching a movie.',
+                          time: '11:00',
+                      },
+                      {
+                          emotion: 'EXCITEMENT',
+                          description:
+                              'Became excited after booking a vacation trip for the next month.',
+                          time: '13:00',
+                      },
+                      {
+                          emotion: 'LONELINESS',
+                          description:
+                              'Felt a bit lonely while eating lunch alone at a café.',
                           time: '14:00',
                       },
                       {
                           emotion: 'CALM',
                           description:
-                              'Enjoyed a peaceful morning walk in the park.',
-                          time: '08:00',
+                              'Had a calming tea break in the afternoon, enjoying the silence.',
+                          time: '16:00',
+                      },
+                      {
+                          emotion: 'BITTERNESS',
+                          description:
+                              'Felt bitter after recalling an old disagreement with a friend.',
+                          time: '18:00',
+                      },
+                      {
+                          emotion: 'HOPE',
+                          description:
+                              'Ended the day with a sense of hope for a better tomorrow.',
+                          time: '21:00',
                       },
                   ],
               };

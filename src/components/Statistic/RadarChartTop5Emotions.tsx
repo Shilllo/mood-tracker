@@ -41,10 +41,9 @@ export default function TopEmotionsRadarChart({ data }: { data: EmotionData }) {
             emotion,
             count: emotions[emotion],
         }))
-        .sort()
+        .sort((a, b) => a.count - b.count)
         .slice(-5);
 
-    console.log(result);
     return (
         <RadarChart
             cx={300}
