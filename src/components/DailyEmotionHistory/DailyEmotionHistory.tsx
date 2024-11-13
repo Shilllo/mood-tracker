@@ -545,29 +545,32 @@ export default function DailyEmotionHistory({
                         : null}
                 </TableBody>
             </Table>
-            <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                style={{
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                <Button
-                    sx={{
-                        alignSelf: 'center',
-                        backgroundColor: 'black',
-                        margin: '10px',
-                        width: '70%',
+            <div style={{ padding: '10px', margin: '10px' }}>
+                <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    // whileTap={{ scale: 0.95 }}
+                    style={{
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                     }}
-                    variant="contained"
-                    onClick={handleOpen}
                 >
-                    ADD EMOTION
-                </Button>
-            </motion.div>
+                    <Button
+                        sx={{
+                            alignSelf: 'center',
+                            backgroundColor: 'black',
+                            margin: '10px',
+                            width: '70%',
+                            height: '40px',
+                        }}
+                        variant="contained"
+                        onClick={handleOpen}
+                    >
+                        ADD EMOTION
+                    </Button>
+                </motion.div>
+            </div>
         </TableContainer>
     );
 }

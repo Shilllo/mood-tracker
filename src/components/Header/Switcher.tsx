@@ -1,9 +1,12 @@
-import { useTheme } from '../../hook/useTheme';
 import './Switcher.css';
 
-export const Switcher = () => {
-    const [theme, handleChange] = useTheme('light');
-
+export const Switcher = ({
+    theme,
+    handleChange,
+}: {
+    theme: string;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
     return (
         <label id="theme-toggle-button">
             <input

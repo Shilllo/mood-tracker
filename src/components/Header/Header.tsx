@@ -3,7 +3,15 @@ import { Button } from '@mui/material';
 import Switcher from './Switcher';
 import { motion } from 'framer-motion';
 
-function Header({ exportData }: { exportData: () => void }) {
+function Header({
+    exportData,
+    theme,
+    handleChange,
+}: {
+    exportData: () => void;
+    theme: string;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
     return (
         <div className="header">
             <motion.div
@@ -23,7 +31,7 @@ function Header({ exportData }: { exportData: () => void }) {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    <Switcher />
+                    <Switcher theme={theme} handleChange={handleChange} />
                 </motion.div>
             </div>
             <div

@@ -277,7 +277,13 @@ function dataToWordCloud(
     }
     return result;
 }
-function WordCloudComponent({ data }: { data: EmotionData }) {
+function WordCloudComponent({
+    data,
+    theme,
+}: {
+    data: EmotionData;
+    theme: string;
+}) {
     const [emotionCategory, setEmotionCategory] = React.useState('all');
     const [timeCategory, setTimeCategory] = React.useState('all');
     const [period, setPeriod] = React.useState<
@@ -305,10 +311,7 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
             if (context) {
                 context.scale(ratio, ratio);
             }
-            const backgroundColor =
-                document.documentElement.getAttribute('data-theme') === 'dark'
-                    ? '#252424'
-                    : '#ffffff';
+            const backgroundColor = theme === 'dark' ? '#252424' : '#ffffff';
             WordCloud(canvasRef.current, {
                 list: wordData as [string, number][],
                 gridSize: Math.round(10 * ratio),
@@ -320,7 +323,7 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                 backgroundColor: backgroundColor,
             });
         }
-    }, [wordData]);
+    }, [wordData, theme]);
 
     const handleEmotionCategoryChange = (
         event: React.ChangeEvent<HTMLInputElement>,

@@ -6,6 +6,8 @@ import * as React from 'react';
 import WordCloudCompoment from './components/WordCloud/WordCloud';
 import Streaks from './components/Streaks/Streaks';
 import Statistic from './components/Statistic/Statistic';
+import { useTheme } from './hook/useTheme';
+
 type EmotionData = {
     [key: string]: {
         emotion: string;
@@ -97,9 +99,16 @@ function App() {
     React.useEffect(() => {
         localStorage.setItem('emotionData', JSON.stringify(data));
     }, [data]);
+
+    const [theme, handleChange] = useTheme('light');
+
     return (
         <div className="App">
-            <Header exportData={exportData} />
+            <Header
+                exportData={exportData}
+                theme={theme}
+                handleChange={handleChange}
+            />
 
             <h2
                 className="current-date"
@@ -120,7 +129,7 @@ function App() {
 
             <Statistic data={data} />
 
-            <WordCloudCompoment data={data} />
+            <WordCloudCompoment data={data} theme={theme} />
         </div>
     );
 }

@@ -23,7 +23,6 @@ export const useTheme = (initialTheme: Theme): useThemeReturn => {
     const handleChange = (e: ChangeEvent) => {
         const newTheme = e.target.checked ? 'dark' : 'light';
         setTheme(newTheme);
-        window.location.reload();
     };
 
     useEffect(() => {
