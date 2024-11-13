@@ -35,7 +35,7 @@ function Header({
             <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: 'pointer', marginLeft: '50px' }}
             >
                 <h1
                     className="header-title"

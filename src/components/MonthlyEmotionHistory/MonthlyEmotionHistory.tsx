@@ -82,6 +82,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
             className="monthly-emotion-history"
             style={{
                 width: 'min(2000px, 100%)',
+                minWidth: '1000px',
                 alignSelf: 'center',
                 marginTop: '50px',
             }}

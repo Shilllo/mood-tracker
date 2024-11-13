@@ -207,6 +207,8 @@ function App() {
                     textAlign: 'center',
                     marginTop: '0px',
                     color: 'var(--text-color',
+                    width: 'min(2000px, 80%)',
+                    alignSelf: 'center',
                 }}
             >
                 {new Date().toLocaleDateString('en-GB')}

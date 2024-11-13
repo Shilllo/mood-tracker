@@ -13,7 +13,15 @@ export default function Streaks({ data }: { data: EmotionData }) {
     const streaks = countStreaks(data);
 
     return (
-        <div style={{ alignSelf: 'center', display: 'flex', gap: '10px' }}>
+        <div
+            style={{
+                alignSelf: 'center',
+                display: 'flex',
+                gap: '10px',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+            }}
+        >
             {/* Количество дней подряд, когда пользователь вносил записи без пропусков. */}
             <Streak name="Current Streak" score={streaks.currentStreak} />
 

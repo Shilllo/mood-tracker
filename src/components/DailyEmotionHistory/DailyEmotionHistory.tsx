@@ -200,7 +200,7 @@ export default function DailyEmotionHistory({
         <TableContainer
             sx={{
                 width: 'min(2000px, 80%)',
-
+                minWidth: '800px',
                 alignSelf: 'center',
                 display: 'flex',
                 flexDirection: 'column',
