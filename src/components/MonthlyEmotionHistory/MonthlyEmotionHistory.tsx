@@ -78,7 +78,14 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
     };
     // console.log(mixColorForDay(currentRecord));
     return (
-        <div className="monthly-emotion-history">
+        <div
+            className="monthly-emotion-history"
+            style={{
+                width: 'min(2000px, 100%)',
+                alignSelf: 'center',
+                marginTop: '50px',
+            }}
+        >
             <Modal
                 open={open}
                 onClose={handleClose}

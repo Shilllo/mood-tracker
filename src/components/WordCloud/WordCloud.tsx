@@ -358,6 +358,8 @@ function WordCloudComponent({
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
+                width: 'min(2000px, 80%)',
+                alignSelf: 'center',
             }}
         >
             <div

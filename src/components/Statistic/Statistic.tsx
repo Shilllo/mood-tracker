@@ -18,6 +18,8 @@ export default function Statistic({ data }: { data: EmotionData }) {
                 justifyContent: 'space-around',
                 margin: '100px 0',
                 alignItems: 'center',
+                width: 'min(2000px, 80%)',
+                alignSelf: 'center',
             }}
         >
             <PieChartStat data={data} />
