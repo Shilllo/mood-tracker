@@ -190,7 +190,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
             <div className="dates">
                 {Array.from({ length: monthDays[currentMonth] }, (_, index) => (
                     <motion.div
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.95 }}
                         className="date"
                         key={index}

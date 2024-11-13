@@ -66,7 +66,6 @@ export default function TopEmotionsRadarChart({ data }: { data: EmotionData }) {
                 fillOpacity={0.6}
             />
             <Tooltip />
-            <Legend />
         </RadarChart>
     );
 }

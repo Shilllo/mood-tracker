@@ -1,5 +1,7 @@
 import PieChartStat from './PieChart';
 import TopEmotionsRadarChart from './RadarChartTop5Emotions';
+import EmotionBarChart from './BarChart';
+
 type EmotionData = {
     [key: string]: {
         emotion: string;
@@ -10,8 +12,16 @@ type EmotionData = {
 
 export default function Statistic({ data }: { data: EmotionData }) {
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <div
+            style={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                margin: '100px 0',
+                alignItems: 'center',
+            }}
+        >
             <PieChartStat data={data} />
+            <EmotionBarChart data={data} />
             <TopEmotionsRadarChart data={data} />
         </div>
     );

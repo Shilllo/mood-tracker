@@ -1,4 +1,4 @@
-import { PieChart, Pie, Cell, Legend } from 'recharts';
+import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
 
 const renderCustomizedLabel = ({
     cx,
@@ -127,14 +127,14 @@ export default function PieChartStat({ data }: { data: EmotionData }) {
     }
 
     return (
-        <PieChart width={400} height={400} style={{ marginBottom: '100px' }}>
+        <PieChart width={400} height={400}>
             <Pie
                 data={result}
                 cx={200}
                 cy={200}
                 labelLine={false}
                 label={renderCustomizedLabel}
-                outerRadius={130}
+                outerRadius={140}
                 fill="#8884d8"
                 dataKey="value"
             >
@@ -145,7 +145,8 @@ export default function PieChartStat({ data }: { data: EmotionData }) {
                     />
                 ))}
             </Pie>
-            <Legend layout="horizontal" align="center" verticalAlign="bottom" />
+
+            <Tooltip />
         </PieChart>
     );
 }
