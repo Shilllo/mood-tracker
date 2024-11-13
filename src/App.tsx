@@ -31,6 +31,26 @@ function App() {
         return storedData
             ? JSON.parse(storedData)
             : {
+                  "10/11/2024": [
+                      {
+                          emotion: "HAPPINESS",
+                          description:
+                              "Spent time with friends and enjoyed a great meal together.",
+                          time: "12:00",
+                      },
+                      {
+                          emotion: "ANXIETY",
+                          description:
+                              "Felt nervous about an upcoming presentation at work.",
+                          time: "09:30",
+                      },
+                      {
+                          emotion: "LOVE",
+                          description:
+                              "Had a meaningful conversation with a loved one.",
+                          time: "20:00",
+                      },
+                  ],
                   "11/11/2024": [
                       {
                           emotion: "SADNESS",
@@ -45,10 +65,29 @@ function App() {
                           time: "21:00",
                       },
                       {
-                          emotion: "ANTICIPATION",
+                          emotion: "STRESS",
                           description:
-                              "Felt excited and eager while waiting for a long-anticipated event or meeting.",
+                              "Had a busy day at work with tight deadlines.",
                           time: "11:00",
+                      },
+                  ],
+                  "12/11/2024": [
+                      {
+                          emotion: "CONTENTMENT",
+                          description: "Had a relaxing evening reading a book.",
+                          time: "18:30",
+                      },
+                      {
+                          emotion: "FRUSTRATION",
+                          description:
+                              "Struggled with fixing a bug in the code for hours.",
+                          time: "14:00",
+                      },
+                      {
+                          emotion: "CALM",
+                          description:
+                              "Enjoyed a peaceful morning walk in the park.",
+                          time: "08:00",
                       },
                   ],
               };

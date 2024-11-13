@@ -192,61 +192,79 @@ const timeCategories: {
     ),
 };
 
+const periods = {
+    day: 1,
+    week: 7,
+    month: 30,
+    year: 365,
+};
 function dataToWordCloud(
     data: EmotionData,
     emotionCategory = "all",
-    timeCategory = "all"
+    timeCategory = "all",
+    period: "day" | "week" | "month" | "year" = "day"
 ) {
     const words: { [key: string]: number } = {};
+    let count = 1;
     if (emotionCategory === "all") {
-        Object.values(data).map((item) => {
-            item.map((entry) => {
-                if (timeCategories[timeCategory].includes(entry.time)) {
-                    const description = entry.description
-                        .toLowerCase()
-                        .replace(/[^\p{L}\s]/gu, "")
-                        .replace(/\s+/g, " ")
-                        .split(" ");
-                    description.forEach((word) => {
-                        if (!englishStopWords.includes(word)) {
-                            if (words[word]) {
-                                words[word] += 1;
-                            } else {
-                                words[word] = 1;
-                            }
+        Object.values(data)
+            .reverse()
+            .map((item) => {
+                if (count <= periods[period]) {
+                    item.map((entry) => {
+                        if (timeCategories[timeCategory].includes(entry.time)) {
+                            const description = entry.description
+                                .toLowerCase()
+                                .replace(/[^\p{L}\s]/gu, "")
+                                .replace(/\s+/g, " ")
+                                .split(" ");
+                            description.forEach((word) => {
+                                if (!englishStopWords.includes(word)) {
+                                    if (words[word]) {
+                                        words[word] += 1;
+                                    } else {
+                                        words[word] = 1;
+                                    }
+                                }
+                            });
                         }
                     });
+                    count++;
                 }
             });
-        });
     } else if (
         emotionCategory === "positive" ||
         emotionCategory === "negative" ||
         emotionCategory === "neutral"
     ) {
-        Object.values(data).map((item) => {
-            item.map((entry) => {
-                if (
-                    emotions[emotionCategory].includes(entry.emotion) &&
-                    timeCategories[timeCategory].includes(entry.time)
-                ) {
-                    const description = entry.description
-                        .toLowerCase()
-                        .replace(/[^\p{L}\s]/gu, "")
-                        .replace(/\s+/g, " ")
-                        .split(" ");
-                    description.forEach((word) => {
-                        if (!englishStopWords.includes(word)) {
-                            if (words[word]) {
-                                words[word] += 1;
-                            } else {
-                                words[word] = 1;
-                            }
+        Object.values(data)
+            .reverse()
+            .map((item) => {
+                if (count <= periods[period]) {
+                    item.map((entry) => {
+                        if (
+                            emotions[emotionCategory].includes(entry.emotion) &&
+                            timeCategories[timeCategory].includes(entry.time)
+                        ) {
+                            const description = entry.description
+                                .toLowerCase()
+                                .replace(/[^\p{L}\s]/gu, "")
+                                .replace(/\s+/g, " ")
+                                .split(" ");
+                            description.forEach((word) => {
+                                if (!englishStopWords.includes(word)) {
+                                    if (words[word]) {
+                                        words[word] += 1;
+                                    } else {
+                                        words[word] = 1;
+                                    }
+                                }
+                            });
                         }
                     });
                 }
+                count++;
             });
-        });
     }
 
     const result = [];
@@ -258,8 +276,16 @@ function dataToWordCloud(
 function WordCloudComponent({ data }: { data: EmotionData }) {
     const [emotionCategory, setEmotionCategory] = React.useState("all");
     const [timeCategory, setTimeCategory] = React.useState("all");
+    const [period, setPeriod] = React.useState<
+        "day" | "week" | "month" | "year"
+    >("day");
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const wordData = dataToWordCloud(data, emotionCategory, timeCategory);
+    const wordData = dataToWordCloud(
+        data,
+        emotionCategory,
+        timeCategory,
+        period
+    );
     useEffect(() => {
         if (canvasRef.current) {
             const canvas = canvasRef.current;
@@ -297,6 +323,19 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
         setTimeCategory(event.target.value);
+    };
+
+    const handlePeriodChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const periodValue = event.target.value as
+            | "day"
+            | "week"
+            | "month"
+            | "year";
+        if (["day", "week", "month", "year"].includes(periodValue)) {
+            setPeriod(periodValue);
+        } else {
+            console.error(`Invalid period value: ${periodValue}`);
+        }
     };
 
     return (
@@ -339,7 +378,7 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                 </TextField>
                 <TextField
                     id="outlined-basic"
-                    label="Emotion timing"
+                    label="Timing"
                     select
                     variant="outlined"
                     defaultValue="all"
@@ -356,6 +395,24 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                             </MenuItem>
                         )
                     )}
+                </TextField>
+                <TextField
+                    id="outlined-basic"
+                    label="Period"
+                    select
+                    variant="outlined"
+                    defaultValue="day"
+                    sx={{
+                        width: "200px",
+                    }}
+                    value={period}
+                    onChange={handlePeriodChange}
+                >
+                    {["day", "week", "month", "year"].map((option) => (
+                        <MenuItem key={option} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
                 </TextField>
             </div>
             <canvas
