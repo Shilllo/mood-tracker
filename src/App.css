@@ -11,5 +11,5 @@ html {
 }
 
 .MuiSelect-icon {
-    color: var(--text-color) !important;
+    color: var(--delete-icon) !important;
 }
