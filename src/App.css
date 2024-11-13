@@ -9,3 +9,7 @@
 html {
     background-color: var(--background);
 }
+
+.MuiSelect-icon {
+    color: var(--text-color) !important;
+}
