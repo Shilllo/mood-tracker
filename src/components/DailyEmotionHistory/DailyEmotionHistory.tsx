@@ -306,12 +306,22 @@ export default function DailyEmotionHistory({
                                 emotions[
                                     emotionCategory as keyof typeof emotions
                                 ].map((option) => (
-                                    <MenuItem key={option[0]} value={option[0]}>
+                                    <MenuItem
+                                        key={option[0]}
+                                        value={option[0]}
+                                        sx={{
+                                            color: 'var(--text-color)',
+                                        }}
+                                    >
                                         {option[0]}: {option[1]}
                                     </MenuItem>
                                 ))
                             ) : (
-                                <MenuItem>
+                                <MenuItem
+                                    sx={{
+                                        color: 'var(--text-color)',
+                                    }}
+                                >
                                     Please choose category first
                                 </MenuItem>
                             )}
@@ -374,7 +384,13 @@ export default function DailyEmotionHistory({
                             }}
                         >
                             {times.map((option) => (
-                                <MenuItem key={option} value={option}>
+                                <MenuItem
+                                    key={option}
+                                    value={option}
+                                    sx={{
+                                        color: 'var(--text-color)',
+                                    }}
+                                >
                                     {option}
                                 </MenuItem>
                             ))}
