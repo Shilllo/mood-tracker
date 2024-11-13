@@ -5,6 +5,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Modal from '@mui/material/Modal';
 import { Card, CardContent, Typography, Box } from '@mui/material';
+import { motion } from 'framer-motion';
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -187,7 +189,9 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
             </div>
             <div className="dates">
                 {Array.from({ length: monthDays[currentMonth] }, (_, index) => (
-                    <div
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                         className="date"
                         key={index}
                         onClick={() => {
@@ -195,7 +199,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                         }}
                     >
                         {index + 1}
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </div>

@@ -16,6 +16,8 @@ import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './DailyEmotionHistory.css';
+import { motion } from 'framer-motion';
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -232,214 +234,241 @@ export default function DailyEmotionHistory({
                             width: '100%',
                         }}
                     >
-                        <TextField
-                            id="outlined-multiline-flexible"
-                            label="Emotion category"
-                            value={emotionCategory}
-                            onChange={handleEmotionCategoryChange}
-                            select
-                            sx={{
-                                input: { color: 'var(--text-color)' }, // Цвет текста
-                                label: { color: 'var(--text-color)' }, // Цвет метки (label)
-                                '.MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: 'var(--border-input)', // Цвет рамки
+                        <motion.div whileHover={{ scale: 1.02 }}>
+                            <TextField
+                                id="outlined-multiline-flexible"
+                                label="Emotion category"
+                                value={emotionCategory}
+                                onChange={handleEmotionCategoryChange}
+                                select
+                                sx={{
+                                    width: '100%',
+                                    input: { color: 'var(--text-color)' }, // Цвет текста
+                                    label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                                    '.MuiOutlinedInput-root': {
+                                        '& fieldset': {
+                                            borderColor: 'var(--border-input)', // Цвет рамки
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                                        },
                                     },
-                                    '&:hover fieldset': {
-                                        borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                                    '.MuiInputLabel-root': {
+                                        color: 'var(--text-color)', // Цвет метки (label)
                                     },
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                                    '.MuiInputBase-root': {
+                                        color: 'var(--text-color)', // Цвет текста
                                     },
-                                },
-                                '.MuiInputLabel-root': {
-                                    color: 'var(--text-color)', // Цвет метки (label)
-                                },
-                                '.MuiInputBase-root': {
-                                    color: 'var(--text-color)', // Цвет текста
-                                },
-                            }}
-                        >
-                            {Object.keys(emotions).map((option) => (
-                                <MenuItem
-                                    key={option}
-                                    value={option}
-                                    sx={{
-                                        color: 'var(--text-color)',
-                                    }}
-                                >
-                                    {option.toUpperCase()}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <TextField
-                            id="outlined-multiline-flexible"
-                            label="Emotion"
-                            select
-                            value={emotion}
-                            onChange={handleEmotionChange}
-                            sx={{
-                                input: { color: 'var(--text-color)' }, // Цвет текста
-                                label: { color: 'var(--text-color)' }, // Цвет метки (label)
-                                '.MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: 'var(--border-input)', // Цвет рамки
-                                    },
-                                    '&:hover fieldset': {
-                                        borderColor: 'var(--border-input)', // Цвет рамки при наведении
-                                    },
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: 'var(--border-input)', // Цвет рамки при фокусе
-                                    },
-                                },
-                                '.MuiInputLabel-root': {
-                                    color: 'var(--text-color)', // Цвет метки (label)
-                                },
-                                '.MuiInputBase-root': {
-                                    color: 'var(--text-color)', // Цвет текста
-                                },
-                            }}
-                        >
-                            {emotions[
-                                emotionCategory as keyof typeof emotions
-                            ] ? (
-                                emotions[
-                                    emotionCategory as keyof typeof emotions
-                                ].map((option) => (
+                                }}
+                            >
+                                {Object.keys(emotions).map((option) => (
                                     <MenuItem
-                                        key={option[0]}
-                                        value={option[0]}
+                                        key={option}
+                                        value={option}
                                         sx={{
                                             color: 'var(--text-color)',
                                         }}
                                     >
-                                        {option[0]}: {option[1]}
+                                        {option.toUpperCase()}
                                     </MenuItem>
-                                ))
-                            ) : (
-                                <MenuItem
-                                    sx={{
-                                        color: 'var(--text-color)',
-                                    }}
-                                >
-                                    Please choose category first
-                                </MenuItem>
-                            )}
-                        </TextField>
-                        <TextField
-                            id="outlined-multiline-flexible"
-                            label="What happened?"
-                            multiline
-                            maxRows={10}
-                            value={description}
-                            onChange={handleDescriptionChange}
-                            sx={{
-                                input: { color: 'var(--text-color)' }, // Цвет текста
-                                label: { color: 'var(--text-color)' }, // Цвет метки (label)
-                                '.MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: 'var(--border-input)', // Цвет рамки
-                                    },
-                                    '&:hover fieldset': {
-                                        borderColor: 'var(--border-input)', // Цвет рамки при наведении
-                                    },
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: 'var(--border-input)', // Цвет рамки при фокусе
-                                    },
-                                },
-                                '.MuiInputLabel-root': {
-                                    color: 'var(--text-color)', // Цвет метки (label)
-                                },
-                                '.MuiInputBase-root': {
-                                    color: 'var(--text-color)', // Цвет текста
-                                },
-                            }}
-                        />
-                        <TextField
-                            id="outlined-multiline-flexible"
-                            label="Timing"
-                            select
-                            value={time}
-                            onChange={handleTimeChange}
-                            sx={{
-                                input: { color: 'var(--text-color)' }, // Цвет текста
-                                label: { color: 'var(--text-color)' }, // Цвет метки (label)
-                                '.MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: 'var(--border-input)', // Цвет рамки
-                                    },
-                                    '&:hover fieldset': {
-                                        borderColor: 'var(--border-input)', // Цвет рамки при наведении
-                                    },
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: 'var(--border-input)', // Цвет рамки при фокусе
-                                    },
-                                },
-                                '.MuiInputLabel-root': {
-                                    color: 'var(--text-color)', // Цвет метки (label)
-                                },
-                                '.MuiInputBase-root': {
-                                    color: 'var(--text-color)', // Цвет текста
-                                },
-                            }}
-                        >
-                            {times.map((option) => (
-                                <MenuItem
-                                    key={option}
-                                    value={option}
-                                    sx={{
-                                        color: 'var(--text-color)',
-                                    }}
-                                >
-                                    {option}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                    </Box>
-                    <Button
-                        variant="contained"
-                        sx={{
-                            backgroundColor: 'black',
-                            marginTop: '30px',
-                            width: '70%',
-                        }}
-                        onClick={() => {
-                            if (
-                                emotion &&
-                                description &&
-                                time &&
-                                emotionCategory &&
-                                data[new Date().toLocaleDateString('en-GB')]
-                            ) {
-                                handleClose();
-                                setData({
-                                    ...data,
-                                    [new Date().toLocaleDateString('en-GB')]: [
-                                        ...data[
-                                            new Date().toLocaleDateString(
-                                                'en-GB',
-                                            )
-                                        ],
-                                        {
-                                            emotion: emotion.toUpperCase(),
-                                            description: description,
-                                            time: time,
+                                ))}
+                            </TextField>
+                        </motion.div>
+                        <motion.div whileHover={{ scale: 1.02 }}>
+                            <TextField
+                                id="outlined-multiline-flexible"
+                                label="Emotion"
+                                select
+                                value={emotion}
+                                onChange={handleEmotionChange}
+                                sx={{
+                                    width: '100%',
+                                    input: { color: 'var(--text-color)' }, // Цвет текста
+                                    label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                                    '.MuiOutlinedInput-root': {
+                                        '& fieldset': {
+                                            borderColor: 'var(--border-input)', // Цвет рамки
                                         },
-                                    ],
-                                });
-                            } else if (
-                                !data[new Date().toLocaleDateString('en-GB')]
-                            ) {
-                                setData({
-                                    ...data,
-                                    [new Date().toLocaleDateString('en-GB')]:
-                                        [],
-                                });
-                            }
+                                        '&:hover fieldset': {
+                                            borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                                        },
+                                    },
+                                    '.MuiInputLabel-root': {
+                                        color: 'var(--text-color)', // Цвет метки (label)
+                                    },
+                                    '.MuiInputBase-root': {
+                                        color: 'var(--text-color)', // Цвет текста
+                                    },
+                                }}
+                            >
+                                {emotions[
+                                    emotionCategory as keyof typeof emotions
+                                ] ? (
+                                    emotions[
+                                        emotionCategory as keyof typeof emotions
+                                    ].map((option) => (
+                                        <MenuItem
+                                            key={option[0]}
+                                            value={option[0]}
+                                            sx={{
+                                                color: 'var(--text-color)',
+                                            }}
+                                        >
+                                            {option[0]}: {option[1]}
+                                        </MenuItem>
+                                    ))
+                                ) : (
+                                    <MenuItem
+                                        sx={{
+                                            color: 'var(--text-color)',
+                                        }}
+                                    >
+                                        Please choose category first
+                                    </MenuItem>
+                                )}
+                            </TextField>
+                        </motion.div>
+                        <motion.div whileHover={{ scale: 1.02 }}>
+                            <TextField
+                                id="outlined-multiline-flexible"
+                                label="What happened?"
+                                multiline
+                                maxRows={10}
+                                value={description}
+                                onChange={handleDescriptionChange}
+                                sx={{
+                                    width: '100%',
+                                    input: { color: 'var(--text-color)' }, // Цвет текста
+                                    label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                                    '.MuiOutlinedInput-root': {
+                                        '& fieldset': {
+                                            borderColor: 'var(--border-input)', // Цвет рамки
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                                        },
+                                    },
+                                    '.MuiInputLabel-root': {
+                                        color: 'var(--text-color)', // Цвет метки (label)
+                                    },
+                                    '.MuiInputBase-root': {
+                                        color: 'var(--text-color)', // Цвет текста
+                                    },
+                                }}
+                            />
+                        </motion.div>
+                        <motion.div whileHover={{ scale: 1.02 }}>
+                            <TextField
+                                id="outlined-multiline-flexible"
+                                label="Timing"
+                                select
+                                value={time}
+                                onChange={handleTimeChange}
+                                sx={{
+                                    width: '100%',
+                                    input: { color: 'var(--text-color)' }, // Цвет текста
+                                    label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                                    '.MuiOutlinedInput-root': {
+                                        '& fieldset': {
+                                            borderColor: 'var(--border-input)', // Цвет рамки
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                                        },
+                                    },
+                                    '.MuiInputLabel-root': {
+                                        color: 'var(--text-color)', // Цвет метки (label)
+                                    },
+                                    '.MuiInputBase-root': {
+                                        color: 'var(--text-color)', // Цвет текста
+                                    },
+                                }}
+                            >
+                                {times.map((option) => (
+                                    <MenuItem
+                                        key={option}
+                                        value={option}
+                                        sx={{
+                                            color: 'var(--text-color)',
+                                        }}
+                                    >
+                                        {option}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </motion.div>
+                    </Box>
+                    <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.9 }}
+                        style={{
+                            width: '100%',
+                            display: 'flex',
+                            justifyContent: 'center',
                         }}
                     >
-                        Done
-                    </Button>
+                        <Button
+                            variant="contained"
+                            sx={{
+                                backgroundColor: 'black',
+                                marginTop: '30px',
+                                width: '70%',
+                            }}
+                            onClick={() => {
+                                if (
+                                    emotion &&
+                                    description &&
+                                    time &&
+                                    emotionCategory &&
+                                    data[new Date().toLocaleDateString('en-GB')]
+                                ) {
+                                    handleClose();
+                                    setData({
+                                        ...data,
+                                        [new Date().toLocaleDateString(
+                                            'en-GB',
+                                        )]: [
+                                            ...data[
+                                                new Date().toLocaleDateString(
+                                                    'en-GB',
+                                                )
+                                            ],
+                                            {
+                                                emotion: emotion.toUpperCase(),
+                                                description: description,
+                                                time: time,
+                                            },
+                                        ],
+                                    });
+                                } else if (
+                                    !data[
+                                        new Date().toLocaleDateString('en-GB')
+                                    ]
+                                ) {
+                                    setData({
+                                        ...data,
+                                        [new Date().toLocaleDateString(
+                                            'en-GB',
+                                        )]: [],
+                                    });
+                                }
+                            }}
+                        >
+                            Done
+                        </Button>
+                    </motion.div>
                 </Box>
             </Modal>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -481,29 +510,34 @@ export default function DailyEmotionHistory({
                                       </StyledTableCell>
                                       <StyledTableCell align="center">
                                           {row.time}
-                                          <IconButton
-                                              onClick={() => {
-                                                  setData({
-                                                      ...data,
-                                                      [new Date().toLocaleDateString(
-                                                          'en-GB',
-                                                      )]: data[
-                                                          new Date().toLocaleDateString(
-                                                              'en-GB',
-                                                          )
-                                                      ].filter(
-                                                          (entry) =>
-                                                              entry !== row,
-                                                      ),
-                                                  });
-                                              }}
+                                          <motion.div
+                                              whileHover={{ scale: 1.2 }}
+                                              whileTap={{ scale: 0.95 }}
                                           >
-                                              <DeleteIcon
-                                                  sx={{
-                                                      color: 'var(--delete-icon)',
+                                              <IconButton
+                                                  onClick={() => {
+                                                      setData({
+                                                          ...data,
+                                                          [new Date().toLocaleDateString(
+                                                              'en-GB',
+                                                          )]: data[
+                                                              new Date().toLocaleDateString(
+                                                                  'en-GB',
+                                                              )
+                                                          ].filter(
+                                                              (entry) =>
+                                                                  entry !== row,
+                                                          ),
+                                                      });
                                                   }}
-                                              />
-                                          </IconButton>
+                                              >
+                                                  <DeleteIcon
+                                                      sx={{
+                                                          color: 'var(--delete-icon)',
+                                                      }}
+                                                  />
+                                              </IconButton>
+                                          </motion.div>
                                       </StyledTableCell>
                                   </StyledTableRow>
                               ),
@@ -511,18 +545,29 @@ export default function DailyEmotionHistory({
                         : null}
                 </TableBody>
             </Table>
-            <Button
-                sx={{
-                    alignSelf: 'center',
-                    backgroundColor: 'black',
-                    margin: '10px',
-                    width: '70%',
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                style={{
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                 }}
-                variant="contained"
-                onClick={handleOpen}
             >
-                ADD EMOTION
-            </Button>
+                <Button
+                    sx={{
+                        alignSelf: 'center',
+                        backgroundColor: 'black',
+                        margin: '10px',
+                        width: '70%',
+                    }}
+                    variant="contained"
+                    onClick={handleOpen}
+                >
+                    ADD EMOTION
+                </Button>
+            </motion.div>
         </TableContainer>
     );
 }

@@ -1,12 +1,30 @@
 import './Header.css';
 import { Button } from '@mui/material';
 import Switcher from './Switcher';
+import { motion } from 'framer-motion';
+
 function Header({ exportData }: { exportData: () => void }) {
     return (
         <div className="header">
-            <h1 className="header-title">EmoTracker</h1>
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                style={{ cursor: 'pointer' }}
+            >
+                <h1
+                    className="header-title"
+                    onClick={() => window.location.reload()}
+                >
+                    EmoTracker
+                </h1>
+            </motion.div>
             <div style={{ position: 'absolute', left: '100px' }}>
-                <Switcher />
+                <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <Switcher />
+                </motion.div>
             </div>
             <div
                 style={{
@@ -16,13 +34,18 @@ function Header({ exportData }: { exportData: () => void }) {
                     position: 'absolute',
                 }}
             >
-                <Button
-                    variant="contained"
-                    onClick={exportData}
-                    sx={{ backgroundColor: 'black' }}
+                <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                 >
-                    Export data
-                </Button>
+                    <Button
+                        variant="contained"
+                        onClick={exportData}
+                        sx={{ backgroundColor: 'black' }}
+                    >
+                        Export data
+                    </Button>
+                </motion.div>
             </div>
         </div>
     );

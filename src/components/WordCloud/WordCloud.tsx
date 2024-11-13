@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
 import './WordCloud.css';
+import { motion } from 'framer-motion';
 
 interface EmotionData {
     [key: string]: {
@@ -360,44 +361,98 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                 style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '10px',
+                    gap: '20px',
                     marginRight: '50px',
                     color: 'var(--text-color)',
                 }}
             >
                 <h3>Word Cloud Filters</h3>
-                <TextField
-                    id="outlined-basic"
-                    label="Emotion category"
-                    select
-                    variant="outlined"
-                    defaultValue="all"
-                    sx={{
-                        input: { color: 'var(--text-color)' }, // Цвет текста
-                        label: { color: 'var(--text-color)' }, // Цвет метки (label)
-                        '.MuiOutlinedInput-root': {
-                            '& fieldset': {
-                                borderColor: 'var(--border-input)', // Цвет рамки
+                <motion.div whileHover={{ scale: 1.02 }}>
+                    <TextField
+                        id="outlined-basic"
+                        label="Emotion category"
+                        select
+                        variant="outlined"
+                        defaultValue="all"
+                        sx={{
+                            width: '100%',
+                            input: { color: 'var(--text-color)' }, // Цвет текста
+                            label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                            '.MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                                },
                             },
-                            '&:hover fieldset': {
-                                borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                            '.MuiInputLabel-root': {
+                                color: 'var(--text-color)', // Цвет метки (label)
                             },
-                            '&.Mui-focused fieldset': {
-                                borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                            '.MuiInputBase-root': {
+                                color: 'var(--text-color)', // Цвет текста
                             },
-                        },
-                        '.MuiInputLabel-root': {
-                            color: 'var(--text-color)', // Цвет метки (label)
-                        },
-                        '.MuiInputBase-root': {
-                            color: 'var(--text-color)', // Цвет текста
-                        },
-                    }}
-                    value={emotionCategory}
-                    onChange={handleEmotionCategoryChange}
-                >
-                    {['positive', 'negative', 'neutral', 'all'].map(
-                        (option) => (
+                        }}
+                        value={emotionCategory}
+                        onChange={handleEmotionCategoryChange}
+                    >
+                        {['positive', 'negative', 'neutral', 'all'].map(
+                            (option) => (
+                                <MenuItem
+                                    key={option}
+                                    value={option}
+                                    sx={{
+                                        color: 'var(--text-color)',
+                                    }}
+                                >
+                                    {option}
+                                </MenuItem>
+                            ),
+                        )}
+                    </TextField>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.02 }}>
+                    <TextField
+                        id="outlined-basic"
+                        label="Timing"
+                        select
+                        variant="outlined"
+                        defaultValue="all"
+                        sx={{
+                            width: '100%',
+                            input: { color: 'var(--text-color)' }, // Цвет текста
+                            label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                            '.MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                                },
+                            },
+                            '.MuiInputLabel-root': {
+                                color: 'var(--text-color)', // Цвет метки (label)
+                            },
+                            '.MuiInputBase-root': {
+                                color: 'var(--text-color)', // Цвет текста
+                            },
+                        }}
+                        value={timeCategory}
+                        onChange={handleTimeCategoryChange}
+                    >
+                        {[
+                            'morning',
+                            'afternoon',
+                            'evening',
+                            'night',
+                            'all',
+                        ].map((option) => (
                             <MenuItem
                                 key={option}
                                 value={option}
@@ -407,41 +462,42 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                             >
                                 {option}
                             </MenuItem>
-                        ),
-                    )}
-                </TextField>
-                <TextField
-                    id="outlined-basic"
-                    label="Timing"
-                    select
-                    variant="outlined"
-                    defaultValue="all"
-                    sx={{
-                        input: { color: 'var(--text-color)' }, // Цвет текста
-                        label: { color: 'var(--text-color)' }, // Цвет метки (label)
-                        '.MuiOutlinedInput-root': {
-                            '& fieldset': {
-                                borderColor: 'var(--border-input)', // Цвет рамки
+                        ))}
+                    </TextField>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.02 }}>
+                    <TextField
+                        id="outlined-basic"
+                        label="Period"
+                        select
+                        variant="outlined"
+                        defaultValue="day"
+                        sx={{
+                            width: '200px',
+                            input: { color: 'var(--text-color)' }, // Цвет текста
+                            label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                            '.MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                                },
                             },
-                            '&:hover fieldset': {
-                                borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                            '.MuiInputLabel-root': {
+                                color: 'var(--text-color)', // Цвет метки (label)
                             },
-                            '&.Mui-focused fieldset': {
-                                borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                            '.MuiInputBase-root': {
+                                color: 'var(--text-color)', // Цвет текста
                             },
-                        },
-                        '.MuiInputLabel-root': {
-                            color: 'var(--text-color)', // Цвет метки (label)
-                        },
-                        '.MuiInputBase-root': {
-                            color: 'var(--text-color)', // Цвет текста
-                        },
-                    }}
-                    value={timeCategory}
-                    onChange={handleTimeCategoryChange}
-                >
-                    {['morning', 'afternoon', 'evening', 'night', 'all'].map(
-                        (option) => (
+                        }}
+                        value={period}
+                        onChange={handlePeriodChange}
+                    >
+                        {['day', 'week', 'month', 'year'].map((option) => (
                             <MenuItem
                                 key={option}
                                 value={option}
@@ -451,52 +507,9 @@ function WordCloudComponent({ data }: { data: EmotionData }) {
                             >
                                 {option}
                             </MenuItem>
-                        ),
-                    )}
-                </TextField>
-                <TextField
-                    id="outlined-basic"
-                    label="Period"
-                    select
-                    variant="outlined"
-                    defaultValue="day"
-                    sx={{
-                        width: '200px',
-                        input: { color: 'var(--text-color)' }, // Цвет текста
-                        label: { color: 'var(--text-color)' }, // Цвет метки (label)
-                        '.MuiOutlinedInput-root': {
-                            '& fieldset': {
-                                borderColor: 'var(--border-input)', // Цвет рамки
-                            },
-                            '&:hover fieldset': {
-                                borderColor: 'var(--border-input)', // Цвет рамки при наведении
-                            },
-                            '&.Mui-focused fieldset': {
-                                borderColor: 'var(--border-input)', // Цвет рамки при фокусе
-                            },
-                        },
-                        '.MuiInputLabel-root': {
-                            color: 'var(--text-color)', // Цвет метки (label)
-                        },
-                        '.MuiInputBase-root': {
-                            color: 'var(--text-color)', // Цвет текста
-                        },
-                    }}
-                    value={period}
-                    onChange={handlePeriodChange}
-                >
-                    {['day', 'week', 'month', 'year'].map((option) => (
-                        <MenuItem
-                            key={option}
-                            value={option}
-                            sx={{
-                                color: 'var(--text-color)',
-                            }}
-                        >
-                            {option}
-                        </MenuItem>
-                    ))}
-                </TextField>
+                        ))}
+                    </TextField>
+                </motion.div>
             </div>
             <canvas
                 ref={canvasRef}
