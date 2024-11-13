@@ -15,20 +15,26 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import './DailyEmotionHistory.css';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
+        color: 'var(--table-head-color)',
+        borderBottom: '1px solid var(--background)',
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 15,
+        color: 'var(--text-color)',
+        borderBottom: 'var(--border-table) solid 1px',
     },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
+const StyledTableRow = styled(TableRow)(() => ({
     '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: 'var(--table-row-odd)',
+    },
+    '&:nth-of-type(even)': {
+        backgroundColor: 'var(--table-row-even)',
     },
 }));
 
@@ -39,12 +45,13 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '2px solid var(--background)',
     boxShadow: 24,
     p: 4,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    backgroundColor: 'var(--background)',
 };
 
 const emotions = {
@@ -194,10 +201,20 @@ export default function DailyEmotionHistory({
                 alignSelf: 'center',
                 display: 'flex',
                 flexDirection: 'column',
+                backgroundColor: 'var(--background)',
             }}
             component={Paper}
         >
-            <Modal open={open} onClose={handleClose}>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                BackdropProps={{
+                    style: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Полупрозрачный чёрный фон
+                        backdropFilter: 'blur(10px)', // Размытие фона
+                    },
+                }}
+            >
                 <Box sx={style}>
                     <Typography
                         id="modal-modal-title"
@@ -221,9 +238,36 @@ export default function DailyEmotionHistory({
                             value={emotionCategory}
                             onChange={handleEmotionCategoryChange}
                             select
+                            sx={{
+                                input: { color: 'var(--text-color)' }, // Цвет текста
+                                label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                                '.MuiOutlinedInput-root': {
+                                    '& fieldset': {
+                                        borderColor: 'var(--border-input)', // Цвет рамки
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                                    },
+                                },
+                                '.MuiInputLabel-root': {
+                                    color: 'var(--text-color)', // Цвет метки (label)
+                                },
+                                '.MuiInputBase-root': {
+                                    color: 'var(--text-color)', // Цвет текста
+                                },
+                            }}
                         >
                             {Object.keys(emotions).map((option) => (
-                                <MenuItem key={option} value={option}>
+                                <MenuItem
+                                    key={option}
+                                    value={option}
+                                    sx={{
+                                        color: 'var(--text-color)',
+                                    }}
+                                >
                                     {option.toUpperCase()}
                                 </MenuItem>
                             ))}
@@ -234,6 +278,27 @@ export default function DailyEmotionHistory({
                             select
                             value={emotion}
                             onChange={handleEmotionChange}
+                            sx={{
+                                input: { color: 'var(--text-color)' }, // Цвет текста
+                                label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                                '.MuiOutlinedInput-root': {
+                                    '& fieldset': {
+                                        borderColor: 'var(--border-input)', // Цвет рамки
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                                    },
+                                },
+                                '.MuiInputLabel-root': {
+                                    color: 'var(--text-color)', // Цвет метки (label)
+                                },
+                                '.MuiInputBase-root': {
+                                    color: 'var(--text-color)', // Цвет текста
+                                },
+                            }}
                         >
                             {emotions[
                                 emotionCategory as keyof typeof emotions
@@ -258,6 +323,27 @@ export default function DailyEmotionHistory({
                             maxRows={10}
                             value={description}
                             onChange={handleDescriptionChange}
+                            sx={{
+                                input: { color: 'var(--text-color)' }, // Цвет текста
+                                label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                                '.MuiOutlinedInput-root': {
+                                    '& fieldset': {
+                                        borderColor: 'var(--border-input)', // Цвет рамки
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                                    },
+                                },
+                                '.MuiInputLabel-root': {
+                                    color: 'var(--text-color)', // Цвет метки (label)
+                                },
+                                '.MuiInputBase-root': {
+                                    color: 'var(--text-color)', // Цвет текста
+                                },
+                            }}
                         />
                         <TextField
                             id="outlined-multiline-flexible"
@@ -265,6 +351,27 @@ export default function DailyEmotionHistory({
                             select
                             value={time}
                             onChange={handleTimeChange}
+                            sx={{
+                                input: { color: 'var(--text-color)' }, // Цвет текста
+                                label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                                '.MuiOutlinedInput-root': {
+                                    '& fieldset': {
+                                        borderColor: 'var(--border-input)', // Цвет рамки
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: 'var(--border-input)', // Цвет рамки при наведении
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: 'var(--border-input)', // Цвет рамки при фокусе
+                                    },
+                                },
+                                '.MuiInputLabel-root': {
+                                    color: 'var(--text-color)', // Цвет метки (label)
+                                },
+                                '.MuiInputBase-root': {
+                                    color: 'var(--text-color)', // Цвет текста
+                                },
+                            }}
                         >
                             {times.map((option) => (
                                 <MenuItem key={option} value={option}>
@@ -341,7 +448,8 @@ export default function DailyEmotionHistory({
                                           scope="row"
                                           align="center"
                                           sx={{
-                                              borderRight: '1px solid #c9c8c8',
+                                              borderRight:
+                                                  '1px solid var(--border-table)',
                                           }}
                                       >
                                           {row.emotion}
@@ -349,7 +457,8 @@ export default function DailyEmotionHistory({
                                       <StyledTableCell
                                           align="center"
                                           sx={{
-                                              borderRight: '1px solid #c9c8c8',
+                                              borderRight:
+                                                  '1px solid var(--border-table)',
                                           }}
                                       >
                                           {row.description}
@@ -373,7 +482,11 @@ export default function DailyEmotionHistory({
                                                   });
                                               }}
                                           >
-                                              <DeleteIcon />
+                                              <DeleteIcon
+                                                  sx={{
+                                                      color: 'var(--delete-icon)',
+                                                  }}
+                                              />
                                           </IconButton>
                                       </StyledTableCell>
                                   </StyledTableRow>

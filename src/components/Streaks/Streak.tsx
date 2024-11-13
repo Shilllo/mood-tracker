@@ -19,6 +19,7 @@ export default function Streak({
                 alignContent: 'center',
                 justifyContent: 'space-between',
                 gap: '10px',
+                color: 'var(--text-color)',
             }}
         >
             <h3>{name}:</h3>

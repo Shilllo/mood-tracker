@@ -12,12 +12,13 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 1000,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '2px solid var(--background)',
     boxShadow: 24,
     p: 4,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    backgroundColor: 'var(--background)',
 };
 
 const monthDays: { [key: string]: number } = {
@@ -76,7 +77,16 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
     // console.log(mixColorForDay(currentRecord));
     return (
         <div className="monthly-emotion-history">
-            <Modal open={open} onClose={handleClose}>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                BackdropProps={{
+                    style: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Полупрозрачный чёрный фон
+                        backdropFilter: 'blur(10px)', // Размытие фона
+                    },
+                }}
+            >
                 <Box sx={style}>
                     <Typography
                         id="modal-modal-title"
@@ -102,7 +112,14 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                                         variant="outlined"
                                         sx={{ width: 450 }}
                                     >
-                                        <CardContent>
+                                        <CardContent
+                                            sx={{
+                                                color: 'var(--text-color)',
+                                                backgroundColor:
+                                                    'var(--background)',
+                                                height: '100%',
+                                            }}
+                                        >
                                             <Typography
                                                 variant="h5"
                                                 component="div"
@@ -110,16 +127,10 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                                             >
                                                 {entry.emotion}
                                             </Typography>
-                                            <Typography
-                                                variant="body2"
-                                                color="text.secondary"
-                                            >
+                                            <Typography variant="body2">
                                                 {entry.description}
                                             </Typography>
-                                            <Typography
-                                                variant="subtitle1"
-                                                color="text.primary"
-                                            >
+                                            <Typography variant="subtitle1">
                                                 Time: {entry.time}
                                             </Typography>
                                         </CardContent>
@@ -150,9 +161,15 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                         }
                     }}
                 >
-                    <ArrowBackIcon />
+                    <ArrowBackIcon sx={{ color: 'var(--text-color)' }} />
                 </IconButton>
-                <p style={{ fontWeight: 'bold', fontSize: '20px' }}>
+                <p
+                    style={{
+                        fontWeight: 'bold',
+                        fontSize: '20px',
+                        color: 'var(--text-color)',
+                    }}
+                >
                     {currentMonth} 2024
                 </p>
                 <IconButton
@@ -165,7 +182,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                         }
                     }}
                 >
-                    <ArrowForwardIcon />
+                    <ArrowForwardIcon sx={{ color: 'var(--text-color)' }} />
                 </IconButton>
             </div>
             <div className="dates">

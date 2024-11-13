@@ -1,4 +1,11 @@
+@import url('/src/ui/theme-style/var.css');
+
 .App {
     display: flex;
     flex-direction: column;
+    background-color: var(--background);
+}
+
+html {
+    background-color: var(--background);
 }
