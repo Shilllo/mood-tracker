@@ -20,6 +20,7 @@ export default function Statistic({ data }: { data: EmotionData }) {
                 alignItems: 'center',
                 width: 'min(2000px, 80%)',
                 alignSelf: 'center',
+                flexWrap: 'wrap',
             }}
         >
             <PieChartStat data={data} />
