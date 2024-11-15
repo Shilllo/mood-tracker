@@ -2,6 +2,10 @@ import "./Header.css";
 import { Button } from "@mui/material";
 import Switcher from "./Switcher";
 import { motion } from "framer-motion";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
 
 function Header({
     exportData,
@@ -12,6 +16,25 @@ function Header({
     theme: string;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
+    const style = {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 1000,
+        bgcolor: "background.paper",
+        border: "2px solid var(--background)",
+        boxShadow: 24,
+        p: 4,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        backgroundColor: "var(--background)",
+    };
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     return (
         <div
             className="header"
@@ -24,50 +47,28 @@ function Header({
                 alignItems: "center",
             }}
         >
-            <div>
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    <Switcher theme={theme} handleChange={handleChange} />
-                </motion.div>
-            </div>
-            <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                style={{ cursor: "pointer", marginLeft: "200px" }}
-            >
-                <h1
-                    className="header-title"
-                    onClick={() => window.location.reload()}
-                >
-                    EmoTracker
-                </h1>
-            </motion.div>
-            <div
-                style={{
-                    display: "flex",
-                    gap: "10px",
+            <Modal
+                BackdropProps={{
+                    style: {
+                        backgroundColor: "rgba(0, 0, 0, 0.5)", // Полупрозрачный чёрный фон
+                        backdropFilter: "blur(10px)", // Размытие фона
+                    },
                 }}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
             >
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    <Button
-                        variant="contained"
-                        onClick={exportData}
-                        sx={{ backgroundColor: "black" }}
+                <Box sx={style}>
+                    <Typography
+                        id="modal-modal-description"
+                        sx={{ fontSize: 20, mb: 4 }}
                     >
-                        Export data
-                    </Button>
-                </motion.div>
-
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
+                        Are you sure? It will totally replace your data with new
+                        information from this file!
+                    </Typography>
                     <input
+                        style={{ fontSize: 20, color: "var(--text-color)" }}
                         type="file"
                         accept=".json"
                         onChange={(
@@ -112,9 +113,62 @@ function Header({
                                 };
 
                                 reader.readAsText(file);
+                                window.location.reload();
                             }
                         }}
                     />
+                </Box>
+            </Modal>
+            <div>
+                <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <Switcher theme={theme} handleChange={handleChange} />
+                </motion.div>
+            </div>
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                style={{ cursor: "pointer", marginLeft: "200px" }}
+            >
+                <h1
+                    className="header-title"
+                    onClick={() => window.location.reload()}
+                >
+                    EmoTracker
+                </h1>
+            </motion.div>
+            <div
+                style={{
+                    display: "flex",
+                    gap: "10px",
+                }}
+            >
+                <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <Button
+                        variant="contained"
+                        onClick={exportData}
+                        sx={{ backgroundColor: "black" }}
+                    >
+                        Export data
+                    </Button>
+                </motion.div>
+
+                <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <Button
+                        variant="contained"
+                        onClick={handleOpen}
+                        sx={{ backgroundColor: "black" }}
+                    >
+                        Import data
+                    </Button>
                 </motion.div>
             </div>
         </div>
