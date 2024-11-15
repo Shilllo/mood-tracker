@@ -67,56 +67,65 @@ function Header({
                         Are you sure? It will totally replace your data with new
                         information from this file!
                     </Typography>
-                    <input
-                        style={{ fontSize: 20, color: "var(--text-color)" }}
-                        type="file"
-                        accept=".json"
-                        onChange={(
-                            event: React.ChangeEvent<HTMLInputElement>
-                        ) => {
-                            if (event.target instanceof HTMLInputElement) {
-                                const fileInput =
-                                    event.target as HTMLInputElement;
-                                const file = fileInput.files?.[0];
-                                console.log(file);
-                                if (!file) return;
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <input
+                            style={{ fontSize: 20, color: "var(--text-color)" }}
+                            type="file"
+                            accept=".json"
+                            onChange={(
+                                event: React.ChangeEvent<HTMLInputElement>
+                            ) => {
+                                if (event.target instanceof HTMLInputElement) {
+                                    const fileInput =
+                                        event.target as HTMLInputElement;
+                                    const file = fileInput.files?.[0];
+                                    console.log(file);
+                                    if (!file) return;
 
-                                const reader = new FileReader();
-                                reader.onload = (e) => {
-                                    try {
-                                        // Чтение данных из файла
-                                        const content = e.target
-                                            ?.result as string;
-                                        const importedData =
-                                            JSON.parse(content);
+                                    const reader = new FileReader();
+                                    reader.onload = (e) => {
+                                        try {
+                                            // Чтение данных из файла
+                                            const content = e.target
+                                                ?.result as string;
+                                            const importedData =
+                                                JSON.parse(content);
 
-                                        // Валидация данных (по необходимости)
-                                        if (typeof importedData === "object") {
-                                            // Сохранение данных в LocalStorage
-                                            localStorage.setItem(
-                                                "emotionData",
-                                                JSON.stringify(importedData)
-                                            );
+                                            // Валидация данных (по необходимости)
+                                            if (
+                                                typeof importedData === "object"
+                                            ) {
+                                                // Сохранение данных в LocalStorage
+                                                localStorage.setItem(
+                                                    "emotionData",
+                                                    JSON.stringify(importedData)
+                                                );
+                                                alert(
+                                                    "Данные успешно импортированы!"
+                                                );
+                                            } else {
+                                                alert(
+                                                    "Неверный формат данных."
+                                                );
+                                            }
+                                        } catch (error) {
                                             alert(
-                                                "Данные успешно импортированы!"
+                                                `Ошибка при чтении файла: ${
+                                                    (error as Error).message
+                                                }`
                                             );
-                                        } else {
-                                            alert("Неверный формат данных.");
                                         }
-                                    } catch (error) {
-                                        alert(
-                                            `Ошибка при чтении файла: ${
-                                                (error as Error).message
-                                            }`
-                                        );
-                                    }
-                                };
+                                    };
 
-                                reader.readAsText(file);
-                                window.location.reload();
-                            }
-                        }}
-                    />
+                                    reader.readAsText(file);
+                                    window.location.reload();
+                                }
+                            }}
+                        />
+                    </motion.div>
                 </Box>
             </Modal>
             <div>
