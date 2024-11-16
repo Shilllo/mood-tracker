@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    gap: 10px;
 }
 
 .header-title {
