@@ -67,6 +67,12 @@ function Header({
                         Are you sure? It will totally replace your data with new
                         information from this file!
                     </Typography>
+                    <Typography
+                        id="modal-modal-description"
+                        sx={{ fontSize: 20, mb: 4 }}
+                    >
+                        JSON-file only
+                    </Typography>
                     <motion.div
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
