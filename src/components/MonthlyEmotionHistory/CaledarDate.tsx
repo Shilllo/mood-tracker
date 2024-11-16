@@ -41,7 +41,7 @@ export default function CalendarDate({
             onClick={() => {
                 handleOpen(date);
             }}
-            style={{ border: `2px solid ${currentColor}` }}
+            style={{ border: `2.5px solid ${currentColor}` }}
         >
             {date + 1}
         </motion.div>
