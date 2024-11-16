@@ -199,7 +199,7 @@ export default function DailyEmotionHistory({
     return (
         <TableContainer
             sx={{
-                width: 'min(2000px, 80%)',
+                width: 'min(1500px, 80%)',
                 minWidth: '800px',
                 alignSelf: 'center',
                 display: 'flex',
@@ -546,23 +546,29 @@ export default function DailyEmotionHistory({
                         : null}
                 </TableBody>
             </Table>
-            <div style={{ padding: '20px', margin: '20px' }}>
+            <div
+                style={{
+                    padding: '20px',
+                    margin: '20px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
                 <motion.div
                     whileHover={{ scale: 1.03 }}
-                    // whileTap={{ scale: 0.95 }}
                     style={{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        width: '50%',
                     }}
                 >
                     <Button
                         sx={{
                             alignSelf: 'center',
                             backgroundColor: 'black',
-                            margin: '10px',
-                            width: '50%',
-                            height: '60px',
+                            width: '100%',
+                            height: '50px',
                         }}
                         variant="contained"
                         onClick={handleOpen}
