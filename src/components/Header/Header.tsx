@@ -1,11 +1,11 @@
-import "./Header.css";
-import { Button } from "@mui/material";
-import Switcher from "./Switcher";
-import { motion } from "framer-motion";
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Typography from "@mui/material/Typography";
+import './Header.css';
+import { Button } from '@mui/material';
+import Switcher from './Switcher';
+import { motion } from 'framer-motion';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
 
 function Header({
     exportData,
@@ -17,19 +17,19 @@ function Header({
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
     const style = {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
         width: 1000,
-        bgcolor: "background.paper",
-        border: "2px solid var(--background)",
+        bgcolor: 'background.paper',
+        border: '2px solid var(--background)',
         boxShadow: 24,
         p: 4,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        backgroundColor: "var(--background)",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        backgroundColor: 'var(--background)',
     };
 
     const [open, setOpen] = React.useState(false);
@@ -39,19 +39,19 @@ function Header({
         <div
             className="header"
             style={{
-                position: "relative",
-                width: "min(2000px, 80%)",
-                alignSelf: "center",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
+                position: 'relative',
+                width: 'min(2000px, 80%)',
+                alignSelf: 'center',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
             }}
         >
             <Modal
                 BackdropProps={{
                     style: {
-                        backgroundColor: "rgba(0, 0, 0, 0.5)", // Полупрозрачный чёрный фон
-                        backdropFilter: "blur(10px)", // Размытие фона
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Полупрозрачный чёрный фон
+                        backdropFilter: 'blur(10px)', // Размытие фона
                     },
                 }}
                 open={open}
@@ -72,11 +72,11 @@ function Header({
                         whileTap={{ scale: 0.95 }}
                     >
                         <input
-                            style={{ fontSize: 20, color: "var(--text-color)" }}
+                            style={{ fontSize: 20, color: 'var(--text-color)' }}
                             type="file"
                             accept=".json"
                             onChange={(
-                                event: React.ChangeEvent<HTMLInputElement>
+                                event: React.ChangeEvent<HTMLInputElement>,
                             ) => {
                                 if (event.target instanceof HTMLInputElement) {
                                     const fileInput =
@@ -96,26 +96,28 @@ function Header({
 
                                             // Валидация данных (по необходимости)
                                             if (
-                                                typeof importedData === "object"
+                                                typeof importedData === 'object'
                                             ) {
                                                 // Сохранение данных в LocalStorage
                                                 localStorage.setItem(
-                                                    "emotionData",
-                                                    JSON.stringify(importedData)
+                                                    'emotionData',
+                                                    JSON.stringify(
+                                                        importedData,
+                                                    ),
                                                 );
                                                 alert(
-                                                    "Данные успешно импортированы!"
+                                                    'Данные успешно импортированы!',
                                                 );
                                             } else {
                                                 alert(
-                                                    "Неверный формат данных."
+                                                    'Неверный формат данных.',
                                                 );
                                             }
                                         } catch (error) {
                                             alert(
                                                 `Ошибка при чтении файла: ${
                                                     (error as Error).message
-                                                }`
+                                                }`,
                                             );
                                         }
                                     };
@@ -136,22 +138,21 @@ function Header({
                     <Switcher theme={theme} handleChange={handleChange} />
                 </motion.div>
             </div>
-            <motion.div
+
+            <motion.h1
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                style={{ cursor: "pointer", marginLeft: "200px" }}
+                style={{ cursor: 'pointer', marginLeft: '200px' }}
+                className="header-title"
+                onClick={() => window.location.reload()}
             >
-                <h1
-                    className="header-title"
-                    onClick={() => window.location.reload()}
-                >
-                    EmoTracker
-                </h1>
-            </motion.div>
+                EmoTracker
+            </motion.h1>
+
             <div
                 style={{
-                    display: "flex",
-                    gap: "10px",
+                    display: 'flex',
+                    gap: '10px',
                 }}
             >
                 <motion.div
@@ -161,7 +162,7 @@ function Header({
                     <Button
                         variant="contained"
                         onClick={exportData}
-                        sx={{ backgroundColor: "black" }}
+                        sx={{ backgroundColor: 'black' }}
                     >
                         Export data
                     </Button>
@@ -174,7 +175,7 @@ function Header({
                     <Button
                         variant="contained"
                         onClick={handleOpen}
-                        sx={{ backgroundColor: "black" }}
+                        sx={{ backgroundColor: 'black' }}
                     >
                         Import data
                     </Button>

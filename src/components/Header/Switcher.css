@@ -37,6 +37,7 @@
 /* night sky background */
 #toggle:checked + svg #container {
     fill: #2b4360;
+    /* color: #135e13; */
 }
 
 /* move button to right when checked */
