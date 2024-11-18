@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import * as React from 'react';
+import { motion } from "framer-motion";
+import * as React from "react";
 
 export default function CalendarDate({
     date,
@@ -15,7 +15,7 @@ export default function CalendarDate({
     currentMonth: number;
 }) {
     const [currentColor, setCurrentColor] = React.useState(
-        'var(--background-date)',
+        "var(--background-date)"
     );
 
     React.useEffect(() => {
@@ -24,11 +24,14 @@ export default function CalendarDate({
                 new Date(
                     currentYear,
                     currentMonth,
-                    date + 1,
-                ).toLocaleDateString('en-GB'),
-            )
+                    date + 1
+                ).toLocaleDateString("en-GB")
+            ) &&
+            currentMonth === new Date().getMonth()
         ) {
-            setCurrentColor('#23bf1d');
+            setCurrentColor("#23bf1d");
+        } else {
+            setCurrentColor("var(--background-date)");
         }
     }, [dateColors, currentMonth, currentYear, date]);
 

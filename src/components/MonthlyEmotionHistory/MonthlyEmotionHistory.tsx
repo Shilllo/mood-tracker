@@ -1,28 +1,28 @@
-import './MonthlyEmotionHistory.css';
-import * as React from 'react';
-import IconButton from '@mui/material/IconButton';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import Modal from '@mui/material/Modal';
-import { Card, CardContent, Typography, Box } from '@mui/material';
-import { motion } from 'framer-motion';
-import CalendarDate from './CaledarDate';
+import "./MonthlyEmotionHistory.css";
+import * as React from "react";
+import IconButton from "@mui/material/IconButton";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Modal from "@mui/material/Modal";
+import { Card, CardContent, Typography, Box } from "@mui/material";
+import { motion } from "framer-motion";
+import CalendarDate from "./CaledarDate";
 
 // import mixColorForDay from '../../utils/mixColorForDay';
 const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 'fit-content',
-    bgcolor: 'background.paper',
-    border: '2px solid var(--background)',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "fit-content",
+    bgcolor: "background.paper",
+    border: "2px solid var(--background)",
     boxShadow: 24,
     p: 4,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: 'var(--background)',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "var(--background)",
 };
 
 const monthDays: { [key: string]: number } = {
@@ -52,12 +52,12 @@ interface EmotionData {
 
 function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
     const [currentMonth, setCurrentMonth] = React.useState(
-        months[new Date().getMonth()],
+        months[new Date().getMonth()]
     );
     const [currentRecord, setCurrentRecord] = React.useState<
         EmotionData[keyof EmotionData]
     >([]);
-    const [currentDay, setCurrentDay] = React.useState('');
+    const [currentDay, setCurrentDay] = React.useState("");
     const [open, setOpen] = React.useState(false);
 
     const [dateColors, setDateColors] = React.useState<{
@@ -70,7 +70,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
             colors[date] = true;
         }
         setDateColors(colors);
-    }, [data]);
+    }, [data, currentMonth]);
 
     function formatDate(day: number, month: number, year: number): string {
         const formattedDay = day < 10 ? `0${day}` : day.toString();
@@ -81,7 +81,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
         const date = formatDate(
             index + 1,
             months.indexOf(currentMonth) + 1,
-            new Date().getFullYear(),
+            new Date().getFullYear()
         );
         setCurrentRecord(data[date]);
         setCurrentDay(date);
@@ -90,15 +90,15 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
     const handleClose = () => {
         setOpen(false);
     };
-    // console.log(mixColorForDay(currentRecord));
+
     return (
         <div
             className="monthly-emotion-history"
             style={{
-                width: 'min(2000px, 100%)',
-                minWidth: '1000px',
-                alignSelf: 'center',
-                marginTop: '50px',
+                width: "min(2000px, 100%)",
+                minWidth: "1000px",
+                alignSelf: "center",
+                marginTop: "50px",
             }}
         >
             <Modal
@@ -106,8 +106,8 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                 onClose={handleClose}
                 BackdropProps={{
                     style: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Полупрозрачный чёрный фон
-                        backdropFilter: 'blur(10px)', // Размытие фона
+                        backgroundColor: "rgba(0, 0, 0, 0.5)", // Полупрозрачный чёрный фон
+                        backdropFilter: "blur(10px)", // Размытие фона
                     },
                 }}
             >
@@ -123,11 +123,13 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                         {JSON.stringify(currentRecord) ? (
                             <Box
                                 sx={{
-                                    display: 'flex',
-                                    flexWrap: 'wrap',
-                                    justifyContent: 'center',
+                                    display: "flex",
+                                    flexWrap: "wrap",
+                                    justifyContent: "center",
                                     gap: 2,
-                                    flexDirection: 'row',
+                                    flexDirection: "row",
+                                    height: "500px",
+                                    overflowY: "scroll",
                                 }}
                             >
                                 {currentRecord.map((entry, index) => (
@@ -138,10 +140,10 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                                     >
                                         <CardContent
                                             sx={{
-                                                color: 'var(--text-color)',
+                                                color: "var(--text-color)",
                                                 backgroundColor:
-                                                    'var(--background)',
-                                                height: '100%',
+                                                    "var(--background)",
+                                                height: "100%",
                                             }}
                                         >
                                             <Typography
@@ -151,7 +153,12 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                                             >
                                                 {entry.emotion}
                                             </Typography>
-                                            <Typography variant="body2">
+                                            <Typography
+                                                variant="body2"
+                                                sx={{
+                                                    wordBreak: "break-word",
+                                                }}
+                                            >
                                                 {entry.description}
                                             </Typography>
                                             <Typography variant="subtitle1">
@@ -162,17 +169,17 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                                 ))}
                             </Box>
                         ) : (
-                            'No record found'
+                            "No record found"
                         )}
                     </Typography>
                 </Box>
             </Modal>
             <div
                 style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    width: '80%',
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "80%",
                 }}
             >
                 <motion.div
@@ -182,21 +189,21 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                     <IconButton
                         aria-label="left"
                         onClick={() => {
-                            if (currentMonth != 'JANUARY') {
+                            if (currentMonth != "JANUARY") {
                                 setCurrentMonth(
-                                    months[months.indexOf(currentMonth) - 1],
+                                    months[months.indexOf(currentMonth) - 1]
                                 );
                             }
                         }}
                     >
-                        <ArrowBackIcon sx={{ color: 'var(--text-color)' }} />
+                        <ArrowBackIcon sx={{ color: "var(--text-color)" }} />
                     </IconButton>
                 </motion.div>
                 <p
                     style={{
-                        fontWeight: 'bold',
-                        fontSize: '20px',
-                        color: 'var(--text-color)',
+                        fontWeight: "bold",
+                        fontSize: "20px",
+                        color: "var(--text-color)",
                     }}
                 >
                     {currentMonth} 2024
@@ -208,14 +215,14 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                     <IconButton
                         aria-label="right"
                         onClick={() => {
-                            if (currentMonth != 'DECEMBER') {
+                            if (currentMonth != "DECEMBER") {
                                 setCurrentMonth(
-                                    months[months.indexOf(currentMonth) + 1],
+                                    months[months.indexOf(currentMonth) + 1]
                                 );
                             }
                         }}
                     >
-                        <ArrowForwardIcon sx={{ color: 'var(--text-color)' }} />
+                        <ArrowForwardIcon sx={{ color: "var(--text-color)" }} />
                     </IconButton>
                 </motion.div>
             </div>
