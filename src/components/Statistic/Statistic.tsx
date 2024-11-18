@@ -16,34 +16,44 @@ export default function Statistic({ data }: { data: EmotionData }) {
         <div
             style={{
                 display: 'flex',
-                justifyContent: 'center',
-                margin: '100px 0',
+                flexDirection: 'column',
                 alignItems: 'center',
-                width: 'min(2000px, 80%)',
-                alignSelf: 'center',
-                flexWrap: 'wrap',
+                marginTop: '100px',
             }}
         >
+            <h2 style={{ color: 'var(--text-color)' }}>Monthly Statistics</h2>
             <div
                 style={{
                     display: 'flex',
-                    flexDirection: 'column',
-
+                    justifyContent: 'center',
+                    margin: '100px 0',
                     alignItems: 'center',
+                    width: 'min(2000px, 80%)',
+                    alignSelf: 'center',
+                    flexWrap: 'wrap',
+                    // flexDirection: 'column',
                 }}
             >
-                <PieChartStat data={data} />
-                <EmotionBarChart data={data} />
-            </div>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
-            >
-                <TopEmotionsRadarChart data={data} />
-                <Top5Words data={data} />
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <PieChartStat data={data} />
+                    <EmotionBarChart data={data} />
+                </div>
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <TopEmotionsRadarChart data={data} />
+                    <Top5Words data={data} />
+                </div>
             </div>
         </div>
     );
