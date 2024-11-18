@@ -488,7 +488,10 @@ export default function DailyEmotionHistory({
                     {data[new Date().toLocaleDateString('en-GB')]
                         ? data[new Date().toLocaleDateString('en-GB')].map(
                               (row) => (
-                                  <StyledTableRow key={row.emotion}>
+                                  <StyledTableRow
+                                      key={row.emotion}
+                                      //   sx={{ height: 'fit-content' }}
+                                  >
                                       <StyledTableCell
                                           component="th"
                                           scope="row"
@@ -505,6 +508,7 @@ export default function DailyEmotionHistory({
                                           sx={{
                                               borderRight:
                                                   '1px solid var(--border-table)',
+                                              wordBreak: 'break-word',
                                           }}
                                       >
                                           {row.description}
