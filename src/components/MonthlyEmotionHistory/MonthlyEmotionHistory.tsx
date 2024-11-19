@@ -138,6 +138,8 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                                         variant="outlined"
                                         sx={{
                                             width: 450,
+                                            backgroundColor:
+                                                'var(--background)',
                                         }}
                                     >
                                         <CardContent
