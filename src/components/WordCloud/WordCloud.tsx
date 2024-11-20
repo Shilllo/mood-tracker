@@ -40,7 +40,10 @@ function dataToWordCloud(
                                 .replace(/\s+/g, ' ')
                                 .split(' ');
                             description.forEach((word) => {
-                                if (!config.englishStopWords.includes(word)) {
+                                if (
+                                    !config.englishStopWords.includes(word) &&
+                                    !config.russianStopWords.includes(word)
+                                ) {
                                     if (words[word]) {
                                         words[word] += 1;
                                     } else {
@@ -77,7 +80,10 @@ function dataToWordCloud(
                                 .replace(/\s+/g, ' ')
                                 .split(' ');
                             description.forEach((word) => {
-                                if (!config.englishStopWords.includes(word)) {
+                                if (
+                                    !config.englishStopWords.includes(word) &&
+                                    !config.russianStopWords.includes(word)
+                                ) {
                                     if (words[word]) {
                                         words[word] += 1;
                                     } else {
@@ -343,7 +349,6 @@ function WordCloudComponent({
                 style={{
                     alignSelf: 'center',
                     display: 'flex',
-                    // marginBottom: '1000px',
                 }}
             />
         </div>
