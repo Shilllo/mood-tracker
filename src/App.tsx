@@ -44,7 +44,6 @@ function App() {
     useDebouncedEffect(
         () => {
             localStorage.setItem('emotionData', JSON.stringify(data));
-            console.log(1);
         },
         [data],
         500,
