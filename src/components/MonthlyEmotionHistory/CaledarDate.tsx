@@ -1,13 +1,23 @@
-import { motion } from "framer-motion";
-import * as React from "react";
+import { motion } from 'framer-motion';
+import * as React from 'react';
+
+interface EmotionData {
+    [key: string]: {
+        emotion: string;
+        description: string;
+        time: string;
+    }[];
+}
 
 export default function CalendarDate({
+    data,
     date,
     handleOpen,
     dateColors,
     currentMonth,
     currentYear,
 }: {
+    data: EmotionData;
     date: number;
     handleOpen: (index: number) => void;
     dateColors: { [key: string]: boolean };
@@ -15,7 +25,7 @@ export default function CalendarDate({
     currentMonth: number;
 }) {
     const [currentColor, setCurrentColor] = React.useState(
-        "var(--background-date)"
+        'var(--background-date)',
     );
 
     React.useEffect(() => {
@@ -24,14 +34,21 @@ export default function CalendarDate({
                 new Date(
                     currentYear,
                     currentMonth,
-                    date + 1
-                ).toLocaleDateString("en-GB")
+                    date + 1,
+                ).toLocaleDateString('en-GB'),
             ) &&
-            currentMonth === new Date().getMonth()
+            currentMonth === new Date().getMonth() &&
+            data[
+                new Date(
+                    currentYear,
+                    currentMonth,
+                    date + 1,
+                ).toLocaleDateString('en-GB')
+            ].length > 0
         ) {
-            setCurrentColor("#23bf1d");
+            setCurrentColor('#23bf1d');
         } else {
-            setCurrentColor("var(--background-date)");
+            setCurrentColor('var(--background-date)');
         }
     }, [dateColors, currentMonth, currentYear, date]);
 

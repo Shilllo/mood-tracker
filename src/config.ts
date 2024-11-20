@@ -151,6 +151,7 @@ export const initialData: EmotionData = {
             time: '21:00',
         },
     ],
+    [new Date().toLocaleDateString('en-GB')]: [],
 };
 
 export const englishStopWords: string[] = [

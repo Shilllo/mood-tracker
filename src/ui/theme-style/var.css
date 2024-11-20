@@ -11,6 +11,7 @@
     --border-table: #b4b4b4;
     --delete-icon: #696464;
     --background-wordcloud: #fff;
+    --header-background: #bebebe;
 }
 
 [data-theme='dark'] {
@@ -26,4 +27,5 @@
     --border-table: #5e5a5a;
     --delete-icon: #ccc8c8;
     --background-wordcloud: #252424;
+    --header-background: #222222;
 }

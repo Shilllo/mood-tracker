@@ -226,6 +226,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                     { length: config.monthDays[currentMonth] },
                     (_, index) => (
                         <CalendarDate
+                            data={data}
                             key={index}
                             date={index + 1}
                             currentMonth={months.indexOf(currentMonth)}

@@ -111,6 +111,23 @@ export default function DailyEmotionHistory({
         setTime(event.target.value);
     };
 
+    const addEmotion = () => {
+        if (emotion && description && time && emotionCategory) {
+            handleClose();
+            setData({
+                ...data,
+                [new Date().toLocaleDateString('en-GB')]: [
+                    ...data[new Date().toLocaleDateString('en-GB')],
+                    {
+                        emotion: emotion.toUpperCase(),
+                        description: description,
+                        time: time,
+                    },
+                ],
+            });
+        }
+    };
+
     return (
         <TableContainer
             sx={{
@@ -344,45 +361,7 @@ export default function DailyEmotionHistory({
                                 marginTop: '30px',
                                 width: '70%',
                             }}
-                            onClick={() => {
-                                if (
-                                    emotion &&
-                                    description &&
-                                    time &&
-                                    emotionCategory &&
-                                    data[new Date().toLocaleDateString('en-GB')]
-                                ) {
-                                    handleClose();
-                                    setData({
-                                        ...data,
-                                        [new Date().toLocaleDateString(
-                                            'en-GB',
-                                        )]: [
-                                            ...data[
-                                                new Date().toLocaleDateString(
-                                                    'en-GB',
-                                                )
-                                            ],
-                                            {
-                                                emotion: emotion.toUpperCase(),
-                                                description: description,
-                                                time: time,
-                                            },
-                                        ],
-                                    });
-                                } else if (
-                                    !data[
-                                        new Date().toLocaleDateString('en-GB')
-                                    ]
-                                ) {
-                                    setData({
-                                        ...data,
-                                        [new Date().toLocaleDateString(
-                                            'en-GB',
-                                        )]: [],
-                                    });
-                                }
-                            }}
+                            onClick={addEmotion}
                         >
                             Done
                         </Button>

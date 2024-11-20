@@ -36,17 +36,7 @@ function Header({
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     return (
-        <div
-            className="header"
-            style={{
-                position: 'relative',
-                width: 'min(2000px, 80%)',
-                alignSelf: 'center',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-            }}
-        >
+        <div className="header">
             <Modal
                 BackdropProps={{
                     style: {
@@ -136,56 +126,72 @@ function Header({
                     </motion.div>
                 </Box>
             </Modal>
-            <div>
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    <Switcher theme={theme} handleChange={handleChange} />
-                </motion.div>
-            </div>
-
-            <motion.h1
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                style={{ cursor: 'pointer', marginLeft: '200px' }}
-                className="header-title"
-                onClick={() => window.location.reload()}
-            >
-                EmoTracker
-            </motion.h1>
-
             <div
                 style={{
+                    width: 'min(2000px, 80%)',
+                    alignSelf: 'center',
                     display: 'flex',
-                    gap: '10px',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
                 }}
             >
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    <Button
-                        variant="contained"
-                        onClick={exportData}
-                        sx={{ backgroundColor: 'black' }}
+                <div>
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
-                        Export data
-                    </Button>
-                </motion.div>
+                        <Switcher theme={theme} handleChange={handleChange} />
+                    </motion.div>
+                </div>
 
-                <motion.div
+                <motion.h1
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    style={{
+                        cursor: 'pointer',
+                        marginLeft: '200px',
+                    }}
+                    className="header-title"
+                    onClick={() => window.location.reload()}
                 >
-                    <Button
-                        variant="contained"
-                        onClick={handleOpen}
-                        sx={{ backgroundColor: 'black' }}
+                    EmoTracker
+                </motion.h1>
+
+                <div
+                    style={{
+                        display: 'flex',
+                        gap: '10px',
+                    }}
+                >
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
-                        Import data
-                    </Button>
-                </motion.div>
+                        <Button
+                            variant="contained"
+                            onClick={exportData}
+                            sx={{
+                                backgroundColor: 'black',
+                                minWidth: '100px',
+                            }}
+                        >
+                            Export data
+                        </Button>
+                    </motion.div>
+
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <Button
+                            variant="contained"
+                            onClick={handleOpen}
+                            sx={{ backgroundColor: 'black' }}
+                        >
+                            Import data
+                        </Button>
+                    </motion.div>
+                </div>
             </div>
         </div>
     );

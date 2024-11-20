@@ -32,7 +32,12 @@ const exportData = () => {
 function App() {
     const [data, setData] = React.useState<EmotionData>(() => {
         const storedData = localStorage.getItem('emotionData');
-        return storedData ? JSON.parse(storedData) : config.initialData;
+        return storedData
+            ? {
+                  ...JSON.parse(storedData),
+                  [new Date().toLocaleDateString('en-GB')]: [],
+              }
+            : config.initialData;
     });
 
     // Сохранение данных в localStorage при изменении состояния
