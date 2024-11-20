@@ -8,6 +8,7 @@ import Streaks from './components/Streaks/Streaks';
 import Statistic from './components/Statistic/Statistic';
 import { useTheme } from './hook/useTheme';
 import config from './config';
+import { useDebouncedEffect } from './hook/useDebouncedEffect';
 
 type EmotionData = {
     [key: string]: {
@@ -35,9 +36,14 @@ function App() {
     });
 
     // Сохранение данных в localStorage при изменении состояния
-    React.useEffect(() => {
-        localStorage.setItem('emotionData', JSON.stringify(data));
-    }, [data]);
+    useDebouncedEffect(
+        () => {
+            localStorage.setItem('emotionData', JSON.stringify(data));
+            console.log(1);
+        },
+        [data],
+        500,
+    );
 
     const [theme, handleChange] = useTheme('light');
 
