@@ -13,11 +13,10 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
 import './DailyEmotionHistory.css';
 import { motion } from 'framer-motion';
 import config from '../../config';
+import StyledTableRowComponent from './StyledTableRow';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -29,15 +28,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         fontSize: 15,
         color: 'var(--text-color)',
         borderBottom: 'var(--border-table) solid 1px',
-    },
-}));
-
-const StyledTableRow = styled(TableRow)(() => ({
-    '&:nth-of-type(odd)': {
-        backgroundColor: 'var(--table-row-odd)',
-    },
-    '&:nth-of-type(even)': {
-        backgroundColor: 'var(--table-row-even)',
     },
 }));
 
@@ -384,63 +374,11 @@ export default function DailyEmotionHistory({
                     {data[new Date().toLocaleDateString('en-GB')]
                         ? data[new Date().toLocaleDateString('en-GB')].map(
                               (row) => (
-                                  <StyledTableRow
-                                      key={row.emotion}
-                                      //   sx={{ height: 'fit-content' }}
-                                  >
-                                      <StyledTableCell
-                                          component="th"
-                                          scope="row"
-                                          align="center"
-                                          sx={{
-                                              borderRight:
-                                                  '1px solid var(--border-table)',
-                                          }}
-                                      >
-                                          {row.emotion}
-                                      </StyledTableCell>
-                                      <StyledTableCell
-                                          align="center"
-                                          sx={{
-                                              borderRight:
-                                                  '1px solid var(--border-table)',
-                                              wordBreak: 'break-word',
-                                          }}
-                                      >
-                                          {row.description}
-                                      </StyledTableCell>
-                                      <StyledTableCell align="center">
-                                          {row.time}
-                                          <motion.div
-                                              whileHover={{ scale: 1.15 }}
-                                              whileTap={{ scale: 0.95 }}
-                                          >
-                                              <IconButton
-                                                  onClick={() => {
-                                                      setData({
-                                                          ...data,
-                                                          [new Date().toLocaleDateString(
-                                                              'en-GB',
-                                                          )]: data[
-                                                              new Date().toLocaleDateString(
-                                                                  'en-GB',
-                                                              )
-                                                          ].filter(
-                                                              (entry) =>
-                                                                  entry !== row,
-                                                          ),
-                                                      });
-                                                  }}
-                                              >
-                                                  <DeleteIcon
-                                                      sx={{
-                                                          color: 'var(--delete-icon)',
-                                                      }}
-                                                  />
-                                              </IconButton>
-                                          </motion.div>
-                                      </StyledTableCell>
-                                  </StyledTableRow>
+                                  <StyledTableRowComponent
+                                      data={data}
+                                      setData={setData}
+                                      row={row}
+                                  />
                               ),
                           )
                         : null}

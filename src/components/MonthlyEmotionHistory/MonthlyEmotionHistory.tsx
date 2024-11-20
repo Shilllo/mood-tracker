@@ -4,10 +4,11 @@ import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Modal from '@mui/material/Modal';
-import { Card, CardContent, Typography, Box } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import { motion } from 'framer-motion';
 import CalendarDate from './CaledarDate';
 import config from '../../config';
+import CardModal from './Card';
 
 const style = {
     position: 'absolute',
@@ -23,6 +24,8 @@ const style = {
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: 'var(--background)',
+    // maxHeight: '300px',
+    // height: 'fit-content',
 };
 
 const months = Object.keys(config.monthDays);
@@ -122,49 +125,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                                 }}
                             >
                                 {currentRecord.map((entry, index) => (
-                                    <Card
-                                        key={index}
-                                        variant="outlined"
-                                        sx={{
-                                            width: 450,
-                                            backgroundColor:
-                                                'var(--background)',
-                                            border: '2px solid var(--background-date-hover)',
-                                        }}
-                                    >
-                                        <CardContent
-                                            sx={{
-                                                color: 'var(--text-color)',
-                                                backgroundColor:
-                                                    'var(--background)',
-                                                height: 'fit-content',
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                gap: '5px',
-                                            }}
-                                        >
-                                            <Typography
-                                                variant="h5"
-                                                component="div"
-                                            >
-                                                {entry.emotion}
-                                            </Typography>
-                                            <Typography
-                                                variant="body2"
-                                                sx={{
-                                                    wordBreak: 'break-word',
-                                                }}
-                                            >
-                                                {entry.description}
-                                            </Typography>
-                                            <Typography
-                                                variant="subtitle1"
-                                                sx={{ marginTop: 'auto' }}
-                                            >
-                                                {entry.time}
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
+                                    <CardModal index={index} entry={entry} />
                                 ))}
                             </Box>
                         ) : (
