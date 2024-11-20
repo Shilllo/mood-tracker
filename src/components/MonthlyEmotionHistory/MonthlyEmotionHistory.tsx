@@ -125,6 +125,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                                             width: 450,
                                             backgroundColor:
                                                 'var(--background)',
+                                            border: '2px solid var(--background-date-hover)',
                                         }}
                                     >
                                         <CardContent
@@ -152,7 +153,10 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                                             >
                                                 {entry.description}
                                             </Typography>
-                                            <Typography variant="subtitle1">
+                                            <Typography
+                                                variant="subtitle1"
+                                                sx={{ marginTop: 'auto' }}
+                                            >
                                                 {entry.time}
                                             </Typography>
                                         </CardContent>
