@@ -15,14 +15,6 @@ type EmotionData = {
     }[];
 };
 
-// const data = [
-//     { emotion: 'HAPPINESS', count: 50 },
-//     { emotion: 'SADNESS', count: 35 },
-//     { emotion: 'ANXIETY', count: 28 },
-//     { emotion: 'LOVE', count: 25 },
-//     { emotion: 'JOY', count: 20 },
-// ];
-
 export default function TopEmotionsRadarChart({ data }: { data: EmotionData }) {
     const emotions: { [key: string]: number } = {};
 

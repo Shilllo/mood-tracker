@@ -7,8 +7,8 @@ import Modal from '@mui/material/Modal';
 import { Card, CardContent, Typography, Box } from '@mui/material';
 import { motion } from 'framer-motion';
 import CalendarDate from './CaledarDate';
+import config from '../../config';
 
-// import mixColorForDay from '../../utils/mixColorForDay';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -25,22 +25,7 @@ const style = {
     backgroundColor: 'var(--background)',
 };
 
-const monthDays: { [key: string]: number } = {
-    JANUARY: 31,
-    FEBRUARY: 28,
-    MARCH: 31,
-    APRIL: 30,
-    MAY: 31,
-    JUNE: 30,
-    JULY: 31,
-    AUGUST: 31,
-    SEPTEMBER: 30,
-    OCTOBER: 31,
-    NOVEMBER: 30,
-    DECEMBER: 31,
-};
-
-const months = Object.keys(monthDays);
+const months = Object.keys(config.monthDays);
 
 interface EmotionData {
     [key: string]: {
@@ -233,16 +218,19 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                 </motion.div>
             </div>
             <div className="dates">
-                {Array.from({ length: monthDays[currentMonth] }, (_, index) => (
-                    <CalendarDate
-                        key={index}
-                        date={index + 1}
-                        currentMonth={months.indexOf(currentMonth)}
-                        currentYear={new Date().getFullYear()}
-                        handleOpen={handleOpen}
-                        dateColors={dateColors}
-                    />
-                ))}
+                {Array.from(
+                    { length: config.monthDays[currentMonth] },
+                    (_, index) => (
+                        <CalendarDate
+                            key={index}
+                            date={index + 1}
+                            currentMonth={months.indexOf(currentMonth)}
+                            currentYear={new Date().getFullYear()}
+                            handleOpen={handleOpen}
+                            dateColors={dateColors}
+                        />
+                    ),
+                )}
             </div>
         </div>
     );

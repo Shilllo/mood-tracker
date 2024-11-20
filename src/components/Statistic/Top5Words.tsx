@@ -8,129 +8,11 @@ import {
     ResponsiveContainer,
 } from 'recharts';
 import lemmatize from '../../utils/lemmatize';
-// import simpleStem from "../../utils/simpleStem";
+import config from '../../config';
 
 const COLORS = {
     count: '#4CAF50',
 };
-
-const englishStopWords = [
-    'a',
-    'an',
-    'the',
-    'and',
-    'or',
-    'but',
-    'if',
-    'then',
-    'else',
-    'for',
-    'from',
-    'to',
-    'of',
-    'in',
-    'on',
-    'with',
-    'by',
-    'about',
-    'as',
-    'at',
-    'into',
-    'over',
-    'after',
-    'before',
-    'until',
-    'while',
-    'during',
-    'is',
-    'was',
-    'were',
-    'be',
-    'been',
-    'being',
-    'am',
-    'are',
-    'this',
-    'that',
-    'these',
-    'those',
-    'there',
-    'here',
-    'it',
-    'its',
-    'I',
-    'me',
-    'my',
-    'mine',
-    'we',
-    'us',
-    'our',
-    'ours',
-    'you',
-    'your',
-    'yours',
-    'he',
-    'him',
-    'his',
-    'she',
-    'her',
-    'hers',
-    'they',
-    'them',
-    'their',
-    'theirs',
-    'do',
-    'does',
-    'did',
-    'doing',
-    'have',
-    'has',
-    'had',
-    'having',
-    'can',
-    'could',
-    'will',
-    'would',
-    'shall',
-    'should',
-    'may',
-    'might',
-    'must',
-    'no',
-    'not',
-    'only',
-    'yes',
-    'too',
-    'very',
-    'so',
-    'just',
-    'well',
-    'like',
-    'also',
-    'more',
-    'most',
-    'many',
-    'much',
-    'some',
-    'few',
-    'any',
-    'every',
-    'all',
-    'each',
-    'either',
-    'neither',
-    'both',
-    'I',
-    'i',
-];
-
-// const data = [
-//     { time: "school", count: 20 },
-//     { time: "university", count: 15 },
-//     { time: "work", count: 10 },
-//     { time: "bad", count: 10 },
-//     { time: "nice", count: 10 },
-// ];
 
 type EmotionData = {
     [key: string]: {
@@ -152,7 +34,11 @@ function dataToBarChart(data: EmotionData) {
                 .split(' ');
             words.forEach((word) => {
                 word = lemmatize(word);
-                if (englishStopWords.includes(word)) return;
+                if (
+                    config.englishStopWords.includes(word) ||
+                    config.russianStopWords.includes(word)
+                )
+                    return;
                 if (result[word]) {
                     result[word] += 1;
                 } else {

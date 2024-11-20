@@ -1,4 +1,5 @@
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
+import config from '../../config';
 
 const renderCustomizedLabel = ({
     cx,
@@ -44,65 +45,6 @@ type EmotionData = {
     }[];
 };
 
-const emotions = {
-    positive: [
-        'HAPPINESS',
-        'JOY',
-        'EXCITEMENT',
-        'CONTENTMENT',
-        'GRATITUDE',
-        'LOVE',
-        'PRIDE',
-        'CALM',
-        'HOPE',
-        'RELIEF',
-        'AMUSEMENT',
-        'EUPHORIA',
-        'INSPIRATION',
-        'CONFIDENCE',
-        'AFFECTION',
-        'SATISFACTION',
-        'ENTHUSIASM',
-    ],
-    negative: [
-        'SADNESS',
-        'ANGER',
-        'FEAR',
-        'ANXIETY',
-        'STRESS',
-        'DISAPPOINTMENT',
-        'FRUSTRATION',
-        'LONELINESS',
-        'GUILT',
-        'SHAME',
-        'JEALOUSY',
-        'ENVY',
-        'RESENTMENT',
-        'BOREDOM',
-        'CONFUSION',
-        'DISGUST',
-        'BITTERNESS',
-        'MELANCHOLY',
-    ],
-    neutral: [
-        'SURPRISE',
-        'CURIOSITY',
-        'NOSTALGIA',
-        'AMBIVALENCE',
-        'INDIFFERENCE',
-        'APATHY',
-        'ACCEPTANCE',
-        'EMPATHY',
-        'COMPASSION',
-        'ANTICIPATION',
-        'AWE',
-        'FEARLESSNESS',
-        'RESIGNATION',
-        'LONGING',
-        'SHOCK',
-    ],
-};
-
 export default function PieChartStat({ data }: { data: EmotionData }) {
     const dataForPieChart = {
         positive: 0,
@@ -112,11 +54,11 @@ export default function PieChartStat({ data }: { data: EmotionData }) {
 
     Object.keys(data).forEach((key) => {
         data[key].forEach((record) => {
-            if (emotions.positive.includes(record.emotion)) {
+            if (config.emotions.positive.includes(record.emotion)) {
                 dataForPieChart.positive += 1;
-            } else if (emotions.negative.includes(record.emotion)) {
+            } else if (config.emotions.negative.includes(record.emotion)) {
                 dataForPieChart.negative += 1;
-            } else if (emotions.neutral.includes(record.emotion)) {
+            } else if (config.emotions.neutral.includes(record.emotion)) {
                 dataForPieChart.neutral += 1;
             }
         });

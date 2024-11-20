@@ -17,6 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './DailyEmotionHistory.css';
 import { motion } from 'framer-motion';
+import config from '../../config';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -55,92 +56,6 @@ const style = {
     alignItems: 'center',
     backgroundColor: 'var(--background)',
 };
-
-const emotions = {
-    positive: [
-        ['Happiness', 'Счастье'],
-        ['Joy', 'Радость'],
-        ['Excitement', 'Волнение'],
-        ['Contentment', 'Удовлетворение'],
-        ['Gratitude', 'Благодарность'],
-        ['Love', 'Любовь'],
-        ['Pride', 'Гордость'],
-        ['Calm', 'Спокойствие'],
-        ['Hope', 'Надежда'],
-        ['Relief', 'Облегчение'],
-        ['Amusement', 'Удовольствие'],
-        ['Euphoria', 'Эйфория'],
-        ['Inspiration', 'Вдохновение'],
-        ['Confidence', 'Уверенность'],
-        ['Affection', 'Привязанность'],
-        ['Satisfaction', 'Удовлетворение'],
-        ['Enthusiasm', 'Энтузиазм'],
-    ],
-    negative: [
-        ['Sadness', 'Грусть'],
-        ['Anger', 'Злость'],
-        ['Fear', 'Страх'],
-        ['Anxiety', 'Тревога'],
-        ['Stress', 'Стресс'],
-        ['Disappointment', 'Разочарование'],
-        ['Frustration', 'Разочарование'],
-        ['Loneliness', 'Одиночество'],
-        ['Guilt', 'Вина'],
-        ['Shame', 'Стыд'],
-        ['Jealousy', 'Ревность'],
-        ['Envy', 'Зависть'],
-        ['Resentment', 'Обида'],
-        ['Boredom', 'Скука'],
-        ['Confusion', 'Замешательство'],
-        ['Disgust', 'Отвращение'],
-        ['Bitterness', 'Горечь'],
-        ['Melancholy', 'Меланхолия'],
-    ],
-    neutral: [
-        ['Surprise', 'Удивление'],
-        ['Curiosity', 'Любопытство'],
-        ['Nostalgia', 'Ностальгия'],
-        ['Ambivalence', 'Двойственные чувства'],
-        ['Indifference', 'Безразличие'],
-        ['Apathy', 'Апатия'],
-        ['Acceptance', 'Принятие'],
-        ['Empathy', 'Сопереживание'],
-        ['Compassion', 'Сострадание'],
-        ['Anticipation', 'Ожидание'],
-        ['Awe', 'Трепет'],
-        ['Fearlessness', 'Бесстрашие'],
-        ['Resignation', 'Смирение'],
-        ['Longing', 'Тоска'],
-        ['Shock', 'Шок'],
-    ],
-};
-
-const times = [
-    '00:00',
-    '01:00',
-    '02:00',
-    '03:00',
-    '04:00',
-    '05:00',
-    '06:00',
-    '07:00',
-    '08:00',
-    '09:00',
-    '10:00',
-    '11:00',
-    '12:00',
-    '13:00',
-    '14:00',
-    '15:00',
-    '16:00',
-    '17:00',
-    '18:00',
-    '19:00',
-    '20:00',
-    '21:00',
-    '22:00',
-    '23:00',
-];
 
 interface EmotionData {
     [key: string]: {
@@ -265,17 +180,19 @@ export default function DailyEmotionHistory({
                                     },
                                 }}
                             >
-                                {Object.keys(emotions).map((option) => (
-                                    <MenuItem
-                                        key={option}
-                                        value={option}
-                                        sx={{
-                                            color: 'var(--text-color)',
-                                        }}
-                                    >
-                                        {option.toUpperCase()}
-                                    </MenuItem>
-                                ))}
+                                {Object.keys(config.emotionsTranslated).map(
+                                    (option) => (
+                                        <MenuItem
+                                            key={option}
+                                            value={option}
+                                            sx={{
+                                                color: 'var(--text-color)',
+                                            }}
+                                        >
+                                            {option.toUpperCase()}
+                                        </MenuItem>
+                                    ),
+                                )}
                             </TextField>
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.02 }}>
@@ -308,11 +225,11 @@ export default function DailyEmotionHistory({
                                     },
                                 }}
                             >
-                                {emotions[
-                                    emotionCategory as keyof typeof emotions
+                                {config.emotionsTranslated[
+                                    emotionCategory as keyof typeof config.emotionsTranslated
                                 ] ? (
-                                    emotions[
-                                        emotionCategory as keyof typeof emotions
+                                    config.emotionsTranslated[
+                                        emotionCategory as keyof typeof config.emotionsTranslated
                                     ].map((option) => (
                                         <MenuItem
                                             key={option[0]}
@@ -397,7 +314,7 @@ export default function DailyEmotionHistory({
                                     },
                                 }}
                             >
-                                {times.map((option) => (
+                                {config.times.map((option) => (
                                     <MenuItem
                                         key={option}
                                         value={option}
