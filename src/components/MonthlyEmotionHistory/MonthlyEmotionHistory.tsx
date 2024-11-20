@@ -104,8 +104,12 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                     >
                         {currentDay.slice(0, 2)} {currentMonth}
                     </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        {JSON.stringify(currentRecord) ? (
+                    <div
+                        id="modal-modal-description"
+                        style={{ marginTop: '20px' }}
+                    >
+                        {JSON.stringify(currentRecord) &&
+                        currentRecord.length > 0 ? (
                             <Box
                                 sx={{
                                     display: 'flex',
@@ -166,7 +170,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                         ) : (
                             'No record found'
                         )}
-                    </Typography>
+                    </div>
                 </Box>
             </Modal>
             <div
@@ -194,7 +198,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                         <ArrowBackIcon sx={{ color: 'var(--text-color)' }} />
                     </IconButton>
                 </motion.div>
-                <p
+                <div
                     style={{
                         fontWeight: 'bold',
                         fontSize: '20px',
@@ -202,7 +206,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                     }}
                 >
                     {currentMonth} 2024
-                </p>
+                </div>
                 <motion.div
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.95 }}
