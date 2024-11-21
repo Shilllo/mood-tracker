@@ -36,7 +36,8 @@ function dataToBarChart(data: EmotionData) {
                 word = lemmatize(word);
                 if (
                     config.englishStopWords.includes(word) ||
-                    config.russianStopWords.includes(word)
+                    config.russianStopWords.includes(word) ||
+                    word.length < 3
                 )
                     return;
                 if (result[word]) {
