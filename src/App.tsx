@@ -35,7 +35,7 @@ function App() {
         return storedData
             ? {
                   ...JSON.parse(storedData),
-                  [new Date().toLocaleDateString('en-GB')]: [],
+                  //   [new Date().toLocaleDateString('en-GB')]: [],
               }
             : config.initialData;
     });
