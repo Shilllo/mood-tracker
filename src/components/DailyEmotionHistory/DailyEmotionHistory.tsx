@@ -17,6 +17,7 @@ import './DailyEmotionHistory.css';
 import { motion } from 'framer-motion';
 import config from '../../config';
 import StyledTableRowComponent from './StyledTableRow';
+import SpeechRecognition from '../SpeechRecognition/SpeechRecognition';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -334,7 +335,9 @@ export default function DailyEmotionHistory({
                                 ))}
                             </TextField>
                         </motion.div>
+                        <SpeechRecognition setDescription={setDescription} />
                     </Box>
+
                     <motion.div
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.9 }}

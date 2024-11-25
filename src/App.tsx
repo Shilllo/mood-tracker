@@ -9,6 +9,7 @@ import Statistic from './components/Statistic/Statistic';
 import { useTheme } from './hook/useTheme';
 import config from './config';
 import { useDebouncedEffect } from './hook/useDebouncedEffect';
+import SpeechRecognition from './components/SpeechRecognition/SpeechRecognition';
 
 type EmotionData = {
     [key: string]: {
