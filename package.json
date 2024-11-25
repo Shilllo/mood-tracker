@@ -25,6 +25,7 @@
         "react-dom": "^18.3.1",
         "recharts": "^2.13.3",
         "styled-components": "^6.1.13",
+        "webrtc": "^1.14.1",
         "wordcloud": "^1.2.2"
     },
     "devDependencies": {

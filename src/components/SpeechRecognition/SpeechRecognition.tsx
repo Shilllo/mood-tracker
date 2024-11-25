@@ -1,8 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import type {
-    SpeechRecognition,
-    SpeechRecognitionEvent,
-} from '@types/webrtc/index';
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
 
@@ -15,7 +11,9 @@ declare const window: WindowWithSpeech;
 
 function SpeechToText({ setDescription }: { setDescription: any }) {
     const [_, setTranscript] = useState('');
-    const recognitionRef = useRef<SpeechRecognition | null>(null);
+    const recognitionRef = useRef<WindowWithSpeech['SpeechRecognition'] | null>(
+        null,
+    );
     const [isListening, setIsListening] = useState(false);
 
     useEffect(() => {
@@ -32,7 +30,7 @@ function SpeechToText({ setDescription }: { setDescription: any }) {
         const recognition = new SpeechRecognition();
         recognition.lang = 'ru-RU';
 
-        recognition.onresult = (event: SpeechRecognitionEvent) => {
+        recognition.onresult = (event: any) => {
             const result = event.results[0][0].transcript;
             setTranscript((prev) => prev + ' ' + result);
             setDescription(result);
