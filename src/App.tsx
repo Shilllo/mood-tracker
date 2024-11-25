@@ -51,6 +51,14 @@ function App() {
 
     const [theme, handleChange] = useTheme('light');
 
+    React.useEffect(() => {
+        if (!data[new Date().toLocaleDateString('en-GB')]) {
+            setData({
+                ...data,
+                [new Date().toLocaleDateString('en-GB')]: [],
+            });
+        }
+    }, []);
     return (
         <div className="App">
             <Header
