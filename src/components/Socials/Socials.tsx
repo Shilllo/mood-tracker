@@ -1,15 +1,15 @@
-import "./Socials.css";
-import TelegramIcon from "@mui/icons-material/Telegram";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import './Socials.css';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 export default function Socials() {
     return (
         <nav
             style={{
-                display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                alignItems: "center",
+                display: 'flex',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                alignItems: 'center',
             }}
         >
             <ul className="social">
@@ -26,9 +26,9 @@ export default function Socials() {
                         <span className="fab fa-instagram">
                             <GitHubIcon
                                 sx={{
-                                    color: "var(--text-color)",
-                                    width: "50%",
-                                    height: "50%",
+                                    color: 'var(--text-color)',
+                                    width: '50%',
+                                    height: '50%',
                                 }}
                             />
                             <link href="https://t.me/kimsemyonn" />
@@ -48,9 +48,9 @@ export default function Socials() {
                         <span className="fab fa-facebook-f">
                             <TelegramIcon
                                 sx={{
-                                    color: "var(--text-color)",
-                                    width: "50%",
-                                    height: "50%",
+                                    color: 'var(--text-color)',
+                                    width: '50%',
+                                    height: '50%',
                                 }}
                             />
                         </span>
@@ -59,8 +59,8 @@ export default function Socials() {
             </ul>
             <h4
                 style={{
-                    color: "var(--text-color)",
-                    textAlign: "center",
+                    color: 'var(--text-color)',
+                    textAlign: 'center',
                 }}
             >
                 Feel free to contact me if you have any questions or suggestions

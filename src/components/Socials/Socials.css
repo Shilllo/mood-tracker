@@ -1,4 +1,4 @@
-@import url("/src/ui/theme-style/var.css");
+@import url('/src/ui/theme-style/var.css');
 
 html {
     box-sizing: border-box;
@@ -22,6 +22,8 @@ a {
     margin-top: 10px !important;
     width: 50vw;
     min-width: 250px;
+    max-width: 1000px;
+    max-height: 50px;
     height: 8vh;
     display: flex;
     justify-content: center;
@@ -43,7 +45,7 @@ a {
 }
 
 .social li::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: -9px;
@@ -55,7 +57,7 @@ a {
 }
 
 .social li::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: -10px;
     left: 0;
@@ -88,19 +90,19 @@ li:hover a span {
 }
 
 li:hover > a span:nth-of-type(1) {
-    transform: translate(10px, -5px);
+    transform: translate(2px, -2px);
 }
 li:hover > a span:nth-of-type(2) {
-    transform: translate(10px, -10px);
+    transform: translate(4px, -4px);
 }
 li:hover > a span:nth-of-type(3) {
-    transform: translate(15px, -15px);
+    transform: translate(6px, -6px);
 }
 li:hover > a span:nth-of-type(4) {
-    transform: translate(20px, -20px);
+    transform: translate(8px, -8px);
 }
 li:hover > a span:nth-of-type(5) {
-    transform: translate(25px, -25px);
+    transform: translate(10px, -10px);
 }
 
 a span:nth-of-type(1) {
@@ -123,17 +125,17 @@ li:nth-of-type(1):hover span {
     background-color: #d6249f;
     background-image: linear-gradient(270deg, #fd5949, #d6249f, #285aeb);
     background-size: 800% 800%;
-    animation: gradient 10s ease infinite;
+    animation: gradient 5s ease infinite;
 }
 
 li:nth-of-type(2):hover span {
     background-color: #3b5998;
     background-image: linear-gradient(270deg, #3b5998, #383838);
     background-size: 400% 400%;
-    animation: gradient 6s ease infinite;
+    animation: gradient 5s ease infinite;
 }
 
-li:nth-of-type(3):hover span {
+/* li:nth-of-type(3):hover span {
     background-color: #0077f2;
     background-image: linear-gradient(270deg, #4cbdff, #0077f2);
     background-size: 400% 400%;
@@ -145,7 +147,7 @@ li:nth-of-type(4):hover span {
     background-image: linear-gradient(270deg, #27c6b0, #6441a5);
     background-size: 400% 400%;
     animation: gradient 6s ease infinite alternate forwards;
-}
+} */
 
 @keyframes gradient {
     0% {
