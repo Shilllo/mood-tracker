@@ -6,6 +6,31 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
+import { toast } from 'react-hot-toast';
+
+type EmotionData = {
+    [key: string]: {
+        emotion: string;
+        description: string;
+        time: string;
+    }[];
+};
+
+function isEmotionData(data: any): data is EmotionData {
+    if (typeof data !== 'object' || data === null) return false;
+
+    return Object.entries(data).every(([_, value]) => {
+        if (!Array.isArray(value)) return false;
+
+        return value.every((entry) => {
+            return (
+                typeof entry.emotion === 'string' &&
+                typeof entry.description === 'string' &&
+                typeof entry.time === 'string'
+            );
+        });
+    });
+}
 
 function Header({
     exportData,
@@ -91,9 +116,7 @@ function Header({
                                                 JSON.parse(content);
 
                                             // Валидация данных (по необходимости)
-                                            if (
-                                                typeof importedData === 'object'
-                                            ) {
+                                            if (isEmotionData(importedData)) {
                                                 // Сохранение данных в LocalStorage
                                                 localStorage.setItem(
                                                     'emotionData',
@@ -101,25 +124,23 @@ function Header({
                                                         importedData,
                                                     ),
                                                 );
-                                                alert(
-                                                    'Данные успешно импортированы!',
+                                                toast.success(
+                                                    'Data imported successfully!',
                                                 );
                                             } else {
-                                                alert(
-                                                    'Неверный формат данных.',
+                                                toast.error(
+                                                    'Invalid data format.',
                                                 );
                                             }
                                         } catch (error) {
-                                            alert(
-                                                `Ошибка при чтении файла: ${
-                                                    (error as Error).message
-                                                }`,
-                                            );
+                                            toast.error('Somethig went wrong.');
                                         }
                                     };
 
                                     reader.readAsText(file);
-                                    window.location.reload();
+                                    setTimeout(() => {
+                                        window.location.reload();
+                                    }, 1000);
                                 }
                             }}
                         />
