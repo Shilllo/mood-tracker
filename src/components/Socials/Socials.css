@@ -82,26 +82,26 @@ a {
     transition: 0.4s;
 }
 
-li:hover a span {
+.social__item:hover a span {
     z-index: 1000;
     transition: 0.5s;
     color: rgba(255, 255, 255, 1);
     box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.05);
 }
 
-li:hover > a span:nth-of-type(1) {
+.social__item:hover > a span:nth-of-type(1) {
     transform: translate(2px, -2px);
 }
-li:hover > a span:nth-of-type(2) {
+.social__item:hover > a span:nth-of-type(2) {
     transform: translate(4px, -4px);
 }
-li:hover > a span:nth-of-type(3) {
+.social__item:hover > a span:nth-of-type(3) {
     transform: translate(6px, -6px);
 }
-li:hover > a span:nth-of-type(4) {
+.social__item:hover > a span:nth-of-type(4) {
     transform: translate(8px, -8px);
 }
-li:hover > a span:nth-of-type(5) {
+.social__item:hover > a span:nth-of-type(5) {
     transform: translate(10px, -10px);
 }
 
@@ -121,14 +121,14 @@ a span:nth-of-type(5) {
     opacity: 1;
 }
 
-li:nth-of-type(1):hover span {
+.social__item:nth-of-type(1):hover span {
     background-color: #d6249f;
     background-image: linear-gradient(270deg, #fd5949, #d6249f, #285aeb);
     background-size: 800% 800%;
     animation: gradient 5s ease infinite;
 }
 
-li:nth-of-type(2):hover span {
+.social__item:nth-of-type(2):hover span {
     background-color: #3b5998;
     background-image: linear-gradient(270deg, #3b5998, #383838);
     background-size: 400% 400%;

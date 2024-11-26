@@ -13,7 +13,7 @@ export default function Socials() {
             }}
         >
             <ul className="social">
-                <li>
+                <li className="social__item">
                     <a
                         href="https://github.com/Shilllo/mood-tracker"
                         target="_blank"
@@ -35,7 +35,7 @@ export default function Socials() {
                         </span>
                     </a>
                 </li>
-                <li>
+                <li className="social__item">
                     <a
                         href="https://t.me/kimsemyonn"
                         target="_blank"
