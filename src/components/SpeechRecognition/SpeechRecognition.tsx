@@ -9,37 +9,14 @@ interface WindowWithSpeech extends Window {
 
 declare const window: WindowWithSpeech;
 
-const DICTIONARY = {
-    точка: '.',
-    запятая: ',',
-    вопрос: '?',
-    восклицание: '!',
-    двоеточие: ':',
-    тире: '-',
-    абзац: '\n',
-    отступ: '\t',
-};
-
-function editInterim(s) {
-    return s
-        .split(' ')
-        .map((word) => {
-            word = word.trim();
-            return DICTIONARY[word.toLowerCase()]
-                ? DICTIONARY[word.toLowerCase()]
-                : word;
-        })
-        .join(' ');
-}
-
 function SpeechToText({
     setDescription,
     description,
 }: {
-    setDescription: any;
+    setDescription: (description: string) => void;
     description: string;
 }) {
-    const [transcript, setTranscript] = useState('');
+    const [_, setTranscript] = useState('');
     const recognitionRef = useRef<WindowWithSpeech['SpeechRecognition'] | null>(
         null,
     );
@@ -63,7 +40,7 @@ function SpeechToText({
 
         recognition.onresult = (event: any) => {
             const result = Array.from(event.results)
-                .map((res: any) => editInterim(res[0].transcript))
+                .map((res: any) => res[0].transcript)
                 .join(' ');
             setTranscript((prev) => prev + ' ' + result);
             setDescription(description + ' ' + result + '.');
