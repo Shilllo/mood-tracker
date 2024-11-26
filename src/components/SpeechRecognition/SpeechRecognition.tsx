@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
-import { Button } from '@mui/material';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from "react";
+import { Button } from "@mui/material";
+import { motion } from "framer-motion";
 
 interface WindowWithSpeech extends Window {
     SpeechRecognition?: any;
@@ -16,9 +16,9 @@ function SpeechToText({
     setDescription: (description: string) => void;
     description: string;
 }) {
-    const [_, setTranscript] = useState('');
-    const recognitionRef = useRef<WindowWithSpeech['SpeechRecognition'] | null>(
-        null,
+    const [_, setTranscript] = useState("");
+    const recognitionRef = useRef<WindowWithSpeech["SpeechRecognition"] | null>(
+        null
     );
     const [isListening, setIsListening] = useState(false);
 
@@ -28,22 +28,22 @@ function SpeechToText({
 
         if (!SpeechRecognition) {
             console.error(
-                'SpeechRecognition is not supported in this browser.',
+                "SpeechRecognition is not supported in this browser."
             );
             return;
         }
 
         const recognition = new SpeechRecognition();
         recognition.interimResults = true;
-        recognition.lang = 'ru-RU';
+        recognition.lang = "ru-RU";
         // recognition.maxAlternatives = 1;
 
         recognition.onresult = (event: any) => {
             const result = Array.from(event.results)
                 .map((res: any) => res[0].transcript)
-                .join(' ');
-            setTranscript((prev) => prev + ' ' + result);
-            setDescription(description + ' ' + result + '.');
+                .join(" ");
+            setTranscript((prev) => prev + " " + result);
+            setDescription(description + " " + result + ".");
         };
 
         recognition.onend = () => {
@@ -66,11 +66,11 @@ function SpeechToText({
     return (
         <div
             style={{
-                display: 'flex',
-                justifyContent: 'center',
-                width: '100%',
-                flexDirection: 'column',
-                alignItems: 'center',
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+                flexDirection: "column",
+                alignItems: "center",
             }}
         >
             {isListening ? (
@@ -102,7 +102,7 @@ function SpeechToText({
                     </Button>
                 </motion.div>
             )}
-            <p style={{ color: 'var(--text-color)' }}>Only on Chrome</p>
+            <p style={{ color: "var(--text-color)" }}>Only in Chrome</p>
         </div>
     );
 }
