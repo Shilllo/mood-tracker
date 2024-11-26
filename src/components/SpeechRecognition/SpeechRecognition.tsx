@@ -9,8 +9,37 @@ interface WindowWithSpeech extends Window {
 
 declare const window: WindowWithSpeech;
 
-function SpeechToText({ setDescription }: { setDescription: any }) {
-    const [_, setTranscript] = useState('');
+const DICTIONARY = {
+    точка: '.',
+    запятая: ',',
+    вопрос: '?',
+    восклицание: '!',
+    двоеточие: ':',
+    тире: '-',
+    абзац: '\n',
+    отступ: '\t',
+};
+
+function editInterim(s) {
+    return s
+        .split(' ')
+        .map((word) => {
+            word = word.trim();
+            return DICTIONARY[word.toLowerCase()]
+                ? DICTIONARY[word.toLowerCase()]
+                : word;
+        })
+        .join(' ');
+}
+
+function SpeechToText({
+    setDescription,
+    description,
+}: {
+    setDescription: any;
+    description: string;
+}) {
+    const [transcript, setTranscript] = useState('');
     const recognitionRef = useRef<WindowWithSpeech['SpeechRecognition'] | null>(
         null,
     );
@@ -28,16 +57,24 @@ function SpeechToText({ setDescription }: { setDescription: any }) {
         }
 
         const recognition = new SpeechRecognition();
+        recognition.interimResults = true;
         recognition.lang = 'ru-RU';
+        // recognition.maxAlternatives = 1;
 
         recognition.onresult = (event: any) => {
-            const result = event.results[0][0].transcript;
+            const result = Array.from(event.results)
+                .map((res: any) => editInterim(res[0].transcript))
+                .join(' ');
             setTranscript((prev) => prev + ' ' + result);
-            setDescription(result);
+            setDescription(description + ' ' + result + '.');
+        };
+
+        recognition.onend = () => {
+            setIsListening(false);
         };
 
         recognitionRef.current = recognition;
-    }, []);
+    }, [isListening]);
 
     const startListening = () => {
         recognitionRef.current?.start();
@@ -66,6 +103,7 @@ function SpeechToText({ setDescription }: { setDescription: any }) {
                         variant="contained"
                         color="error"
                         onClick={stopListening}
+                        disabled={!isListening}
                     >
                         Stop Listening
                     </Button>
@@ -79,6 +117,7 @@ function SpeechToText({ setDescription }: { setDescription: any }) {
                         variant="contained"
                         color="success"
                         onClick={startListening}
+                        disabled={isListening}
                     >
                         Start Listening
                     </Button>

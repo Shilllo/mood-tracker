@@ -335,7 +335,10 @@ export default function DailyEmotionHistory({
                                 ))}
                             </TextField>
                         </motion.div>
-                        <SpeechRecognition setDescription={setDescription} />
+                        <SpeechRecognition
+                            setDescription={setDescription}
+                            description={description}
+                        />
                     </Box>
 
                     <motion.div
