@@ -1,0 +1,160 @@
+@import url("/src/ui/theme-style/var.css");
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: var(--background-date);
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.social {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px !important;
+    width: 50vw;
+    min-width: 250px;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    transform-style: preserve-3d;
+    display: flex;
+    gap: 1vw;
+}
+
+.social li {
+    position: relative;
+    background-color: var(--background-date);
+    margin-right: 15px;
+    width: 100%;
+    transition: 0.4s;
+}
+
+.social li:last-of-type {
+    margin-right: 0;
+}
+
+.social li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -9px;
+    background-color: var(--background-date);
+    height: 100%;
+    width: 9px;
+    transform-origin: right;
+    transform: skewY(-45deg);
+}
+
+.social li::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    background-color: var(--background-date);
+    width: 100%;
+    height: 10px;
+    transform-origin: top;
+    transform: skewX(-45deg);
+}
+
+.social li span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.2);
+    width: 100%;
+    height: 100%;
+    font-size: 3em;
+    transition: 0.4s;
+}
+
+li:hover a span {
+    z-index: 1000;
+    transition: 0.5s;
+    color: rgba(255, 255, 255, 1);
+    box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+li:hover > a span:nth-of-type(1) {
+    transform: translate(10px, -5px);
+}
+li:hover > a span:nth-of-type(2) {
+    transform: translate(10px, -10px);
+}
+li:hover > a span:nth-of-type(3) {
+    transform: translate(15px, -15px);
+}
+li:hover > a span:nth-of-type(4) {
+    transform: translate(20px, -20px);
+}
+li:hover > a span:nth-of-type(5) {
+    transform: translate(25px, -25px);
+}
+
+a span:nth-of-type(1) {
+    opacity: 0.2;
+}
+a span:nth-of-type(2) {
+    opacity: 0.4;
+}
+a span:nth-of-type(3) {
+    opacity: 0.6;
+}
+a span:nth-of-type(4) {
+    opacity: 0.8;
+}
+a span:nth-of-type(5) {
+    opacity: 1;
+}
+
+li:nth-of-type(1):hover span {
+    background-color: #d6249f;
+    background-image: linear-gradient(270deg, #fd5949, #d6249f, #285aeb);
+    background-size: 800% 800%;
+    animation: gradient 10s ease infinite;
+}
+
+li:nth-of-type(2):hover span {
+    background-color: #3b5998;
+    background-image: linear-gradient(270deg, #3b5998, #383838);
+    background-size: 400% 400%;
+    animation: gradient 6s ease infinite;
+}
+
+li:nth-of-type(3):hover span {
+    background-color: #0077f2;
+    background-image: linear-gradient(270deg, #4cbdff, #0077f2);
+    background-size: 400% 400%;
+    animation: gradient 6s ease infinite;
+}
+
+li:nth-of-type(4):hover span {
+    background-color: #6441a5;
+    background-image: linear-gradient(270deg, #27c6b0, #6441a5);
+    background-size: 400% 400%;
+    animation: gradient 6s ease infinite alternate forwards;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
