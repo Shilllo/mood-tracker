@@ -69,6 +69,8 @@ function SpeechToText({
                 display: 'flex',
                 justifyContent: 'center',
                 width: '100%',
+                flexDirection: 'column',
+                alignItems: 'center',
             }}
         >
             {isListening ? (
@@ -100,6 +102,7 @@ function SpeechToText({
                     </Button>
                 </motion.div>
             )}
+            <p style={{ color: 'var(--text-color)' }}>Only on Chrome</p>
         </div>
     );
 }
