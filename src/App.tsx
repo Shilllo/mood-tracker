@@ -75,7 +75,7 @@ function App() {
     // Сохранение данных в localStorage при изменении состояния
     useDebouncedEffect(
         () => {
-            setData(removeEmptyArrays(data));
+            // setData(removeEmptyArrays(data));
             localStorage.setItem('emotionData', JSON.stringify(data));
         },
         [data],
