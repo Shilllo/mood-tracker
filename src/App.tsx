@@ -32,6 +32,21 @@ const exportData = () => {
     toast.success('Data exported successfully!');
 };
 
+function removeEmptyArrays(obj: { [key: string]: any }): {
+    [key: string]: any;
+} {
+    const result: { [key: string]: any } = {};
+
+    for (const key in obj) {
+        if (Array.isArray(obj[key]) && obj[key].length === 0) {
+            continue; // Пропускаем пары с пустыми массивами
+        }
+        result[key] = obj[key];
+    }
+
+    return result;
+}
+
 function App() {
     // const [data, setData] = React.useState<EmotionData>(() => {
     //     const storedData = localStorage.getItem('emotionData');
@@ -50,25 +65,9 @@ function App() {
     // });
     const [data, setData] = React.useState<EmotionData>(() => {
         const storedData = localStorage.getItem('emotionData');
-
-        let newData;
-
-        if (storedData) {
-            const parsedData = JSON.parse(storedData);
-            // Удаляем пары с пустыми массивами
-            const filteredData = Object.keys(parsedData).reduce((acc, key) => {
-                if (parsedData[key].length > 0) {
-                    acc[key] = parsedData[key];
-                }
-                return acc;
-            }, {} as EmotionData);
-
-            newData = filteredData;
-        }
         return storedData
             ? {
-                  ...newData,
-                  //   [new Date().toLocaleDateString('en-GB')]: [],
+                  ...JSON.parse(storedData),
               }
             : config.initialData;
     });
@@ -76,6 +75,7 @@ function App() {
     // Сохранение данных в localStorage при изменении состояния
     useDebouncedEffect(
         () => {
+            setData(removeEmptyArrays(data));
             localStorage.setItem('emotionData', JSON.stringify(data));
         },
         [data],
