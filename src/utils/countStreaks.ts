@@ -8,13 +8,15 @@ type EmotionData = {
 
 export default function countStreaks(data: EmotionData) {
     // Получаем все даты и сортируем их в порядке возрастания
-    const dates = Object.keys(data).sort((a, b) => {
-        const [dayA, monthA, yearA] = a.split('/').map(Number);
-        const [dayB, monthB, yearB] = b.split('/').map(Number);
-        const dateA = new Date(yearA, monthA - 1, dayA);
-        const dateB = new Date(yearB, monthB - 1, dayB);
-        return dateA.getTime() - dateB.getTime();
-    });
+    const dates = Object.keys(data)
+        .filter((date) => data[date].length > 0)
+        .sort((a, b) => {
+            const [dayA, monthA, yearA] = a.split('/').map(Number);
+            const [dayB, monthB, yearB] = b.split('/').map(Number);
+            const dateA = new Date(yearA, monthA - 1, dayA);
+            const dateB = new Date(yearB, monthB - 1, dayB);
+            return dateA.getTime() - dateB.getTime();
+        });
 
     let currentStreak = 0;
     let longestStreak = 0;
