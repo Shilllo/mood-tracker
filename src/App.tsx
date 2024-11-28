@@ -32,20 +32,20 @@ const exportData = () => {
     toast.success('Data exported successfully!');
 };
 
-function removeEmptyArrays(obj: { [key: string]: any }): {
-    [key: string]: any;
-} {
-    const result: { [key: string]: any } = {};
+// function removeEmptyArrays(obj: { [key: string]: any }): {
+//     [key: string]: any;
+// } {
+//     const result: { [key: string]: any } = {};
 
-    for (const key in obj) {
-        if (Array.isArray(obj[key]) && obj[key].length === 0) {
-            continue; // Пропускаем пары с пустыми массивами
-        }
-        result[key] = obj[key];
-    }
+//     for (const key in obj) {
+//         if (Array.isArray(obj[key]) && obj[key].length === 0) {
+//             continue; // Пропускаем пары с пустыми массивами
+//         }
+//         result[key] = obj[key];
+//     }
 
-    return result;
-}
+//     return result;
+// }
 
 function App() {
     // const [data, setData] = React.useState<EmotionData>(() => {
