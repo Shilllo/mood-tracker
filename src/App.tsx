@@ -50,9 +50,24 @@ function App() {
     // });
     const [data, setData] = React.useState<EmotionData>(() => {
         const storedData = localStorage.getItem('emotionData');
+
+        let newData;
+
+        if (storedData) {
+            const parsedData = JSON.parse(storedData);
+            // Удаляем пары с пустыми массивами
+            const filteredData = Object.keys(parsedData).reduce((acc, key) => {
+                if (parsedData[key].length > 0) {
+                    acc[key] = parsedData[key];
+                }
+                return acc;
+            }, {} as EmotionData);
+
+            newData = filteredData;
+        }
         return storedData
             ? {
-                  ...JSON.parse(storedData),
+                  ...newData,
                   //   [new Date().toLocaleDateString('en-GB')]: [],
               }
             : config.initialData;
