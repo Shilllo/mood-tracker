@@ -171,6 +171,7 @@ function Header({
                     style={{
                         cursor: 'pointer',
                         marginLeft: '200px',
+                        marginRight: '50px',
                     }}
                     className="header-title"
                     onClick={() => window.location.reload()}
@@ -193,7 +194,7 @@ function Header({
                             onClick={exportData}
                             sx={{
                                 backgroundColor: 'black',
-                                minWidth: '100px',
+                                minWidth: '150px',
                             }}
                         >
                             Export data
@@ -207,7 +208,7 @@ function Header({
                         <Button
                             variant="contained"
                             onClick={handleOpen}
-                            sx={{ backgroundColor: 'black' }}
+                            sx={{ backgroundColor: 'black', minWidth: '150px' }}
                         >
                             Import data
                         </Button>
