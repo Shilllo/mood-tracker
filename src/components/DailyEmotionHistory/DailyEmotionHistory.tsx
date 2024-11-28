@@ -368,17 +368,21 @@ export default function DailyEmotionHistory({
                 </Box>
             </Modal>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell align="center">
-                            EMOTION
-                        </StyledTableCell>
-                        <StyledTableCell align="center">
-                            WHAT HAPPEND?
-                        </StyledTableCell>
-                        <StyledTableCell align="center">TIMING</StyledTableCell>
-                    </TableRow>
-                </TableHead>
+                {data[new Date().toLocaleDateString('en-GB')].length > 0 ? (
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell align="center">
+                                EMOTION
+                            </StyledTableCell>
+                            <StyledTableCell align="center">
+                                WHAT HAPPEND?
+                            </StyledTableCell>
+                            <StyledTableCell align="center">
+                                TIMING
+                            </StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                ) : null}
                 <TableBody>
                     {data[new Date().toLocaleDateString('en-GB')]
                         ? data[new Date().toLocaleDateString('en-GB')].map(
