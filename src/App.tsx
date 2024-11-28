@@ -33,20 +33,29 @@ const exportData = () => {
 };
 
 function App() {
+    // const [data, setData] = React.useState<EmotionData>(() => {
+    //     const storedData = localStorage.getItem('emotionData');
+    //     if (storedData) {
+    //         const parsedData = JSON.parse(storedData);
+    //         const filteredData = Object.keys(parsedData).reduce((acc, key) => {
+    //             if (parsedData[key].length > 0) {
+    //                 acc[key] = parsedData[key];
+    //             }
+    //             return acc;
+    //         }, {} as EmotionData);
+
+    //         return filteredData;
+    //     }
+    //     return config.initialData;
+    // });
     const [data, setData] = React.useState<EmotionData>(() => {
         const storedData = localStorage.getItem('emotionData');
-        if (storedData) {
-            const parsedData = JSON.parse(storedData);
-            const filteredData = Object.keys(parsedData).reduce((acc, key) => {
-                if (parsedData[key].length > 0) {
-                    acc[key] = parsedData[key];
-                }
-                return acc;
-            }, {} as EmotionData);
-
-            return filteredData;
-        }
-        return config.initialData;
+        return storedData
+            ? {
+                  ...JSON.parse(storedData),
+                  //   [new Date().toLocaleDateString('en-GB')]: [],
+              }
+            : config.initialData;
     });
 
     // Сохранение данных в localStorage при изменении состояния
