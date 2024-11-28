@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -18,7 +17,7 @@ import { motion } from 'framer-motion';
 import config from '../../config';
 import StyledTableRowComponent from './StyledTableRow';
 import SpeechRecognition from '../SpeechRecognition/SpeechRecognition';
-import { toast } from 'react-hot-toast';
+import { useDailyEmotionHistoryController } from './DailyEmotionHistoryController';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -66,62 +65,21 @@ export default function DailyEmotionHistory({
     data: EmotionData;
     setData: SetDataFn;
 }) {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => {
-        setOpen(false);
-        setEmotionCategory('');
-        setEmotion('');
-        setDescription('');
-        setTime('');
-    };
-
-    const [emotionCategory, setEmotionCategory] = React.useState('');
-    const [emotion, setEmotion] = React.useState('');
-    const [description, setDescription] = React.useState('');
-    const [time, setTime] = React.useState('');
-
-    const handleEmotionCategoryChange = (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-        setEmotionCategory(event.target.value);
-    };
-
-    const handleEmotionChange = (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-        setEmotion(event.target.value);
-    };
-
-    const handleDescriptionChange = (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-        setDescription(event.target.value);
-    };
-
-    const handleTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTime(event.target.value);
-    };
-
-    const addEmotion = () => {
-        if (emotion && description && time && emotionCategory) {
-            handleClose();
-            setData({
-                ...data,
-                [new Date().toLocaleDateString('en-GB')]: [
-                    ...data[new Date().toLocaleDateString('en-GB')],
-                    {
-                        emotion: emotion.toUpperCase(),
-                        description: description,
-                        time: time,
-                    },
-                ],
-            });
-        } else {
-            toast.error('Please fill in all the fields.');
-        }
-    };
-
+    const {
+        open,
+        handleOpen,
+        handleClose,
+        emotionCategory,
+        emotion,
+        description,
+        setDescription,
+        time,
+        handleEmotionCategoryChange,
+        handleEmotionChange,
+        handleDescriptionChange,
+        handleTimeChange,
+        addEmotion,
+    } = useDailyEmotionHistoryController({ data, setData });
     return (
         <TableContainer
             sx={{
