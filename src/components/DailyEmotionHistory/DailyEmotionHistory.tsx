@@ -326,7 +326,8 @@ export default function DailyEmotionHistory({
                 </Box>
             </Modal>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                {data[new Date().toLocaleDateString('en-GB')].length > 0 ? (
+                {data[new Date().toLocaleDateString('en-GB')] &&
+                data[new Date().toLocaleDateString('en-GB')].length > 0 ? (
                     <TableHead>
                         <TableRow>
                             <StyledTableCell align="center">

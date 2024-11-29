@@ -91,7 +91,7 @@ function App() {
                 [new Date().toLocaleDateString('en-GB')]: [],
             });
         }
-    }, []);
+    }, [data]);
     return (
         <div className="App">
             <Toaster position="top-right" reverseOrder={false} />
