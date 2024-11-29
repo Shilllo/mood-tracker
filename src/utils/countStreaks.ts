@@ -9,7 +9,7 @@ type EmotionData = {
 export default function countStreaks(data: EmotionData) {
     // Получаем все даты и сортируем их в порядке возрастания
     const dates = Object.keys(data)
-        // .filter((date) => data[date].length > 0)
+        .filter((date) => data[date].length > 0)
         .sort((a, b) => {
             const [dayA, monthA, yearA] = a.split('/').map(Number);
             const [dayB, monthB, yearB] = b.split('/').map(Number);
