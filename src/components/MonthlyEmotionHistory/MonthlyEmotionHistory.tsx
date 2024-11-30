@@ -56,7 +56,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
             className="monthly-emotion-history"
             style={{
                 width: 'min(2000px, 100%)',
-                minWidth: '1000px',
+                minWidth: '200px',
                 alignSelf: 'center',
                 marginTop: '50px',
             }}
@@ -165,7 +165,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                         <CalendarDate
                             data={data}
                             key={index}
-                            date={index + 1}
+                            date={index}
                             currentMonth={months.indexOf(currentMonth)}
                             currentYear={new Date().getFullYear()}
                             handleOpen={handleOpen}
