@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    margin-right: 25px;
+    /* margin-right: 25px; */
 }
 
 /* The switch - the box around the slider */
@@ -11,7 +11,8 @@
     font-size: 11.5px;
     position: relative;
     display: flex;
-    width: 7em;
+    width: 80px;
+    /* max-width: ; */
     cursor: pointer;
 }
 

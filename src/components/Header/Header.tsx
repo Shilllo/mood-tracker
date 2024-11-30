@@ -32,6 +32,22 @@ function isEmotionData(data: any): data is EmotionData {
     });
 }
 
+const HeaderDate = () => (
+    <h2
+        className="current-date"
+        style={{
+            marginTop: '0px',
+            color: 'var(--text-color',
+            width: 'min(2000px, 80%)',
+
+            fontSize: '20px',
+            textAlign: 'start',
+        }}
+    >
+        {new Date().toLocaleDateString('en-GB')}
+    </h2>
+);
+
 function Header({
     exportData,
     theme,
@@ -154,35 +170,34 @@ function Header({
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
+                    marginBottom: '40px',
+                    gap: '20px',
                 }}
             >
-                <div>
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <Switcher theme={theme} handleChange={handleChange} />
-                    </motion.div>
-                </div>
-
-                <motion.h1
+                <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     style={{
                         cursor: 'pointer',
-                        marginLeft: '200px',
-                        marginRight: '50px',
+                        display: 'flex',
+                        flexDirection: 'column',
                     }}
                     className="header-title"
                     onClick={() => window.location.reload()}
                 >
-                    EmoTracker
-                </motion.h1>
+                    <h1 style={{ fontSize: '30px', textAlign: 'start' }}>
+                        EmoTracker
+                    </h1>
+                    <HeaderDate />
+                </motion.div>
 
                 <div
                     style={{
                         display: 'flex',
+                        flexWrap: 'wrap',
                         gap: '10px',
+                        alignItems: 'center',
+                        paddingTop: '20px',
                     }}
                 >
                     <motion.div
@@ -194,7 +209,7 @@ function Header({
                             onClick={exportData}
                             sx={{
                                 backgroundColor: 'black',
-                                minWidth: '150px',
+                                // minWidth: '150px',
                             }}
                         >
                             Export data
@@ -208,11 +223,22 @@ function Header({
                         <Button
                             variant="contained"
                             onClick={handleOpen}
-                            sx={{ backgroundColor: 'black', minWidth: '150px' }}
+                            sx={{ backgroundColor: 'black' }}
                         >
                             Import data
                         </Button>
                     </motion.div>
+                    <div>
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <Switcher
+                                theme={theme}
+                                handleChange={handleChange}
+                            />
+                        </motion.div>
+                    </div>
                 </div>
             </div>
         </div>
