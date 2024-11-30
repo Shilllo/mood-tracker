@@ -101,8 +101,6 @@ function App() {
                 handleChange={handleChange}
             />
 
-            <HeaderDate />
-
             <Streaks data={data} />
 
             <DailyEmotionHistory data={data} setData={setData} />
@@ -117,20 +115,5 @@ function App() {
         </div>
     );
 }
-
-const HeaderDate = () => (
-    <h2
-        className="current-date"
-        style={{
-            textAlign: 'center',
-            marginTop: '0px',
-            color: 'var(--text-color',
-            width: 'min(2000px, 80%)',
-            alignSelf: 'center',
-        }}
-    >
-        {new Date().toLocaleDateString('en-GB')}
-    </h2>
-);
 
 export default App;
