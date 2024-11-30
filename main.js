@@ -12,7 +12,7 @@ function createWindow() {
         },
     });
 
-    const indexPath = path.join(__dirname, 'dist', 'index.html');
+    const indexPath = path.join(__dirname, 'dist-electron', 'index.html');
 
     win.loadURL(indexPath);
 }

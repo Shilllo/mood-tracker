@@ -62,10 +62,10 @@
         },
         "files": [
             "**/*",
-            "dist/**/*"
+            "dist-electron/**/*"
         ],
         "directories": {
-            "output": "dist"
+            "output": "dist-electron"
         }
     }
 }
