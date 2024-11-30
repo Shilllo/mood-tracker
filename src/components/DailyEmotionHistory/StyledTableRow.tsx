@@ -1,9 +1,7 @@
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 import TableRow from '@mui/material/TableRow';
-import { motion } from 'framer-motion';
+import DeleteEmotion from './DeleteEmotion/DeleteEmotion';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -84,24 +82,9 @@ export default function StyledTableRowComponent({
             >
                 {row.description}
             </StyledTableCell>
+            <StyledTableCell align="center">{row.time}</StyledTableCell>
             <StyledTableCell align="center">
-                {row.time}
-                <motion.div
-                    whileHover={{ scale: 1.15 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    <IconButton
-                        onClick={() => {
-                            deleteRecord(row);
-                        }}
-                    >
-                        <DeleteIcon
-                            sx={{
-                                color: 'var(--delete-icon)',
-                            }}
-                        />
-                    </IconButton>
-                </motion.div>
+                <DeleteEmotion handleDelete={deleteRecord} row={row} />
             </StyledTableCell>
         </StyledTableRow>
     );

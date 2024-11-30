@@ -339,6 +339,7 @@ export default function DailyEmotionHistory({
                             <StyledTableCell align="center">
                                 TIMING
                             </StyledTableCell>
+                            <StyledTableCell align="center"></StyledTableCell>
                         </TableRow>
                     </TableHead>
                 ) : null}
