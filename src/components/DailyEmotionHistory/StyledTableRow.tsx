@@ -71,7 +71,9 @@ export default function StyledTableRowComponent({
                     borderRight: '1px solid var(--border-table)',
                 }}
             >
-                {row.emotion}
+                <p style={{ margin: 0, fontSize: '20px', fontWeight: 'bold' }}>
+                    {row.emotion}
+                </p>
             </StyledTableCell>
             <StyledTableCell
                 align="center"
@@ -82,7 +84,16 @@ export default function StyledTableRowComponent({
             >
                 {row.description}
             </StyledTableCell>
-            <StyledTableCell align="center">{row.time}</StyledTableCell>
+            <StyledTableCell
+                align="center"
+                sx={{
+                    borderRight: '1px solid var(--border-table)',
+                }}
+            >
+                <p style={{ margin: 0, fontSize: '18px', fontWeight: 'bold' }}>
+                    {row.time}
+                </p>
+            </StyledTableCell>
             <StyledTableCell align="center">
                 <DeleteEmotion handleDelete={deleteRecord} row={row} />
             </StyledTableCell>
