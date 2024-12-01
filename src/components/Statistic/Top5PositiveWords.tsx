@@ -11,7 +11,7 @@ import lemmatize from '../../utils/lemmatize';
 import config from '../../config';
 
 const COLORS = {
-    count: '#7cacf8',
+    count: '#4CAF50',
 };
 
 type EmotionData = {
@@ -27,25 +27,27 @@ function dataToBarChart(data: EmotionData) {
 
     Object.values(data).forEach((item) => {
         item.forEach((el) => {
-            const words = el.description
-                .toLowerCase()
-                .replace(/[^\p{L}\s]/gu, '')
-                .replace(/\s+/g, ' ')
-                .split(' ');
-            words.forEach((word) => {
-                word = lemmatize(word);
-                if (
-                    config.englishStopWords.includes(word) ||
-                    config.russianStopWords.includes(word) ||
-                    word.length < 3
-                )
-                    return;
-                if (result[word]) {
-                    result[word] += 1;
-                } else {
-                    result[word] = 1;
-                }
-            });
+            if (config.emotions.positive.includes(el.emotion)) {
+                const words = el.description
+                    .toLowerCase()
+                    .replace(/[^\p{L}\s]/gu, '')
+                    .replace(/\s+/g, ' ')
+                    .split(' ');
+                words.forEach((word) => {
+                    word = lemmatize(word);
+                    if (
+                        config.englishStopWords.includes(word) ||
+                        config.russianStopWords.includes(word) ||
+                        word.length < 3
+                    )
+                        return;
+                    if (result[word]) {
+                        result[word] += 1;
+                    } else {
+                        result[word] = 1;
+                    }
+                });
+            }
         });
     });
 
@@ -60,7 +62,7 @@ function dataToBarChart(data: EmotionData) {
 
     return top5Words;
 }
-export default function Top5Words({ data }: { data: EmotionData }) {
+export default function Top5PositiveWords({ data }: { data: EmotionData }) {
     return (
         <div
             style={{
@@ -82,7 +84,7 @@ export default function Top5Words({ data }: { data: EmotionData }) {
                     <Bar dataKey="count" fill={COLORS.count} />
                 </BarChart>
             </ResponsiveContainer>
-            <h3 style={{ color: 'var(--text-color)' }}>Top 5 words</h3>
+            <h3 style={{ color: 'var(--text-color)' }}>Top 5 positive words</h3>
         </div>
     );
 }
