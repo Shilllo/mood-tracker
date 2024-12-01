@@ -10,6 +10,7 @@ export default function Socials() {
                 justifyContent: 'center',
                 flexDirection: 'column',
                 alignItems: 'center',
+                marginTop: '100px',
             }}
         >
             <ul className="social">
