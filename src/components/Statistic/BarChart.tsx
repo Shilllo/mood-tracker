@@ -72,28 +72,43 @@ function dataToBarChart(data: EmotionData) {
 
 export default function EmotionBarChart({ data }: { data: EmotionData }) {
     return (
-        <ResponsiveContainer width={600} height={300}>
-            <BarChart
-                data={dataToBarChart(data)}
-                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="time" />
-                <YAxis />
-                <Tooltip />
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}
+        >
+            <ResponsiveContainer width={600} height={300}>
+                <BarChart
+                    data={dataToBarChart(data)}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="time" />
+                    <YAxis />
+                    <Tooltip />
 
-                <Bar
-                    dataKey="positive"
-                    fill={COLORS.positive}
-                    name="Positive"
-                />
-                <Bar
-                    dataKey="negative"
-                    fill={COLORS.negative}
-                    name="Negative"
-                />
-                <Bar dataKey="neutral" fill={COLORS.neutral} name="Neutral" />
-            </BarChart>
-        </ResponsiveContainer>
+                    <Bar
+                        dataKey="positive"
+                        fill={COLORS.positive}
+                        name="Positive"
+                    />
+                    <Bar
+                        dataKey="negative"
+                        fill={COLORS.negative}
+                        name="Negative"
+                    />
+                    <Bar
+                        dataKey="neutral"
+                        fill={COLORS.neutral}
+                        name="Neutral"
+                    />
+                </BarChart>
+            </ResponsiveContainer>
+            <h3 style={{ color: 'var(--text-color)' }}>
+                Mood Distribution by Day
+            </h3>
+        </div>
     );
 }
