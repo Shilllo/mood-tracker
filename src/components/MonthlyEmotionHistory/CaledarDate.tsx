@@ -37,7 +37,6 @@ export default function CalendarDate({
                     date + 1,
                 ).toLocaleDateString('en-GB'),
             ) &&
-            currentMonth === new Date().getMonth() &&
             data[
                 new Date(
                     currentYear,
