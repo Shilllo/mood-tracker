@@ -56,9 +56,10 @@
     },
     "build": {
         "appId": "com.example.app",
-        "productName": "mood-tracker",
+        "productName": "MoTr",
         "win": {
-            "target": "nsis"
+            "target": "nsis",
+            "icon": "./assets/favicon.ico"
         },
         "files": [
             "**/*",
