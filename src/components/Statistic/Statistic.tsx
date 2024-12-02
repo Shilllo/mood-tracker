@@ -21,7 +21,7 @@ export default function Statistic({ data }: { data: EmotionData }) {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                marginTop: '100px',
+                marginTop: '50px',
             }}
         >
             <h2 style={{ color: 'var(--text-color)' }}>Monthly Statistics</h2>
@@ -29,7 +29,7 @@ export default function Statistic({ data }: { data: EmotionData }) {
                 style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    margin: '100px 0',
+                    margin: '10px 0',
                     alignItems: 'center',
                     width: 'min(2000px, 80%)',
                     alignSelf: 'center',
