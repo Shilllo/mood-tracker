@@ -147,14 +147,16 @@ export default function lemmatize(word: string) {
     }
 
     // Простое правило для русских окончаний
-    if (word.endsWith('ая') || word.endsWith('яя')) {
-        return word.slice(0, -2);
-    } else if (
-        word.endsWith('л') ||
-        word.endsWith('ла') ||
-        word.endsWith('ли') ||
-        word.endsWith('ло')
-    ) {
+    // if (word.endsWith('ая') || word.endsWith('яя')) {
+    //     return word.slice(0, -2);
+    // } else if (
+    //     word.endsWith('ла') ||
+    //     word.endsWith('ли') ||
+    //     word.endsWith('ло')
+    // ) {
+    //     return word.slice(0, -1);
+    // }
+    if (word.endsWith('ла') || word.endsWith('ли') || word.endsWith('ло')) {
         return word.slice(0, -1);
     }
 
