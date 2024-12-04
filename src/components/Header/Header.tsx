@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import { toast } from 'react-hot-toast';
+import SettingsButton from './SettingsButton/SettingsButton';
+import SwitcherMobile from './SwitcherMobile';
 
 type EmotionData = {
     [key: string]: {
@@ -50,7 +52,7 @@ function Header({
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 1000,
+        width: '70vw',
         bgcolor: 'background.paper',
         border: '2px solid var(--background)',
         boxShadow: 24,
@@ -64,6 +66,48 @@ function Header({
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [openSettings, setOpenSettings] = React.useState(false);
+    const handleOpenSettings = () => setOpenSettings(true);
+    const handleCloseSettings = () => setOpenSettings(false);
+
+    const importData = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target instanceof HTMLInputElement) {
+            const fileInput = event.target as HTMLInputElement;
+            const file = fileInput.files?.[0];
+            console.log(file);
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    // Чтение данных из файла
+                    const content = e.target?.result as string;
+                    const importedData = JSON.parse(content);
+
+                    // Валидация данных (по необходимости)
+                    if (isEmotionData(importedData)) {
+                        // Сохранение данных в LocalStorage
+                        localStorage.setItem(
+                            'emotionData',
+                            JSON.stringify(importedData),
+                        );
+                        toast.success('Data imported successfully!');
+                    } else {
+                        toast.error('Invalid data format.');
+                    }
+                } catch (error) {
+                    toast.error('Somethig went wrong.');
+                }
+            };
+
+            reader.readAsText(file);
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        }
+    };
+
     return (
         <div className="header">
             <Modal
@@ -83,74 +127,119 @@ function Header({
                         id="modal-modal-description"
                         sx={{ fontSize: 20, mb: 4 }}
                     >
-                        Are you sure? It will totally replace your data with new
-                        information from this file!
+                        JSON-file only
                     </Typography>
                     <Typography
                         id="modal-modal-description"
                         sx={{ fontSize: 20, mb: 4 }}
                     >
-                        JSON-file only
+                        Are you sure? It will totally replace your data with new
+                        information from this file!
                     </Typography>
+
                     <motion.div
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
                     >
                         <input
-                            style={{ fontSize: 20, color: 'var(--text-color)' }}
+                            className="input-file-desktop"
+                            style={{
+                                fontSize: 20,
+                                color: 'var(--text-color)',
+                            }}
                             type="file"
                             accept=".json"
-                            onChange={(
-                                event: React.ChangeEvent<HTMLInputElement>,
-                            ) => {
-                                if (event.target instanceof HTMLInputElement) {
-                                    const fileInput =
-                                        event.target as HTMLInputElement;
-                                    const file = fileInput.files?.[0];
-                                    console.log(file);
-                                    if (!file) return;
+                            onChange={importData}
+                        />
 
-                                    const reader = new FileReader();
-                                    reader.onload = (e) => {
-                                        try {
-                                            // Чтение данных из файла
-                                            const content = e.target
-                                                ?.result as string;
-                                            const importedData =
-                                                JSON.parse(content);
-
-                                            // Валидация данных (по необходимости)
-                                            if (isEmotionData(importedData)) {
-                                                // Сохранение данных в LocalStorage
-                                                localStorage.setItem(
-                                                    'emotionData',
-                                                    JSON.stringify(
-                                                        importedData,
-                                                    ),
-                                                );
-                                                toast.success(
-                                                    'Data imported successfully!',
-                                                );
-                                            } else {
-                                                toast.error(
-                                                    'Invalid data format.',
-                                                );
-                                            }
-                                        } catch (error) {
-                                            toast.error('Somethig went wrong.');
-                                        }
-                                    };
-
-                                    reader.readAsText(file);
-                                    setTimeout(() => {
-                                        window.location.reload();
-                                    }, 1000);
-                                }
+                        <input
+                            className="input-file-mobile"
+                            style={{
+                                fontSize: 15,
+                                marginLeft: 110,
+                                color: 'var(--text-color)',
                             }}
+                            type="file"
+                            accept=".json"
+                            onChange={importData}
                         />
                     </motion.div>
                 </Box>
             </Modal>
+
+            <Modal
+                BackdropProps={{
+                    style: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Полупрозрачный чёрный фон
+                        backdropFilter: 'blur(10px)', // Размытие фона
+                    },
+                }}
+                open={openSettings}
+                onClose={handleCloseSettings}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography
+                        id="modal-modal-description"
+                        sx={{ fontSize: 20, mb: 4 }}
+                    >
+                        Settings
+                    </Typography>
+                    <div className="header-buttons-mobile">
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <Button
+                                variant="contained"
+                                onClick={exportData}
+                                className="export-button"
+                                sx={{
+                                    backgroundColor: 'black',
+                                }}
+                            >
+                                Export data
+                            </Button>
+                        </motion.div>
+
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <Button
+                                variant="contained"
+                                onClick={handleOpen}
+                                className="import-button"
+                                sx={{ backgroundColor: 'black' }}
+                            >
+                                Import data
+                            </Button>
+                        </motion.div>
+                        <div>
+                            <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <Switcher
+                                    theme={theme}
+                                    handleChange={handleChange}
+                                />
+                                <SwitcherMobile
+                                    theme={theme}
+                                    handleChange={handleChange}
+                                />
+                            </motion.div>
+                        </div>
+                    </div>
+                </Box>
+            </Modal>
+
             <div
                 style={{
                     width: 'min(2000px, 80%)',
@@ -163,20 +252,24 @@ function Header({
                 }}
                 className="header-container"
             >
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                <div
                     style={{
                         cursor: 'pointer',
                         display: 'flex',
                         flexDirection: 'column',
                     }}
                     className="header-title"
-                    onClick={() => window.location.reload()}
                 >
-                    <h1>EmoTracker</h1>
+                    <motion.h1
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => window.location.reload()}
+                    >
+                        EmoTracker
+                    </motion.h1>
                     <HeaderDate />
-                </motion.div>
+                    <SettingsButton handleOpenSettings={handleOpenSettings} />
+                </div>
 
                 <div className="header-buttons">
                     <motion.div

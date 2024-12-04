@@ -618,6 +618,8 @@ export const monthDays: { [key: string]: number } = {
     DECEMBER: 31,
 };
 
+const themes = ['light', 'dark'];
+
 const config = {
     initialData,
     englishStopWords,
@@ -628,6 +630,7 @@ const config = {
     emotionsTranslated,
     times,
     monthDays,
+    themes,
 };
 
 export default config;
