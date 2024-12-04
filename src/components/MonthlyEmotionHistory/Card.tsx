@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography } from '@mui/material';
+import { Card, CardContent, Typography } from "@mui/material";
 
 export default function CardModal({
     index,
@@ -16,26 +16,27 @@ export default function CardModal({
             key={index}
             variant="outlined"
             sx={{
-                width: 450,
-                backgroundColor: 'var(--background)',
-                border: '2px solid var(--background-date-hover)',
+                width: "65vw",
+                minWidth: "200px",
+                backgroundColor: "var(--background)",
+                border: "2px solid var(--background-date-hover)",
             }}
         >
             <CardContent
                 sx={{
-                    color: 'var(--text-color)',
-                    backgroundColor: 'var(--background)',
-                    height: 'fit-content',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '5px',
+                    color: "var(--text-color)",
+                    backgroundColor: "var(--background)",
+                    height: "fit-content",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "5px",
                 }}
             >
                 <Typography variant="h5">{entry.emotion}</Typography>
                 <Typography
                     variant="body2"
                     sx={{
-                        wordBreak: 'break-word',
+                        wordBreak: "break-word",
                     }}
                 >
                     {entry.description}

@@ -12,3 +12,100 @@
     font-size: 40px;
     color: var(--text-color);
 }
+
+.header-title > h1 {
+    font-size: 30px;
+    text-align: start;
+}
+
+.current-date {
+    margin-top: 0px;
+    color: var(--text-color);
+    font-size: 20px;
+    text-align: start;
+    width: min(2000px, 80%);
+}
+
+.header-buttons {
+    display: flex;
+    flex-wrap: 'wrap';
+    gap: 10px;
+    align-items: center;
+    padding-top: 20px;
+}
+
+@media (min-width: 601px) {
+    .setting-btn {
+        display: none !important;
+    }
+
+    .input-file-mobile {
+        display: none;
+    }
+}
+@media (max-width: 600px) {
+    .theme-switcher {
+        display: none;
+    }
+    .current-date {
+        margin-right: 30px !important;
+    }
+    .header-container {
+        flex-direction: column;
+        gap: 0px !important;
+        margin: 0 !important;
+    }
+
+    .header-title > h1 {
+        font-size: 20px;
+    }
+
+    .header-title > h2 {
+        text-align: end;
+    }
+
+    .header-title {
+        display: flex;
+        flex-direction: row !important;
+        align-items: center;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .export-button,
+    .import-button {
+        font-size: 8px !important;
+    }
+
+    .current-date {
+        font-size: 15px;
+        margin: 0px;
+        margin-top: 5px;
+    }
+
+    #theme-toggle-button {
+        width: 100px !important;
+    }
+
+    .header-buttons {
+        flex-wrap: nowrap;
+        justify-content: space-between !important;
+        width: 100%;
+        display: none;
+    }
+
+    .header-buttons-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .header-buttons-mobile > div > button {
+        width: 200px;
+        height: 40px;
+        font-size: 15px !important;
+    }
+
+    .input-file-desktop {
+        display: none;
+    }
+}

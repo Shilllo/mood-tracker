@@ -1,0 +1,15 @@
+@media (max-width: 600px) {
+    .desktop-pie,
+    .desktop-bar,
+    .desktop-radar {
+        display: none;
+    }
+}
+
+@media (min-width: 601px) {
+    .mobile-pie,
+    .mobile-bar,
+    .mobile-radar {
+        display: none;
+    }
+}

@@ -3,7 +3,6 @@ import {
     RadarChart,
     PolarGrid,
     PolarAngleAxis,
-    PolarRadiusAxis,
     Tooltip,
 } from 'recharts';
 
@@ -37,25 +36,50 @@ export default function TopEmotionsRadarChart({ data }: { data: EmotionData }) {
         .slice(-5);
 
     return (
-        <RadarChart
-            cx={300}
-            cy={200}
-            outerRadius={130}
-            width={600}
-            height={400}
-            data={result}
-        >
-            <PolarGrid />
-            <PolarAngleAxis dataKey="emotion" />
-            <PolarRadiusAxis />
-            <Radar
-                name="Top-5 Emotions"
-                dataKey="count"
-                stroke="#8884d8"
-                fill="#8884d8"
-                fillOpacity={0.6}
-            />
-            <Tooltip />
-        </RadarChart>
+        <div>
+            <RadarChart
+                className="desktop-radar"
+                cx={300}
+                cy={200}
+                outerRadius={130}
+                width={600}
+                height={400}
+                data={result}
+            >
+                <PolarGrid />
+                <PolarAngleAxis dataKey="emotion" />
+                <Radar
+                    name="Top-5 Emotions"
+                    dataKey="count"
+                    stroke="#8884d8"
+                    fill="#8884d8"
+                    fillOpacity={0.6}
+                />
+                <Tooltip />
+            </RadarChart>
+
+            <RadarChart
+                className="mobile-radar"
+                cx={150}
+                cy={100}
+                width={300}
+                height={200}
+                data={result}
+            >
+                <PolarGrid />
+                <PolarAngleAxis dataKey="emotion" />
+                <Radar
+                    name="Top-5 Emotions"
+                    dataKey="count"
+                    stroke="#8884d8"
+                    fill="#8884d8"
+                    fillOpacity={0.6}
+                />
+                <Tooltip />
+            </RadarChart>
+            <h3 style={{ color: 'var(--text-color)', textAlign: 'center' }}>
+                Top 5 Emotions
+            </h3>
+        </div>
     );
 }

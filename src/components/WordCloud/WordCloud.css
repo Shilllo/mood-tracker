@@ -9,3 +9,9 @@
 .css-1tktgsa-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
     background-color: var(--menu-item-background) !important;
 }
+
+@media (max-width: 600px) {
+    .word-cloud {
+        display: none !important;
+    }
+}

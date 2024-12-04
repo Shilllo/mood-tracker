@@ -23,7 +23,8 @@ function WordCloudComponent({
         emotionCategory,
         timeCategory,
         period,
-        canvasRef,
+        canvasRefDesktop,
+        canvasRefMobile,
         handleEmotionCategoryChange,
         handleTimeCategoryChange,
         handlePeriodChange,
@@ -34,6 +35,7 @@ function WordCloudComponent({
 
     return (
         <div
+            className="word-cloud"
             style={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -200,7 +202,16 @@ function WordCloudComponent({
                 </motion.div>
             </div>
             <canvas
-                ref={canvasRef}
+                className="desktop-wordcloud"
+                ref={canvasRefDesktop}
+                style={{
+                    alignSelf: 'center',
+                    display: 'flex',
+                }}
+            />
+            <canvas
+                className="mobile-wordcloud"
+                ref={canvasRefMobile}
                 style={{
                     alignSelf: 'center',
                     display: 'flex',
