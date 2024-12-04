@@ -1,8 +1,8 @@
-import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
-import "./WordCloud.css";
-import { motion } from "framer-motion";
-import { useWordCloudController } from "./WordCloudController";
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
+import './WordCloud.css';
+import { motion } from 'framer-motion';
+import { useWordCloudController } from './WordCloudController';
 
 interface EmotionData {
     [key: string]: {
@@ -35,24 +35,25 @@ function WordCloudComponent({
 
     return (
         <div
+            className="word-cloud"
             style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "min(2000px, 80%)",
-                alignSelf: "center",
-                flexWrap: "wrap",
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 'min(2000px, 80%)',
+                alignSelf: 'center',
+                flexWrap: 'wrap',
             }}
         >
             <div
                 className="filters"
                 style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "20px",
-                    marginRight: "50px",
-                    color: "var(--text-color)",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '20px',
+                    marginRight: '50px',
+                    color: 'var(--text-color)',
                 }}
             >
                 <h3>Word Cloud Filters</h3>
@@ -64,42 +65,42 @@ function WordCloudComponent({
                         variant="outlined"
                         defaultValue="all"
                         sx={{
-                            width: "100%",
-                            input: { color: "var(--text-color)" }, // Цвет текста
-                            label: { color: "var(--text-color)" }, // Цвет метки (label)
-                            ".MuiOutlinedInput-root": {
-                                "& fieldset": {
-                                    borderColor: "var(--border-input)", // Цвет рамки
+                            width: '100%',
+                            input: { color: 'var(--text-color)' }, // Цвет текста
+                            label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                            '.MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки
                                 },
-                                "&:hover fieldset": {
-                                    borderColor: "var(--border-input)", // Цвет рамки при наведении
+                                '&:hover fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки при наведении
                                 },
-                                "&.Mui-focused fieldset": {
-                                    borderColor: "var(--border-input)", // Цвет рамки при фокусе
+                                '&.Mui-focused fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки при фокусе
                                 },
                             },
-                            ".MuiInputLabel-root": {
-                                color: "var(--text-color)", // Цвет метки (label)
+                            '.MuiInputLabel-root': {
+                                color: 'var(--text-color)', // Цвет метки (label)
                             },
-                            ".MuiInputBase-root": {
-                                color: "var(--text-color)", // Цвет текста
+                            '.MuiInputBase-root': {
+                                color: 'var(--text-color)', // Цвет текста
                             },
                         }}
                         value={emotionCategory}
                         onChange={handleEmotionCategoryChange}
                     >
-                        {["positive", "negative", "neutral", "all"].map(
+                        {['positive', 'negative', 'neutral', 'all'].map(
                             (option) => (
                                 <MenuItem
                                     key={option}
                                     value={option}
                                     sx={{
-                                        color: "var(--text-color)",
+                                        color: 'var(--text-color)',
                                     }}
                                 >
                                     {option}
                                 </MenuItem>
-                            )
+                            ),
                         )}
                     </TextField>
                 </motion.div>
@@ -111,42 +112,42 @@ function WordCloudComponent({
                         variant="outlined"
                         defaultValue="all"
                         sx={{
-                            width: "100%",
-                            input: { color: "var(--text-color)" }, // Цвет текста
-                            label: { color: "var(--text-color)" }, // Цвет метки (label)
-                            ".MuiOutlinedInput-root": {
-                                "& fieldset": {
-                                    borderColor: "var(--border-input)", // Цвет рамки
+                            width: '100%',
+                            input: { color: 'var(--text-color)' }, // Цвет текста
+                            label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                            '.MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки
                                 },
-                                "&:hover fieldset": {
-                                    borderColor: "var(--border-input)", // Цвет рамки при наведении
+                                '&:hover fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки при наведении
                                 },
-                                "&.Mui-focused fieldset": {
-                                    borderColor: "var(--border-input)", // Цвет рамки при фокусе
+                                '&.Mui-focused fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки при фокусе
                                 },
                             },
-                            ".MuiInputLabel-root": {
-                                color: "var(--text-color)", // Цвет метки (label)
+                            '.MuiInputLabel-root': {
+                                color: 'var(--text-color)', // Цвет метки (label)
                             },
-                            ".MuiInputBase-root": {
-                                color: "var(--text-color)", // Цвет текста
+                            '.MuiInputBase-root': {
+                                color: 'var(--text-color)', // Цвет текста
                             },
                         }}
                         value={timeCategory}
                         onChange={handleTimeCategoryChange}
                     >
                         {[
-                            "morning",
-                            "afternoon",
-                            "evening",
-                            "night",
-                            "all",
+                            'morning',
+                            'afternoon',
+                            'evening',
+                            'night',
+                            'all',
                         ].map((option) => (
                             <MenuItem
                                 key={option}
                                 value={option}
                                 sx={{
-                                    color: "var(--text-color)",
+                                    color: 'var(--text-color)',
                                 }}
                             >
                                 {option}
@@ -162,36 +163,36 @@ function WordCloudComponent({
                         variant="outlined"
                         defaultValue="day"
                         sx={{
-                            width: "200px",
-                            input: { color: "var(--text-color)" }, // Цвет текста
-                            label: { color: "var(--text-color)" }, // Цвет метки (label)
-                            ".MuiOutlinedInput-root": {
-                                "& fieldset": {
-                                    borderColor: "var(--border-input)", // Цвет рамки
+                            width: '200px',
+                            input: { color: 'var(--text-color)' }, // Цвет текста
+                            label: { color: 'var(--text-color)' }, // Цвет метки (label)
+                            '.MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки
                                 },
-                                "&:hover fieldset": {
-                                    borderColor: "var(--border-input)", // Цвет рамки при наведении
+                                '&:hover fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки при наведении
                                 },
-                                "&.Mui-focused fieldset": {
-                                    borderColor: "var(--border-input)", // Цвет рамки при фокусе
+                                '&.Mui-focused fieldset': {
+                                    borderColor: 'var(--border-input)', // Цвет рамки при фокусе
                                 },
                             },
-                            ".MuiInputLabel-root": {
-                                color: "var(--text-color)", // Цвет метки (label)
+                            '.MuiInputLabel-root': {
+                                color: 'var(--text-color)', // Цвет метки (label)
                             },
-                            ".MuiInputBase-root": {
-                                color: "var(--text-color)", // Цвет текста
+                            '.MuiInputBase-root': {
+                                color: 'var(--text-color)', // Цвет текста
                             },
                         }}
                         value={period}
                         onChange={handlePeriodChange}
                     >
-                        {["day", "week", "month", "year"].map((option) => (
+                        {['day', 'week', 'month', 'year'].map((option) => (
                             <MenuItem
                                 key={option}
                                 value={option}
                                 sx={{
-                                    color: "var(--text-color)",
+                                    color: 'var(--text-color)',
                                 }}
                             >
                                 {option}
@@ -204,18 +205,18 @@ function WordCloudComponent({
                 className="desktop-wordcloud"
                 ref={canvasRefDesktop}
                 style={{
-                    alignSelf: "center",
-                    display: "flex",
+                    alignSelf: 'center',
+                    display: 'flex',
                 }}
             />
-            {/* <canvas
+            <canvas
                 className="mobile-wordcloud"
                 ref={canvasRefMobile}
                 style={{
-                    alignSelf: "center",
-                    display: "flex",
+                    alignSelf: 'center',
+                    display: 'flex',
                 }}
-            /> */}
+            />
         </div>
     );
 }

@@ -3,9 +3,8 @@ import {
     RadarChart,
     PolarGrid,
     PolarAngleAxis,
-    PolarRadiusAxis,
     Tooltip,
-} from "recharts";
+} from 'recharts';
 
 type EmotionData = {
     [key: string]: {
@@ -49,7 +48,6 @@ export default function TopEmotionsRadarChart({ data }: { data: EmotionData }) {
             >
                 <PolarGrid />
                 <PolarAngleAxis dataKey="emotion" />
-                <PolarRadiusAxis />
                 <Radar
                     name="Top-5 Emotions"
                     dataKey="count"
@@ -70,7 +68,6 @@ export default function TopEmotionsRadarChart({ data }: { data: EmotionData }) {
             >
                 <PolarGrid />
                 <PolarAngleAxis dataKey="emotion" />
-                <PolarRadiusAxis />
                 <Radar
                     name="Top-5 Emotions"
                     dataKey="count"
@@ -80,7 +77,7 @@ export default function TopEmotionsRadarChart({ data }: { data: EmotionData }) {
                 />
                 <Tooltip />
             </RadarChart>
-            <h3 style={{ color: "var(--text-color)", textAlign: "center" }}>
+            <h3 style={{ color: 'var(--text-color)', textAlign: 'center' }}>
                 Top 5 Emotions
             </h3>
         </div>
