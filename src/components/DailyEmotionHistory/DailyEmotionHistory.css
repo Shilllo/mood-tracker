@@ -1,4 +1,4 @@
-@import url('/src/ui/theme-style/var.css');
+@import url("/src/ui/theme-style/var.css");
 
 .MuiList-root {
     background-color: var(--menu-item-background);
@@ -14,3 +14,33 @@
 /* * {
     color: var(--text-color);
 } */
+
+@media (max-width: 600px) {
+    .emotion-title {
+        font-size: 10px;
+        margin: 0px;
+        font-weight: bold;
+    }
+
+    .desktop-cell,
+    .emotion-row,
+    .emotion-cell {
+        display: none !important;
+    }
+
+    .mobile-cell {
+        display: block;
+    }
+
+    .emotion-table-container {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+}
+
+@media (min-width: 601px) {
+    .mobile-cell {
+        display: none !important;
+    }
+}
+/* style={{ margin: 0, fontSize: '20px', fontWeight: 'bold' }} */

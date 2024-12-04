@@ -1,4 +1,4 @@
-@import url('/src/ui/theme-style/var.css');
+@import url("/src/ui/theme-style/var.css");
 
 .monthly-emotion-history {
     display: flex;
@@ -53,4 +53,10 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+@media (min-width: 600px) {
+    .close-modal {
+        display: none;
+    }
 }

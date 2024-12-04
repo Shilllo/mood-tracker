@@ -1,27 +1,32 @@
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import { styled } from '@mui/material/styles';
-import TableRow from '@mui/material/TableRow';
-import DeleteEmotion from './DeleteEmotion/DeleteEmotion';
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import { styled } from "@mui/material/styles";
+import TableRow from "@mui/material/TableRow";
+import DeleteEmotion from "./DeleteEmotion/DeleteEmotion";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
-        color: 'var(--table-head-color)',
-        borderBottom: '1px solid var(--background)',
+        color: "var(--table-head-color)",
+        borderBottom: "1px solid var(--background)",
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 15,
-        color: 'var(--text-color)',
-        borderBottom: 'var(--border-table) solid 1px',
+        color: "var(--text-color)",
+        borderBottom: "var(--border-table) solid 1px",
     },
 }));
 
 const StyledTableRow = styled(TableRow)(() => ({
-    '&:nth-of-type(odd)': {
-        backgroundColor: 'var(--table-row-odd)',
+    "&:nth-of-type(odd)": {
+        backgroundColor: "var(--table-row-odd)",
     },
-    '&:nth-of-type(even)': {
-        backgroundColor: 'var(--table-row-even)',
+    "&:nth-of-type(even)": {
+        backgroundColor: "var(--table-row-even)",
+    },
+    "@media (max-width: 600px)": {
+        "&:nth-of-type(odd), &:nth-of-type(even)": {
+            width: "100px !important",
+        },
     },
 }));
 
@@ -55,8 +60,8 @@ export default function StyledTableRowComponent({
     }) => {
         setData({
             ...data,
-            [new Date().toLocaleDateString('en-GB')]: data[
-                new Date().toLocaleDateString('en-GB')
+            [new Date().toLocaleDateString("en-GB")]: data[
+                new Date().toLocaleDateString("en-GB")
             ].filter((entry) => entry !== row),
         });
     };
@@ -64,37 +69,45 @@ export default function StyledTableRowComponent({
     return (
         <StyledTableRow key={row.emotion}>
             <StyledTableCell
-                component="th"
+                className="desktop-cell"
+                // component="th"
                 scope="row"
                 align="center"
                 sx={{
-                    borderRight: '1px solid var(--border-table)',
+                    borderRight: "1px solid var(--border-table)",
                 }}
             >
-                <p style={{ margin: 0, fontSize: '20px', fontWeight: 'bold' }}>
-                    {row.emotion}
-                </p>
+                <p className="emotion-title">{row.emotion}</p>
             </StyledTableCell>
             <StyledTableCell
+                className="desktop-cell"
                 align="center"
                 sx={{
-                    borderRight: '1px solid var(--border-table)',
-                    wordBreak: 'break-word',
+                    borderRight: "1px solid var(--border-table)",
+                    wordBreak: "break-word",
                 }}
             >
                 {row.description}
             </StyledTableCell>
             <StyledTableCell
+                className="desktop-cell"
                 align="center"
                 sx={{
-                    borderRight: '1px solid var(--border-table)',
+                    borderRight: "1px solid var(--border-table)",
                 }}
             >
-                <p style={{ margin: 0, fontSize: '18px', fontWeight: 'bold' }}>
+                <p style={{ margin: 0, fontSize: "18px", fontWeight: "bold" }}>
                     {row.time}
                 </p>
             </StyledTableCell>
-            <StyledTableCell align="center">
+            <StyledTableCell align="center" className="desktop-cell">
+                <DeleteEmotion handleDelete={deleteRecord} row={row} />
+            </StyledTableCell>
+
+            <StyledTableCell align="center" className="mobile-cell">
+                <p>{row.emotion}</p>
+                <p style={{ wordBreak: "break-word" }}>{row.description}</p>
+                <p>{row.time}</p>
                 <DeleteEmotion handleDelete={deleteRecord} row={row} />
             </StyledTableCell>
         </StyledTableRow>
