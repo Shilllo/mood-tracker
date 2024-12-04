@@ -6,7 +6,7 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
-        icon: path.resolve(__dirname, 'dist-electron', 'assets', 'favicon.ico'),
+        icon: path.resolve(__dirname, 'dist-electron', 'favicon.ico'),
         webPreferences: {
             nodeIntegration: true, // Разрешить использовать Node.js API в окне
             // preload: path.join(__dirname, 'preload.js'), // Для безопасности можно использовать preload

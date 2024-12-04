@@ -33,19 +33,7 @@ function isEmotionData(data: any): data is EmotionData {
 }
 
 const HeaderDate = () => (
-    <h2
-        className="current-date"
-        style={{
-            marginTop: '0px',
-            color: 'var(--text-color',
-            width: 'min(2000px, 80%)',
-
-            fontSize: '20px',
-            textAlign: 'start',
-        }}
-    >
-        {new Date().toLocaleDateString('en-GB')}
-    </h2>
+    <h2 className="current-date">{new Date().toLocaleDateString('en-GB')}</h2>
 );
 
 function Header({
@@ -173,6 +161,7 @@ function Header({
                     marginBottom: '40px',
                     gap: '20px',
                 }}
+                className="header-container"
             >
                 <motion.div
                     whileHover={{ scale: 1.05 }}
@@ -185,21 +174,11 @@ function Header({
                     className="header-title"
                     onClick={() => window.location.reload()}
                 >
-                    <h1 style={{ fontSize: '30px', textAlign: 'start' }}>
-                        EmoTracker
-                    </h1>
+                    <h1>EmoTracker</h1>
                     <HeaderDate />
                 </motion.div>
 
-                <div
-                    style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: '10px',
-                        alignItems: 'center',
-                        paddingTop: '20px',
-                    }}
-                >
+                <div className="header-buttons">
                     <motion.div
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -207,9 +186,9 @@ function Header({
                         <Button
                             variant="contained"
                             onClick={exportData}
+                            className="export-button"
                             sx={{
                                 backgroundColor: 'black',
-                                // minWidth: '150px',
                             }}
                         >
                             Export data
@@ -223,6 +202,7 @@ function Header({
                         <Button
                             variant="contained"
                             onClick={handleOpen}
+                            className="import-button"
                             sx={{ backgroundColor: 'black' }}
                         >
                             Import data

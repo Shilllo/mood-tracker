@@ -13,6 +13,7 @@ export default function Streak({
     }
     return (
         <div
+            className="streak"
             style={{
                 alignSelf: 'center',
                 display: 'flex',
@@ -22,7 +23,7 @@ export default function Streak({
                 color: 'var(--text-color)',
             }}
         >
-            <h3>{name}:</h3>
+            <h4>{name}:</h4>
             <div
                 style={{
                     display: 'flex',

@@ -105,13 +105,13 @@ function App() {
 
             <DailyEmotionHistory data={data} setData={setData} />
 
-            <MonthlyEmotionHistory data={data} />
+            {/* <MonthlyEmotionHistory data={data} /> */}
 
-            <Statistic data={data} />
+            {/* <Statistic data={data} /> */}
 
-            <WordCloudCompoment data={data} theme={theme} />
+            {/* <WordCloudCompoment data={data} theme={theme} /> */}
 
-            <Socials />
+            {/* <Socials /> */}
         </div>
     );
 }
