@@ -1,4 +1,4 @@
-@import url('/src/ui/theme-style/var.css');
+@import url("/src/ui/theme-style/var.css");
 
 html {
     box-sizing: border-box;
@@ -21,9 +21,9 @@ a {
     margin: 0;
     margin-top: 10px !important;
     width: 50vw;
-    min-width: 250px;
+    min-width: 300px;
     max-width: 1000px;
-    max-height: 50px;
+    max-height: 40px;
     height: 8vh;
     display: flex;
     justify-content: center;
@@ -45,7 +45,7 @@ a {
 }
 
 .social li::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -9px;
@@ -57,7 +57,7 @@ a {
 }
 
 .social li::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -10px;
     left: 0;

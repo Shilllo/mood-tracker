@@ -208,14 +208,14 @@ function WordCloudComponent({
                     display: "flex",
                 }}
             />
-            <canvas
+            {/* <canvas
                 className="mobile-wordcloud"
                 ref={canvasRefMobile}
                 style={{
                     alignSelf: "center",
                     display: "flex",
                 }}
-            />
+            /> */}
         </div>
     );
 }

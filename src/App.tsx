@@ -109,7 +109,7 @@ function App() {
 
             <Statistic data={data} />
 
-            <WordCloudCompoment data={data} theme={theme} />
+            {/* <WordCloudCompoment data={data} theme={theme} /> */}
 
             <Socials />
         </div>
