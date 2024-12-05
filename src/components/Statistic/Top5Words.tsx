@@ -6,12 +6,12 @@ import {
     CartesianGrid,
     Tooltip,
     ResponsiveContainer,
-} from "recharts";
-import lemmatize from "../../utils/lemmatize";
-import config from "../../config";
+} from 'recharts';
+import lemmatize from '../../utils/lemmatize';
+import config from '../../config';
 
 const COLORS = {
-    count: "#7cacf8",
+    count: '#7cacf8',
 };
 
 type EmotionData = {
@@ -29,9 +29,9 @@ function dataToBarChart(data: EmotionData) {
         item.forEach((el) => {
             const words = el.description
                 .toLowerCase()
-                .replace(/[^\p{L}\s]/gu, "")
-                .replace(/\s+/g, " ")
-                .split(" ");
+                .replace(/[^\p{L}\s]/gu, '')
+                .replace(/\s+/g, ' ')
+                .split(' ');
             words.forEach((word) => {
                 word = lemmatize(word);
                 if (
@@ -64,10 +64,10 @@ export default function Top5Words({ data }: { data: EmotionData }) {
     return (
         <div
             style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "30px",
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '30px',
             }}
         >
             <ResponsiveContainer
@@ -89,14 +89,14 @@ export default function Top5Words({ data }: { data: EmotionData }) {
             </ResponsiveContainer>
 
             <ResponsiveContainer
-                width={300}
+                width={380}
                 height={200}
                 className="mobile-bar"
-                style={{ marginTop: "2rem", marginRight: "50px" }}
+                style={{ marginTop: '2rem', marginRight: '2rem' }}
             >
                 <BarChart
                     data={dataToBarChart(data)}
-                    style={{ marginTop: "2rem", marginRight: "50px" }}
+                    style={{ marginTop: '2rem', marginRight: '50px' }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="word" />
@@ -106,7 +106,7 @@ export default function Top5Words({ data }: { data: EmotionData }) {
                     <Bar dataKey="count" fill={COLORS.count} />
                 </BarChart>
             </ResponsiveContainer>
-            <h3 style={{ color: "var(--text-color)" }}>Top 5 words</h3>
+            <h3 style={{ color: 'var(--text-color)' }}>Top 5 words</h3>
         </div>
     );
 }
