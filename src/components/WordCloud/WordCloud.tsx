@@ -24,7 +24,6 @@ function WordCloudComponent({
         timeCategory,
         period,
         canvasRefDesktop,
-        canvasRefMobile,
         handleEmotionCategoryChange,
         handleTimeCategoryChange,
         handlePeriodChange,
@@ -202,16 +201,8 @@ function WordCloudComponent({
                 </motion.div>
             </div>
             <canvas
-                className="desktop-wordcloud"
+                className="wordcloud"
                 ref={canvasRefDesktop}
-                style={{
-                    alignSelf: 'center',
-                    display: 'flex',
-                }}
-            />
-            <canvas
-                className="mobile-wordcloud"
-                ref={canvasRefMobile}
                 style={{
                     alignSelf: 'center',
                     display: 'flex',
