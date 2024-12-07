@@ -4,7 +4,6 @@
     "version": "0.0.0",
     "main": "main.js",
     "author": "Kim Simon",
-    "type": "module",
     "scripts": {
         "start": "node ./Bot/Bot.js",
         "dev": "vite --host",
