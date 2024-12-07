@@ -12,6 +12,28 @@ import { useDebouncedEffect } from './hook/useDebouncedEffect';
 import Socials from './components/Socials/Socials';
 import { Toaster, toast } from 'react-hot-toast';
 
+declare global {
+    interface Window {
+        Telegram: {
+            WebApp: {
+                initData: string;
+                initDataUnsafe: {
+                    query_id?: string;
+                    user?: {
+                        id: number;
+                        first_name: string;
+                        last_name?: string;
+                        username?: string;
+                    };
+                };
+                ready: () => void;
+                sendData: (data: string) => void;
+                close: () => void;
+            };
+        };
+    }
+}
+
 type EmotionData = {
     [key: string]: {
         emotion: string;
@@ -32,7 +54,13 @@ const exportData = () => {
     toast.success('Data exported successfully!');
 };
 
+const tele = window.Telegram.WebApp;
+
 function App() {
+    React.useEffect(() => {
+        tele.ready();
+    });
+
     const [data, setData] = React.useState<EmotionData>(() => {
         const storedData = localStorage.getItem('emotionData');
         return storedData
