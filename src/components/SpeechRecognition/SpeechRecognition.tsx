@@ -1,9 +1,9 @@
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
-import Tooltip from '@mui/material/Tooltip';
-import InfoIcon from '@mui/icons-material/Info';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+// import Tooltip from '@mui/material/Tooltip';
+// import InfoIcon from '@mui/icons-material/Info';
+// import IconButton from '@mui/material/IconButton';
+// import Typography from '@mui/material/Typography';
 import { useSpeechRecognitionController } from './SpeechRecognitionController';
 
 function SpeechToText({
@@ -54,7 +54,7 @@ function SpeechToText({
                     </Button>
                 </motion.div>
             )}
-            <motion.div whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>
+            {/* <motion.div whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>
                 <Tooltip
                     title={
                         <div style={{ padding: '8px' }}>
@@ -75,7 +75,7 @@ function SpeechToText({
                         <InfoIcon />
                     </IconButton>
                 </Tooltip>
-            </motion.div>
+            </motion.div> */}
         </div>
     );
 }
