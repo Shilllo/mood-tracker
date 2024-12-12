@@ -1,5 +1,26 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { Box, Modal, Button } from '@mui/material';
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '70vw',
+    minWidth: '200px',
+    maxWidth: '400px',
+    bgcolor: 'background.paper',
+    border: '2px solid var(--background)',
+    boxShadow: 24,
+    p: 4,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: 'var(--background)',
+    gap: '10px',
+};
 
 const DeleteEmotion = ({
     handleDelete,
@@ -16,13 +37,75 @@ const DeleteEmotion = ({
         time: string;
     };
 }) => {
+    const [confirmModal, setConfirmModal] = useState(false);
+    const handleOpenConfirmModal = () => setConfirmModal(true);
+    const handleCloseConfirmModal = () => setConfirmModal(false);
     return (
         <StyledWrapper>
+            <Modal
+                open={confirmModal}
+                onClose={setConfirmModal}
+                BackdropProps={{
+                    style: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Полупрозрачный чёрный фон
+                        backdropFilter: 'blur(10px)', // Размытие фона
+                    },
+                }}
+            >
+                <Box sx={style}>
+                    <h2
+                        style={{
+                            color: 'var(--text-color)',
+                            marginBottom: '0px',
+                        }}
+                    >
+                        Delete Record
+                    </h2>
+                    <p
+                        style={{
+                            textAlign: 'center',
+                            color: 'var(--text-color)',
+                            fontSize: '20px',
+                        }}
+                    >
+                        Are you sure you want to delete this record?
+                    </p>
+                    <div style={{ display: 'flex', gap: '10px' }}>
+                        <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            <Button
+                                onClick={handleCloseConfirmModal}
+                                variant="contained"
+                                color="success"
+                            >
+                                Cancel
+                            </Button>
+                        </motion.div>
+                        <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            <Button
+                                variant="contained"
+                                color="error"
+                                onClick={() => {
+                                    handleDelete(row);
+                                    handleCloseConfirmModal();
+                                }}
+                            >
+                                Delete
+                            </Button>
+                        </motion.div>
+                    </div>
+                </Box>
+            </Modal>
             <motion.div className="container" whileTap={{ scale: 0.9 }}>
                 <button
                     className="button"
                     onClick={() => {
-                        handleDelete(row);
+                        handleOpenConfirmModal();
                     }}
                 >
                     <svg viewBox="0 0 448 512" className="svgIcon">
