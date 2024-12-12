@@ -90,12 +90,12 @@ export default function Top5PositiveWords({ data }: { data: EmotionData }) {
             </ResponsiveContainer>
 
             <ResponsiveContainer
-                width={380}
+                width={350}
                 height={200}
                 className="mobile-bar"
                 style={{ marginTop: '2rem', marginRight: '2rem' }}
             >
-                <BarChart data={dataToBarChart(data)}>
+                <BarChart data={dataToBarChart(data).slice(-4)}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="word" />
                     <YAxis />
@@ -104,7 +104,7 @@ export default function Top5PositiveWords({ data }: { data: EmotionData }) {
                     <Bar dataKey="count" fill={COLORS.count} />
                 </BarChart>
             </ResponsiveContainer>
-            <h3 style={{ color: 'var(--text-color)' }}>Top 5 positive words</h3>
+            <h3 style={{ color: 'var(--text-color)' }}>Top 4 positive words</h3>
         </div>
     );
 }

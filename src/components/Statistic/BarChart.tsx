@@ -112,7 +112,7 @@ export default function EmotionBarChart({ data }: { data: EmotionData }) {
             </ResponsiveContainer>
 
             <ResponsiveContainer
-                width={380}
+                width={350}
                 height={200}
                 className="mobile-bar"
                 style={{ marginTop: '2rem', marginRight: '2rem' }}
