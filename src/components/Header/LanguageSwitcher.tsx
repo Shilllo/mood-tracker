@@ -42,7 +42,9 @@ const LanguageSwitcher = ({
     );
 };
 
-const StyledWrapper = styled.div<{ activeTab: string }>`
+const StyledWrapper = styled.div.withConfig({
+    shouldForwardProp: (prop) => prop !== 'activeTab', // Отключаем передачу activeTab в DOM
+})<{ activeTab: string }>`
     .tabs {
         display: flex;
         background: hsl(0 0% 0%);

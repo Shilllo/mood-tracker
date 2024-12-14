@@ -672,9 +672,11 @@ export const monthsTranslated: { [key: string]: string } = {
     JULY: 'Июль',
     AUGUST: 'Август',
     SEPTEMBER: 'Сентябрь',
+    OCTOBER: 'Октябрь',
     NOVEMBER: 'Ноябрь',
     DECEMBER: 'Декабрь',
 };
+
 export const monthDays: { [key: string]: number } = {
     JANUARY: 31,
     FEBRUARY: 28,
@@ -692,6 +694,8 @@ export const monthDays: { [key: string]: number } = {
 
 const themes = ['light', 'dark'];
 
+export const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+export const daysRu = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
 const config = {
     initialData,
     englishStopWords,
@@ -706,6 +710,8 @@ const config = {
     themes,
     monthsTranslated,
     emotionsMap,
+    days,
+    daysRu,
 };
 
 export default config;

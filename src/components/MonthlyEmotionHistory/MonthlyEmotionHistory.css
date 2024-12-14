@@ -1,4 +1,4 @@
-@import url("/src/ui/theme-style/var.css");
+@import url('/src/ui/theme-style/var.css');
 
 .monthly-emotion-history {
     display: flex;
@@ -12,6 +12,11 @@
     grid-template-columns: repeat(7, 1fr);
 }
 
+.days {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+}
 .date {
     display: flex;
     justify-content: center;

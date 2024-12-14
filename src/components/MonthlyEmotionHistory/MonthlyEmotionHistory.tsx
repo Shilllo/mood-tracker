@@ -10,7 +10,7 @@ import config from '../../config';
 import CardModal from './Card';
 import { useMonthlyEmotionHistoryController } from './MontlyEmotionHistoryController';
 import styled from 'styled-components';
-
+import CalendarDay from './CalendarDay';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -31,6 +31,36 @@ const style = {
 };
 
 const months = Object.keys(config.monthDays);
+function getFirstDayIndexOfMonths() {
+    const year = new Date().getFullYear();
+    const monthNames = [
+        'JANUARY',
+        'FEBRUARY',
+        'MARCH',
+        'APRIL',
+        'MAY',
+        'JUNE',
+        'JULY',
+        'AUGUST',
+        'SEPTEMBER',
+        'OCTOBER',
+        'NOVEMBER',
+        'DECEMBER',
+    ];
+
+    const firstDayIndices: { [key: string]: number } = {};
+
+    for (let month = 0; month < 12; month++) {
+        // Создаем дату первого дня текущего месяца
+        const date = new Date(year, month, 1);
+        // Получаем индекс дня недели (число от 0 до 6) и смещаем так, чтобы понедельник был 0
+        const dayOfWeekIndex = (date.getDay() + 6) % 7;
+        // Сохраняем индекс дня недели в объект, где ключ — название месяца
+        firstDayIndices[monthNames[month]] = dayOfWeekIndex;
+    }
+
+    return firstDayIndices;
+}
 
 interface EmotionData {
     [key: string]: {
@@ -176,7 +206,26 @@ function MonthlyEmotionHistory({
                     </IconButton>
                 </motion.div>
             </div>
+            <div className="days">
+                {language === 'EN'
+                    ? config.days.map((day, index) => (
+                          <CalendarDay day={day} key={index} />
+                      ))
+                    : config.daysRu.map((day, index) => (
+                          <CalendarDay day={day} key={index} />
+                      ))}
+            </div>
             <div className="dates">
+                {Array.from(
+                    {
+                        length: getFirstDayIndexOfMonths()[
+                            currentMonth as keyof typeof getFirstDayIndexOfMonths
+                        ],
+                    },
+                    (_, index) => (
+                        <div key={index} style={{ width: '100%' }} />
+                    ),
+                )}
                 {Array.from(
                     { length: config.monthDays[currentMonth] },
                     (_, index) => (
