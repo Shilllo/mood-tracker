@@ -694,8 +694,9 @@ export const monthDays: { [key: string]: number } = {
 
 const themes = ['light', 'dark'];
 
-export const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-export const daysRu = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
+export const days = ['M', 'T', 'W', 'T', 'F', 'SA', 'SU'];
+export const daysRu = ['П', 'В', 'С', 'Ч', 'П', 'С', 'В'];
+
 const config = {
     initialData,
     englishStopWords,

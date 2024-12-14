@@ -17,6 +17,16 @@
     width: 80%;
     justify-content: center;
 }
+
+.weekday {
+    font-size: '10px';
+}
+
+@media (max-width: 600px) {
+    .weekday {
+        font-size: '5px' !important;
+    }
+}
 .date {
     display: flex;
     justify-content: center;
