@@ -1,32 +1,31 @@
-import "./MonthlyEmotionHistory.css";
-
-import IconButton from "@mui/material/IconButton";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Modal from "@mui/material/Modal";
-import { Typography, Box } from "@mui/material";
-import { motion } from "framer-motion";
-import CalendarDate from "./CaledarDate";
-import config from "../../config";
-import CardModal from "./Card";
-import { useMonthlyEmotionHistoryController } from "./MontlyEmotionHistoryController";
-import styled from "styled-components";
+import './MonthlyEmotionHistory.css';
+import IconButton from '@mui/material/IconButton';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Modal from '@mui/material/Modal';
+import { Typography, Box } from '@mui/material';
+import { motion } from 'framer-motion';
+import CalendarDate from './CaledarDate';
+import config from '../../config';
+import CardModal from './Card';
+import { useMonthlyEmotionHistoryController } from './MontlyEmotionHistoryController';
+import styled from 'styled-components';
 
 const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
 
-    transform: "translate(-50%, -50%)",
-    width: "fit-content",
-    bgcolor: "background.paper",
-    border: "2px solid var(--background)",
+    transform: 'translate(-50%, -50%)',
+    width: 'fit-content',
+    bgcolor: 'background.paper',
+    border: '2px solid var(--background)',
     boxShadow: 24,
     p: 4,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "var(--background)",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: 'var(--background)',
     // maxHeight: '300px',
     // height: 'fit-content',
 };
@@ -41,7 +40,13 @@ interface EmotionData {
     }[];
 }
 
-function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
+function MonthlyEmotionHistory({
+    data,
+    language,
+}: {
+    data: EmotionData;
+    language: string;
+}) {
     const {
         currentMonth,
         setCurrentMonth,
@@ -57,10 +62,10 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
         <div
             className="monthly-emotion-history"
             style={{
-                width: "min(2000px, 100%)",
-                minWidth: "200px",
-                alignSelf: "center",
-                marginTop: "50px",
+                width: 'min(2000px, 100%)',
+                minWidth: '200px',
+                alignSelf: 'center',
+                marginTop: '50px',
             }}
         >
             <Modal
@@ -68,8 +73,8 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                 onClose={handleClose}
                 BackdropProps={{
                     style: {
-                        backgroundColor: "rgba(0, 0, 0, 0.5)", // Полупрозрачный чёрный фон
-                        backdropFilter: "blur(10px)", // Размытие фона
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Полупрозрачный чёрный фон
+                        backdropFilter: 'blur(10px)', // Размытие фона
                     },
                 }}
             >
@@ -78,9 +83,12 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                         id="modal-modal-title"
                         variant="h6"
                         component="h2"
-                        sx={{ marginRight: "25px" }}
+                        sx={{ marginRight: '25px', fontSize: '30px' }}
                     >
-                        {currentDay.slice(0, 2)} {currentMonth}
+                        {language === 'EN'
+                            ? currentMonth
+                            : config.monthsTranslated[currentMonth]}{' '}
+                        {currentDay.slice(0, 2)}
                     </Typography>
                     <CloseModal handleClose={handleClose} />
                     <div id="modal-modal-description">
@@ -88,31 +96,35 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                         currentRecord.length > 0 ? (
                             <Box
                                 sx={{
-                                    display: "flex",
-                                    flexWrap: "wrap",
-                                    justifyContent: "center",
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    justifyContent: 'center',
                                     gap: 2,
-                                    flexDirection: "row",
-                                    maxHeight: "500px",
-                                    overflowY: "scroll",
+                                    flexDirection: 'row',
+                                    maxHeight: '500px',
+                                    overflowY: 'scroll',
                                 }}
                             >
                                 {currentRecord.map((entry, index) => (
-                                    <CardModal index={index} entry={entry} />
+                                    <CardModal
+                                        index={index}
+                                        entry={entry}
+                                        language={language}
+                                    />
                                 ))}
                             </Box>
                         ) : (
-                            "No record found"
+                            'No record found'
                         )}
                     </div>
                 </Box>
             </Modal>
             <div
                 style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    width: "80%",
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    width: '80%',
                 }}
             >
                 <motion.div
@@ -122,24 +134,29 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                     <IconButton
                         aria-label="left"
                         onClick={() => {
-                            if (currentMonth != "JANUARY") {
+                            if (currentMonth != 'JANUARY') {
                                 setCurrentMonth(
-                                    months[months.indexOf(currentMonth) - 1]
+                                    months[months.indexOf(currentMonth) - 1],
                                 );
                             }
                         }}
                     >
-                        <ArrowBackIcon sx={{ color: "var(--text-color)" }} />
+                        <ArrowBackIcon sx={{ color: 'var(--text-color)' }} />
                     </IconButton>
                 </motion.div>
                 <div
                     style={{
-                        fontWeight: "bold",
-                        fontSize: "20px",
-                        color: "var(--text-color)",
+                        fontWeight: 'bold',
+                        fontSize: '20px',
+                        color: 'var(--text-color)',
                     }}
                 >
-                    {currentMonth} 2024
+                    {language === 'EN'
+                        ? currentMonth
+                        : config.monthsTranslated[
+                              currentMonth as keyof typeof config.monthsTranslated
+                          ].toUpperCase()}{' '}
+                    2024
                 </div>
                 <motion.div
                     whileHover={{ scale: 1.2 }}
@@ -148,14 +165,14 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                     <IconButton
                         aria-label="right"
                         onClick={() => {
-                            if (currentMonth != "DECEMBER") {
+                            if (currentMonth != 'DECEMBER') {
                                 setCurrentMonth(
-                                    months[months.indexOf(currentMonth) + 1]
+                                    months[months.indexOf(currentMonth) + 1],
                                 );
                             }
                         }}
                     >
-                        <ArrowForwardIcon sx={{ color: "var(--text-color)" }} />
+                        <ArrowForwardIcon sx={{ color: 'var(--text-color)' }} />
                     </IconButton>
                 </motion.div>
             </div>
@@ -172,7 +189,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
                             handleOpen={handleOpen}
                             dateColors={dateColors}
                         />
-                    )
+                    ),
                 )}
             </div>
         </div>
@@ -182,7 +199,7 @@ function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
 const CloseModal = ({ handleClose }: { handleClose: () => void }) => {
     return (
         <StyledWrapper>
-            <div style={{ position: "absolute", top: "10px", right: "10px" }}>
+            <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
                 <button className="button" onClick={handleClose}>
                     <span className="X" />
                     <span className="Y" />
@@ -204,7 +221,7 @@ const StyledWrapper = styled.div`
     }
 
     .X {
-        content: "";
+        content: '';
         position: absolute;
         top: 50%;
         left: 50%;
@@ -215,7 +232,7 @@ const StyledWrapper = styled.div`
     }
 
     .Y {
-        content: "";
+        content: '';
         position: absolute;
         top: 50%;
         left: 50%;

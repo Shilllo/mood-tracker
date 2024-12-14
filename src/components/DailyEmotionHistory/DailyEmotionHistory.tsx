@@ -65,9 +65,11 @@ type SetDataFn = (data: EmotionData) => void;
 export default function DailyEmotionHistory({
     data,
     setData,
+    language,
 }: {
     data: EmotionData;
     setData: SetDataFn;
+    language: string;
 }) {
     const {
         open,
@@ -84,7 +86,6 @@ export default function DailyEmotionHistory({
         handleTimeChange,
         addEmotion,
     } = useDailyEmotionHistoryController({ data, setData });
-
     const [hidden, setHidden] = useState(false);
 
     return (
@@ -115,7 +116,7 @@ export default function DailyEmotionHistory({
                         component="h2"
                         style={{ textAlign: 'center', marginBottom: '30px' }}
                     >
-                        New record!
+                        {language === 'RU' ? 'Новая запись!' : 'New record!'}
                     </Typography>
                     <Box
                         sx={{
@@ -128,7 +129,11 @@ export default function DailyEmotionHistory({
                         <motion.div whileHover={{ scale: 1.02 }}>
                             <TextField
                                 id="outlined-multiline-flexible"
-                                label="Emotion category"
+                                label={
+                                    language === 'RU'
+                                        ? 'Тип эмоции'
+                                        : 'Emotion category'
+                                }
                                 value={emotionCategory}
                                 onChange={handleEmotionCategoryChange}
                                 select
@@ -164,7 +169,11 @@ export default function DailyEmotionHistory({
                                                 color: 'var(--text-color)',
                                             }}
                                         >
-                                            {option.toUpperCase()}
+                                            {language === 'EN'
+                                                ? option.toUpperCase()
+                                                : config.russianCategories[
+                                                      option as keyof typeof config.russianCategories
+                                                  ].toUpperCase()}
                                         </MenuItem>
                                     ),
                                 )}
@@ -173,7 +182,7 @@ export default function DailyEmotionHistory({
                         <motion.div whileHover={{ scale: 1.02 }}>
                             <TextField
                                 id="outlined-multiline-flexible"
-                                label="Emotion"
+                                label={language === 'EN' ? 'Emotion' : 'Эмоция'}
                                 select
                                 value={emotion}
                                 onChange={handleEmotionChange}
@@ -213,7 +222,9 @@ export default function DailyEmotionHistory({
                                                 color: 'var(--text-color)',
                                             }}
                                         >
-                                            {option[0]}: {option[1]}
+                                            {language === 'EN'
+                                                ? option[0]
+                                                : option[1]}
                                         </MenuItem>
                                     ))
                                 ) : (
@@ -222,7 +233,9 @@ export default function DailyEmotionHistory({
                                             color: 'var(--text-color)',
                                         }}
                                     >
-                                        Please choose category first
+                                        {language === 'EN'
+                                            ? 'Select a category first'
+                                            : 'Выберите категорию'}
                                     </MenuItem>
                                 )}
                             </TextField>
@@ -230,7 +243,11 @@ export default function DailyEmotionHistory({
                         <motion.div whileHover={{ scale: 1.02 }}>
                             <TextField
                                 id="outlined-multiline-flexible"
-                                label="What happened?"
+                                label={
+                                    language === 'EN'
+                                        ? 'What happend?'
+                                        : 'Описание'
+                                }
                                 multiline
                                 maxRows={10}
                                 value={description}
@@ -262,7 +279,7 @@ export default function DailyEmotionHistory({
                         <motion.div whileHover={{ scale: 1.02 }}>
                             <TextField
                                 id="outlined-multiline-flexible"
-                                label="Timing"
+                                label={language === 'EN' ? 'Timing' : 'Время'}
                                 select
                                 value={time}
                                 onChange={handleTimeChange}
@@ -305,6 +322,7 @@ export default function DailyEmotionHistory({
                         <SpeechRecognition
                             setDescription={setDescription}
                             description={description}
+                            language={language}
                         />
                     </Box>
 
@@ -325,7 +343,7 @@ export default function DailyEmotionHistory({
                             }}
                             onClick={addEmotion}
                         >
-                            Done
+                            {language === 'EN' ? 'DONE' : 'Добавить'}
                         </Button>
                     </motion.div>
                 </Box>
@@ -341,19 +359,21 @@ export default function DailyEmotionHistory({
                                     align="center"
                                     className="emotion-cell"
                                 >
-                                    EMOTION
+                                    {language === 'EN' ? 'EMOTION' : 'ЭМОЦИЯ'}
                                 </StyledTableCell>
                                 <StyledTableCell
                                     align="center"
                                     className="emotion-cell"
                                 >
-                                    WHAT HAPPEND?
+                                    {language === 'EN'
+                                        ? 'WHAT HAPPENED?'
+                                        : 'ЧТО СЛУЧИЛОСЬ?'}
                                 </StyledTableCell>
                                 <StyledTableCell
                                     align="center"
                                     className="emotion-cell"
                                 >
-                                    TIMING
+                                    {language === 'EN' ? 'TIME' : 'ВРЕМЯ'}
                                 </StyledTableCell>
                                 <StyledTableCell align="center"></StyledTableCell>
                             </TableRow>
@@ -409,7 +429,7 @@ export default function DailyEmotionHistory({
                         variant="contained"
                         onClick={handleOpen}
                     >
-                        ADD EMOTION
+                        {language === 'EN' ? 'Add Emotion' : 'Добавить запись'}
                     </Button>
                 </motion.div>
             </div>

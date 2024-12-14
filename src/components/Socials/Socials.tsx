@@ -2,7 +2,7 @@ import './Socials.css';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
-export default function Socials() {
+export default function Socials({ language }: { language: string }) {
     return (
         <nav
             style={{
@@ -62,9 +62,12 @@ export default function Socials() {
                 style={{
                     color: 'var(--text-color)',
                     textAlign: 'center',
+                    fontSize: '13px',
                 }}
             >
-                Feel free to contact me if you have any questions or suggestions
+                {language === 'EN'
+                    ? 'Feel free to contact me if you have any questions or suggestions'
+                    : 'Свяжитесь со мной, если у вас есть вопросы или предложения'}
             </h4>
         </nav>
     );

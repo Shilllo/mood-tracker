@@ -30,7 +30,17 @@ export const useDailyEmotionHistoryController = ({
     const [emotionCategory, setEmotionCategory] = React.useState('');
     const [emotion, setEmotion] = React.useState('');
     const [description, setDescription] = React.useState('');
-    const [time, setTime] = React.useState('');
+
+    function roundDownToHour() {
+        const date = new Date();
+        date.setMinutes(0, 0, 0); // Устанавливаем минуты, секунды и миллисекунды в 0
+        return date.toLocaleTimeString('en-GB', {
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+    }
+
+    const [time, setTime] = React.useState(roundDownToHour());
 
     const handleEmotionCategoryChange = (
         event: React.ChangeEvent<HTMLInputElement>,

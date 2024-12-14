@@ -9,9 +9,11 @@ import { useSpeechRecognitionController } from './SpeechRecognitionController';
 function SpeechToText({
     setDescription,
     description,
+    language,
 }: {
     setDescription: (description: string) => void;
     description: string;
+    language: string;
 }) {
     const { isListening, startListening, stopListening } =
         useSpeechRecognitionController({ setDescription, description });
@@ -36,7 +38,9 @@ function SpeechToText({
                         onClick={stopListening}
                         disabled={!isListening}
                     >
-                        Stop Listening
+                        {language === 'EN'
+                            ? 'Stop Listening'
+                            : 'Остановить записьы'}
                     </Button>
                 </motion.div>
             ) : (
@@ -50,32 +54,12 @@ function SpeechToText({
                         onClick={startListening}
                         disabled={isListening}
                     >
-                        Start Listening
+                        {language === 'EN'
+                            ? 'Start Listening'
+                            : 'Начать запись'}
                     </Button>
                 </motion.div>
             )}
-            {/* <motion.div whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }}>
-                <Tooltip
-                    title={
-                        <div style={{ padding: '8px' }}>
-                            <Typography
-                                variant="subtitle1"
-                                style={{ color: '#fff' }}
-                            >
-                                Available only in Chrome
-                            </Typography>
-                        </div>
-                    }
-                    placement="right"
-                    sx={{
-                        color: 'var(--text-color)',
-                    }}
-                >
-                    <IconButton>
-                        <InfoIcon />
-                    </IconButton>
-                </Tooltip>
-            </motion.div> */}
         </div>
     );
 }

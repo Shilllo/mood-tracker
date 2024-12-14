@@ -90,6 +90,21 @@ function App() {
             });
         }
     }, [data]);
+
+    const [language, setLanguage] = React.useState(() => {
+        const storedLang = localStorage.getItem('lang');
+        return storedLang ? storedLang : 'EN';
+    });
+
+    React.useEffect(() => {
+        // setData(removeEmptyArrays(data));
+        localStorage.setItem('lang', language);
+    }, [language]);
+
+    const handleChangeLang = (value: string) => {
+        setLanguage(value);
+    };
+
     return (
         <div className="App">
             <Toaster position="top-right" reverseOrder={false} />
@@ -97,19 +112,25 @@ function App() {
                 exportData={exportData}
                 theme={theme}
                 handleChange={handleChange}
+                language={language}
+                handleChangeLang={handleChangeLang}
             />
 
-            <Streaks data={data} />
+            <Streaks data={data} language={language} />
 
-            <DailyEmotionHistory data={data} setData={setData} />
+            <DailyEmotionHistory
+                data={data}
+                setData={setData}
+                language={language}
+            />
 
-            <MonthlyEmotionHistory data={data} />
+            <MonthlyEmotionHistory data={data} language={language} />
 
-            <Statistic data={data} />
+            <Statistic data={data} language={language} />
 
             <WordCloudCompoment data={data} theme={theme} />
 
-            <Socials />
+            <Socials language={language} />
         </div>
     );
 }

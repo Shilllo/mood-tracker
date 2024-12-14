@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { toast } from 'react-hot-toast';
 import SettingsButton from './SettingsButton/SettingsButton';
 import SwitcherMobile from './SwitcherMobile';
+import LanguageSwitcher from './LanguageSwitcher';
 
 type EmotionData = {
     [key: string]: {
@@ -42,10 +43,14 @@ function Header({
     exportData,
     theme,
     handleChange,
+    language,
+    handleChangeLang,
 }: {
     exportData: () => void;
     theme: string;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    language: string;
+    handleChangeLang: (value: string) => void;
 }) {
     const style = {
         position: 'absolute',
@@ -127,14 +132,17 @@ function Header({
                         id="modal-modal-description"
                         sx={{ fontSize: 20, mb: 4 }}
                     >
-                        JSON-file only
+                        {language === 'EN'
+                            ? 'JSON-file only'
+                            : 'JSON-файл только'}
                     </Typography>
                     <Typography
                         id="modal-modal-description"
                         sx={{ fontSize: 20, mb: 4 }}
                     >
-                        Are you sure? It will totally replace your data with new
-                        information from this file!
+                        {language === 'EN'
+                            ? 'Are you sure? It will totally replace your data with new information from this file!'
+                            : 'Вы уверены? Это полностью заменит ваши данные с новыми данными из этого файла!'}
                     </Typography>
 
                     <motion.div
@@ -189,7 +197,7 @@ function Header({
                         id="modal-modal-description"
                         sx={{ fontSize: 20, mb: 4 }}
                     >
-                        Settings
+                        {language === 'EN' ? 'Settings' : 'Настройки'}
                     </Typography>
                     <div className="header-buttons-mobile">
                         <motion.div
@@ -204,7 +212,7 @@ function Header({
                                     backgroundColor: 'black',
                                 }}
                             >
-                                Export data
+                                {language === 'EN' ? 'EXPORT' : 'ЗАГРУЗИТЬ'}
                             </Button>
                         </motion.div>
 
@@ -218,7 +226,7 @@ function Header({
                                 className="import-button"
                                 sx={{ backgroundColor: 'black' }}
                             >
-                                Import data
+                                {language === 'EN' ? 'Import' : 'Скачать'}
                             </Button>
                         </motion.div>
                         <div>
@@ -226,16 +234,16 @@ function Header({
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                <Switcher
-                                    theme={theme}
-                                    handleChange={handleChange}
-                                />
                                 <SwitcherMobile
                                     theme={theme}
                                     handleChange={handleChange}
                                 />
                             </motion.div>
                         </div>
+                        <LanguageSwitcher
+                            handleChangeLang={handleChangeLang}
+                            language={language}
+                        />
                     </div>
                 </Box>
             </Modal>
@@ -270,7 +278,6 @@ function Header({
                     <HeaderDate />
                     <SettingsButton handleOpenSettings={handleOpenSettings} />
                 </div>
-
                 <div className="header-buttons">
                     <motion.div
                         whileHover={{ scale: 1.05 }}
@@ -284,7 +291,7 @@ function Header({
                                 backgroundColor: 'black',
                             }}
                         >
-                            Export data
+                            {language === 'EN' ? 'EXPORT' : 'ЗАГРУЗИТЬ'}
                         </Button>
                     </motion.div>
 
@@ -298,9 +305,13 @@ function Header({
                             className="import-button"
                             sx={{ backgroundColor: 'black' }}
                         >
-                            Import data
+                            {language === 'EN' ? 'Import' : 'СКАЧАТЬ'}
                         </Button>
                     </motion.div>
+                    <LanguageSwitcher
+                        handleChangeLang={handleChangeLang}
+                        language={language}
+                    />
                     <div>
                         <motion.div
                             whileHover={{ scale: 1.05 }}

@@ -6,7 +6,7 @@ export default function Streak({
     score: number;
 }) {
     let unit;
-    if (name === 'Consistency Score') {
+    if (name === 'Consistency Score' || name === 'Стабильность') {
         unit = '%';
     } else {
         unit = 'd';

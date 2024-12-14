@@ -1,12 +1,4 @@
-import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    ResponsiveContainer,
-} from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import config from '../../config';
 
 const COLORS = {
@@ -79,12 +71,10 @@ export default function EmotionBarChart({ data }: { data: EmotionData }) {
                 alignItems: 'center',
             }}
         >
-            <ResponsiveContainer
-                width={600}
-                height={300}
-                className="desktop-bar"
-            >
+            <div className="desktop-bar">
                 <BarChart
+                    width={600}
+                    height={300}
                     data={dataToBarChart(data)}
                     margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                 >
@@ -109,15 +99,13 @@ export default function EmotionBarChart({ data }: { data: EmotionData }) {
                         name="Neutral"
                     />
                 </BarChart>
-            </ResponsiveContainer>
+            </div>
 
-            <ResponsiveContainer
-                width={350}
-                height={200}
+            <div
                 className="mobile-bar"
                 style={{ marginTop: '2rem', marginRight: '2rem' }}
             >
-                <BarChart data={dataToBarChart(data)}>
+                <BarChart width={350} height={200} data={dataToBarChart(data)}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="time" />
                     <YAxis />
@@ -139,10 +127,7 @@ export default function EmotionBarChart({ data }: { data: EmotionData }) {
                         name="Neutral"
                     />
                 </BarChart>
-            </ResponsiveContainer>
-            <h3 style={{ color: 'var(--text-color)' }}>
-                Mood Distribution by Day
-            </h3>
+            </div>
         </div>
     );
 }

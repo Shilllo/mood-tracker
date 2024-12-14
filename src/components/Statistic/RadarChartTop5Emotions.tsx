@@ -5,6 +5,7 @@ import {
     PolarAngleAxis,
     Tooltip,
 } from 'recharts';
+import config from '../../config';
 
 type EmotionData = {
     [key: string]: {
@@ -14,7 +15,7 @@ type EmotionData = {
     }[];
 };
 
-export default function TopEmotionsRadarChart({ data }: { data: EmotionData }) {
+function transformData(data: EmotionData, language: string) {
     const emotions: { [key: string]: number } = {};
 
     Object.keys(data).forEach((key) => {
@@ -28,23 +29,40 @@ export default function TopEmotionsRadarChart({ data }: { data: EmotionData }) {
     });
 
     const result = Object.keys(emotions)
-        .map((emotion) => ({
-            emotion,
-            count: emotions[emotion],
-        }))
+        .map((emotion) =>
+            language === 'EN'
+                ? {
+                      emotion: emotion,
+                      count: emotions[emotion],
+                  }
+                : {
+                      emotion:
+                          config.emotionsMap[
+                              emotion as keyof typeof config.emotionsMap
+                          ],
+                      count: emotions[emotion],
+                  },
+        )
         .sort((a, b) => a.count - b.count)
         .slice(-5);
 
+    return result;
+}
+export default function TopEmotionsRadarChart({
+    data,
+    language,
+}: {
+    data: EmotionData;
+    language: string;
+}) {
     return (
         <div>
             <RadarChart
                 className="desktop-radar"
-                cx={300}
-                cy={200}
                 outerRadius={130}
                 width={600}
                 height={400}
-                data={result}
+                data={transformData(data, language)}
             >
                 <PolarGrid />
                 <PolarAngleAxis dataKey="emotion" />
@@ -60,14 +78,12 @@ export default function TopEmotionsRadarChart({ data }: { data: EmotionData }) {
 
             <RadarChart
                 className="mobile-radar"
-                cx={150}
-                cy={100}
-                width={300}
-                height={200}
-                data={result}
+                width={350}
+                height={250}
+                data={transformData(data, language)}
             >
-                <PolarGrid />
-                <PolarAngleAxis dataKey="emotion" />
+                <PolarGrid style={{ fontSize: '5px' }} />
+                <PolarAngleAxis dataKey="emotion" tick={{ fontSize: 9 }} />
                 <Radar
                     name="Top-5 Emotions"
                     dataKey="count"
@@ -77,9 +93,6 @@ export default function TopEmotionsRadarChart({ data }: { data: EmotionData }) {
                 />
                 <Tooltip />
             </RadarChart>
-            <h3 style={{ color: 'var(--text-color)', textAlign: 'center' }}>
-                Top 5 Emotions
-            </h3>
         </div>
     );
 }

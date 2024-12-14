@@ -1,12 +1,4 @@
-import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    ResponsiveContainer,
-} from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import lemmatize from '../../utils/lemmatize';
 import config from '../../config';
 
@@ -71,12 +63,10 @@ export default function Top5NegativeWords({ data }: { data: EmotionData }) {
                 alignItems: 'center',
             }}
         >
-            <ResponsiveContainer
-                width={600}
-                height={300}
-                className="desktop-bar"
-            >
+            <div className="desktop-bar">
                 <BarChart
+                    width={600}
+                    height={300}
                     data={dataToBarChart(data)}
                     margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                 >
@@ -87,15 +77,17 @@ export default function Top5NegativeWords({ data }: { data: EmotionData }) {
 
                     <Bar dataKey="count" fill={COLORS.count} />
                 </BarChart>
-            </ResponsiveContainer>
+            </div>
 
-            <ResponsiveContainer
-                width={350}
-                height={200}
+            <div
                 className="mobile-bar"
                 style={{ marginTop: '2rem', marginRight: '2rem' }}
             >
-                <BarChart data={dataToBarChart(data).slice(-4)}>
+                <BarChart
+                    width={350}
+                    height={200}
+                    data={dataToBarChart(data).slice(-4)}
+                >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="word" />
                     <YAxis />
@@ -103,9 +95,7 @@ export default function Top5NegativeWords({ data }: { data: EmotionData }) {
 
                     <Bar dataKey="count" fill={COLORS.count} />
                 </BarChart>
-            </ResponsiveContainer>
-
-            <h3 style={{ color: 'var(--text-color)' }}>Top 4 neutral words</h3>
+            </div>
         </div>
     );
 }

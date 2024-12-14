@@ -517,6 +517,12 @@ export const periods = {
     year: 365,
 };
 
+export const russianCategories = {
+    positive: 'позитивные',
+    negative: 'негативные',
+    neutral: 'нейтральные',
+};
+
 export const emotionsTranslated = {
     positive: [
         ['Happiness', 'Счастье'],
@@ -544,7 +550,7 @@ export const emotionsTranslated = {
         ['Anxiety', 'Тревога'],
         ['Stress', 'Стресс'],
         ['Disappointment', 'Разочарование'],
-        ['Frustration', 'Разочарование'],
+        ['Frustration', 'Фрустрация'],
         ['Loneliness', 'Одиночество'],
         ['Guilt', 'Вина'],
         ['Shame', 'Стыд'],
@@ -576,6 +582,59 @@ export const emotionsTranslated = {
     ],
 };
 
+export const emotionsMap = {
+    HAPPINESS: 'СЧАСТЬЕ',
+    JOY: 'РАДОСТЬ',
+    EXCITEMENT: 'ВОЛНЕНИЕ',
+    CONTENTMENT: 'УДОВЛЕТВОРЕНИЕ',
+    GRATITUDE: 'БЛАГОДАРНОСТЬ',
+    LOVE: 'ЛЮБОВЬ',
+    PRIDE: 'ГОРДОСТЬ',
+    CALM: 'СПОКОЙСТВИЕ',
+    HOPE: 'НАДЕЖДА',
+    RELIEF: 'ОБЛЕГЧЕНИЕ',
+    AMUSEMENT: 'УДОВОЛЬСТВИЕ',
+    EUPHORIA: 'ЭЙФОРИЯ',
+    INSPIRATION: 'ВДОХНОВЕНИЕ',
+    CONFIDENCE: 'УВЕРЕННОСТЬ',
+    AFFECTION: 'ПРИВЯЗАННОСТЬ',
+    SATISFACTION: 'УДОВЛЕТВОРЕНИЕ',
+    ENTHUSIASM: 'ЭНТУЗИАЗМ',
+    SADNESS: 'ГРУСТЬ',
+    ANGER: 'ЗЛОСТЬ',
+    FEAR: 'СТРАХ',
+    ANXIETY: 'ТРЕВОГА',
+    STRESS: 'СТРЕСС',
+    DISAPPOINTMENT: 'РАЗОЧАРОВАНИЕ',
+    FRUSTRATION: 'ФРУСТРАЦИЯ',
+    LONELINESS: 'ОДИНОЧЕСТВО',
+    GUILT: 'ВИНА',
+    SHAME: 'СТЫД',
+    JEALOUSY: 'РЕВНОСТЬ',
+    ENVY: 'ЗАВИСТЬ',
+    RESENTMENT: 'ОБИДА',
+    BOREDOM: 'СКУКА',
+    CONFUSION: 'ЗАМЕШАТЕЛЬСТВО',
+    DISGUST: 'ОТВРАЩЕНИЕ',
+    BITTERNESS: 'ГОРЕЧЬ',
+    MELANCHOLY: 'МЕЛАНХОЛИЯ',
+    SURPRISE: 'УДИВЛЕНИЕ',
+    CURIOSITY: 'ЛЮБОПЫТСТВО',
+    NOSTALGIA: 'НОСТАЛЬГИЯ',
+    AMBIVALENCE: 'ДВОЙСТВЕННЫЕ ЧУВСТВА',
+    INDIFFERENCE: 'БЕЗРАЗЛИЧИЕ',
+    APATHY: 'АПАТИЯ',
+    ACCEPTANCE: 'ПРИНЯТИЕ',
+    EMPATHY: 'СОПЕРЕЖИВАНИЕ',
+    COMPASSION: 'СОСТРАДАНИЕ',
+    ANTICIPATION: 'ОЖИДАНИЕ',
+    AWE: 'ТРЕПЕТ',
+    FEARLESSNESS: 'БЕССТРАШИЕ',
+    RESIGNATION: 'СМИРЕНИЕ',
+    LONGING: 'ТОСКА',
+    SHOCK: 'ШОК',
+};
+
 export const times = [
     '00:00',
     '01:00',
@@ -603,6 +662,19 @@ export const times = [
     '23:00',
 ];
 
+export const monthsTranslated: { [key: string]: string } = {
+    JANUARY: 'Январь',
+    FEBRUARY: 'Февраль',
+    MARCH: 'Март',
+    APRIL: 'Апрель',
+    MAY: 'Май',
+    JUNE: 'Июнь',
+    JULY: 'Июль',
+    AUGUST: 'Август',
+    SEPTEMBER: 'Сентябрь',
+    NOVEMBER: 'Ноябрь',
+    DECEMBER: 'Декабрь',
+};
 export const monthDays: { [key: string]: number } = {
     JANUARY: 31,
     FEBRUARY: 28,
@@ -630,7 +702,10 @@ const config = {
     emotionsTranslated,
     times,
     monthDays,
+    russianCategories,
     themes,
+    monthsTranslated,
+    emotionsMap,
 };
 
 export default config;

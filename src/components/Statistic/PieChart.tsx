@@ -1,5 +1,5 @@
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
-import config from "../../config";
+import { PieChart, Pie, Cell, Tooltip } from 'recharts';
+import config from '../../config';
 
 const renderCustomizedLabel = ({
     cx,
@@ -25,7 +25,7 @@ const renderCustomizedLabel = ({
             x={x}
             y={y}
             fill="white"
-            textAnchor={x > cx ? "start" : "end"}
+            textAnchor={x > cx ? 'start' : 'end'}
             dominantBaseline="central"
         >
             {`${(percent * 100).toFixed(0)}%`}
@@ -33,7 +33,7 @@ const renderCustomizedLabel = ({
     );
 };
 
-const COLORS = ["#4CAF50", "#F44336", "#FFC107"];
+const COLORS = ['#4CAF50', '#F44336', '#FFC107'];
 
 const RADIAN = Math.PI / 180;
 
@@ -99,7 +99,6 @@ export default function PieChartStat({ data }: { data: EmotionData }) {
                     cy={100}
                     labelLine={false}
                     label={renderCustomizedLabel}
-                    // outerRadius={140}
                     fill="#8884d8"
                     dataKey="value"
                 >
@@ -110,12 +109,8 @@ export default function PieChartStat({ data }: { data: EmotionData }) {
                         />
                     ))}
                 </Pie>
-
                 <Tooltip />
             </PieChart>
-            <h3 style={{ color: "var(--text-color)", textAlign: "center" }}>
-                Emotion Distribution
-            </h3>
         </div>
     );
 }
