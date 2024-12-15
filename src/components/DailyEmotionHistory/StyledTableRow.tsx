@@ -2,6 +2,7 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 import TableRow from '@mui/material/TableRow';
 import DeleteEmotion from './DeleteEmotion/DeleteEmotion';
+import config from '../../config';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -44,6 +45,7 @@ export default function StyledTableRowComponent({
     row,
     data,
     setData,
+    language,
 }: {
     row: {
         emotion: string;
@@ -52,6 +54,7 @@ export default function StyledTableRowComponent({
     };
     data: EmotionData;
     setData: SetDataFn;
+    language: string;
 }) {
     const deleteRecord = (row: {
         emotion: string;
@@ -70,14 +73,19 @@ export default function StyledTableRowComponent({
         <StyledTableRow key={row.emotion}>
             <StyledTableCell
                 className="desktop-cell"
-                // component="th"
                 scope="row"
                 align="center"
                 sx={{
                     borderRight: '1px solid var(--border-table)',
                 }}
             >
-                <p className="emotion-title">{row.emotion}</p>
+                <p className="emotion-title">
+                    {language === 'EN'
+                        ? row.emotion
+                        : config.emotionsMap[
+                              row.emotion as keyof typeof config.emotionsMap
+                          ]}
+                </p>
             </StyledTableCell>
             <StyledTableCell
                 className="desktop-cell"

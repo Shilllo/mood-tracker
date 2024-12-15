@@ -387,6 +387,7 @@ export default function DailyEmotionHistory({
                                           data={data}
                                           setData={setData}
                                           row={row}
+                                          language={language}
                                       />
                                   ),
                               )

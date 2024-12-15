@@ -212,7 +212,7 @@ function Header({
                                     backgroundColor: 'black',
                                 }}
                             >
-                                {language === 'EN' ? 'EXPORT' : 'ЗАГРУЗИТЬ'}
+                                {language === 'EN' ? 'EXPORT' : 'СКАЧАТЬ'}
                             </Button>
                         </motion.div>
 
@@ -226,7 +226,7 @@ function Header({
                                 className="import-button"
                                 sx={{ backgroundColor: 'black' }}
                             >
-                                {language === 'EN' ? 'Import' : 'Скачать'}
+                                {language === 'EN' ? 'Import' : 'ЗАГРУЗИТЬ'}
                             </Button>
                         </motion.div>
                         <div>
@@ -291,7 +291,7 @@ function Header({
                                 backgroundColor: 'black',
                             }}
                         >
-                            {language === 'EN' ? 'EXPORT' : 'ЗАГРУЗИТЬ'}
+                            {language === 'EN' ? 'EXPORT' : 'СКАЧАТЬ'}
                         </Button>
                     </motion.div>
 
@@ -305,7 +305,7 @@ function Header({
                             className="import-button"
                             sx={{ backgroundColor: 'black' }}
                         >
-                            {language === 'EN' ? 'Import' : 'СКАЧАТЬ'}
+                            {language === 'EN' ? 'Import' : 'ЗАГРУЗИТЬ'}
                         </Button>
                     </motion.div>
                     <LanguageSwitcher
