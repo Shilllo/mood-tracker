@@ -6,10 +6,18 @@ const bot = new Telegraf(TOKEN);
 
 const web_link = 'https://shilllo.github.io/mood-tracker/';
 
+bot.telegram.setChatMenuButton({
+    menu_button: {
+        type: 'web_app',
+        text: 'Mood Tracker',
+        web_app: { url: web_link },
+    },
+});
+
 bot.start((ctx) =>
     ctx.reply('Нажмите кнопку ниже, чтобы открыть веб-приложение', {
         reply_markup: {
-            keyboard: [
+            inline_keyboard: [
                 [{ text: 'Open Mood Tracker', web_app: { url: web_link } }],
             ],
         },
