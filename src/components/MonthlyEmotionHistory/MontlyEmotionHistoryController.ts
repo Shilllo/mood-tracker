@@ -19,6 +19,9 @@ export const useMonthlyEmotionHistoryController = ({
     const [currentMonth, setCurrentMonth] = React.useState(
         months[new Date().getMonth()],
     );
+    const [currentYear, setCurrentYear] = React.useState(
+        new Date().getFullYear(),
+    );
     const [currentRecord, setCurrentRecord] = React.useState<
         EmotionData[keyof EmotionData]
     >([]);
@@ -69,5 +72,7 @@ export const useMonthlyEmotionHistoryController = ({
         handleClose,
         dateColors,
         setDateColors,
+        currentYear,
+        setCurrentYear,
     };
 };

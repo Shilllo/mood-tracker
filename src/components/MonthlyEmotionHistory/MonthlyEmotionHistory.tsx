@@ -31,8 +31,7 @@ const style = {
 };
 
 const months = Object.keys(config.monthDays);
-function getFirstDayIndexOfMonths() {
-    const year = new Date().getFullYear();
+function getFirstDayIndexOfMonths(year) {
     const monthNames = [
         'JANUARY',
         'FEBRUARY',
@@ -86,6 +85,8 @@ function MonthlyEmotionHistory({
         handleOpen,
         handleClose,
         dateColors,
+        currentYear,
+        setCurrentYear,
     } = useMonthlyEmotionHistoryController({ data });
 
     return (
@@ -168,6 +169,9 @@ function MonthlyEmotionHistory({
                                 setCurrentMonth(
                                     months[months.indexOf(currentMonth) - 1],
                                 );
+                            } else {
+                                setCurrentYear(currentYear - 1);
+                                setCurrentMonth('DECEMBER');
                             }
                         }}
                     >
@@ -186,7 +190,7 @@ function MonthlyEmotionHistory({
                         : config.monthsTranslated[
                               currentMonth as keyof typeof config.monthsTranslated
                           ].toUpperCase()}{' '}
-                    2024
+                    {currentYear}
                 </div>
                 <motion.div
                     whileHover={{ scale: 1.2 }}
@@ -199,6 +203,9 @@ function MonthlyEmotionHistory({
                                 setCurrentMonth(
                                     months[months.indexOf(currentMonth) + 1],
                                 );
+                            } else {
+                                setCurrentYear(currentYear + 1);
+                                setCurrentMonth('JANUARY');
                             }
                         }}
                     >
@@ -218,7 +225,7 @@ function MonthlyEmotionHistory({
             <div className="dates">
                 {Array.from(
                     {
-                        length: getFirstDayIndexOfMonths()[
+                        length: getFirstDayIndexOfMonths(currentYear)[
                             currentMonth as keyof typeof getFirstDayIndexOfMonths
                         ],
                     },
