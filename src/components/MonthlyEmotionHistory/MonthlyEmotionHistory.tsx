@@ -31,7 +31,7 @@ const style = {
 };
 
 const months = Object.keys(config.monthDays);
-function getFirstDayIndexOfMonths(year) {
+function getFirstDayIndexOfMonths(year: number) {
     const monthNames = [
         'JANUARY',
         'FEBRUARY',
@@ -241,7 +241,7 @@ function MonthlyEmotionHistory({
                             key={index}
                             date={index}
                             currentMonth={months.indexOf(currentMonth)}
-                            currentYear={new Date().getFullYear()}
+                            currentYear={currentYear}
                             handleOpen={handleOpen}
                             dateColors={dateColors}
                         />
