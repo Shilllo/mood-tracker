@@ -113,7 +113,13 @@ export default function StyledTableRowComponent({
             </StyledTableCell>
 
             <StyledTableCell align="center" className="mobile-cell">
-                <p>{row.emotion}</p>
+                <p>
+                    {language === 'EN'
+                        ? row.emotion
+                        : config.emotionsMap[
+                              row.emotion as keyof typeof config.emotionsMap
+                          ]}
+                </p>
                 <p style={{ wordBreak: 'break-word' }}>{row.description}</p>
                 <p>{row.time}</p>
                 <DeleteEmotion handleDelete={deleteRecord} row={row} />
