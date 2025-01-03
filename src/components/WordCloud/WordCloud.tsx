@@ -9,6 +9,8 @@ import { RootState } from '../../store';
 function WordCloudComponent() {
     const theme = useSelector((state: RootState) => state.theme.theme);
     const data = useSelector((state: RootState) => state.data);
+    const language = useSelector((state: RootState) => state.lang.lang);
+
     const {
         emotionCategory,
         timeCategory,
@@ -43,18 +45,28 @@ function WordCloudComponent() {
                     gap: '20px',
                     marginRight: '50px',
                     color: 'var(--text-color)',
+                    width: 'min(2000px, 80%)',
+                    alignItems: 'center',
                 }}
             >
-                <h3>Word Cloud Filters</h3>
+                <h3>
+                    {language === 'RU'
+                        ? 'Фильтры для облака слов'
+                        : 'Word Cloud Filters'}
+                </h3>
                 <motion.div whileHover={{ scale: 1.02 }}>
                     <TextField
                         id="outlined-basic"
-                        label="Emotion category"
+                        label={
+                            language === 'RU'
+                                ? 'Тип эмоции'
+                                : 'Emotion category'
+                        }
                         select
                         variant="outlined"
                         defaultValue="all"
                         sx={{
-                            width: '100%',
+                            width: '200px',
                             input: { color: 'var(--text-color)' }, // Цвет текста
                             label: { color: 'var(--text-color)' }, // Цвет метки (label)
                             '.MuiOutlinedInput-root': {
@@ -96,12 +108,12 @@ function WordCloudComponent() {
                 <motion.div whileHover={{ scale: 1.02 }}>
                     <TextField
                         id="outlined-basic"
-                        label="Timing"
+                        label={language === 'RU' ? 'Время' : 'Timing'}
                         select
                         variant="outlined"
                         defaultValue="all"
                         sx={{
-                            width: '100%',
+                            width: '200px',
                             input: { color: 'var(--text-color)' }, // Цвет текста
                             label: { color: 'var(--text-color)' }, // Цвет метки (label)
                             '.MuiOutlinedInput-root': {
@@ -147,7 +159,7 @@ function WordCloudComponent() {
                 <motion.div whileHover={{ scale: 1.02 }}>
                     <TextField
                         id="outlined-basic"
-                        label="Period"
+                        label={language === 'RU' ? 'Период' : 'Period'}
                         select
                         variant="outlined"
                         defaultValue="day"
