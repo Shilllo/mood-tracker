@@ -11,6 +11,9 @@ import CardModal from './Card';
 import { useMonthlyEmotionHistoryController } from './MontlyEmotionHistoryController';
 import styled from 'styled-components';
 import CalendarDay from './CalendarDay';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -69,13 +72,7 @@ interface EmotionData {
     }[];
 }
 
-function MonthlyEmotionHistory({
-    data,
-    language,
-}: {
-    data: EmotionData;
-    language: string;
-}) {
+function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
     const {
         currentMonth,
         setCurrentMonth,
@@ -88,7 +85,7 @@ function MonthlyEmotionHistory({
         currentYear,
         setCurrentYear,
     } = useMonthlyEmotionHistoryController({ data });
-
+    const language = useSelector((state: RootState) => state.lang.lang);
     return (
         <div
             className="monthly-emotion-history"

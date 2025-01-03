@@ -3,6 +3,8 @@ import MenuItem from '@mui/material/MenuItem';
 import './WordCloud.css';
 import { motion } from 'framer-motion';
 import { useWordCloudController } from './WordCloudController';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 interface EmotionData {
     [key: string]: {
@@ -12,13 +14,9 @@ interface EmotionData {
     }[];
 }
 
-function WordCloudComponent({
-    data,
-    theme,
-}: {
-    data: EmotionData;
-    theme: string;
-}) {
+function WordCloudComponent({ data }: { data: EmotionData }) {
+    const theme = useSelector((state: RootState) => state.theme.theme);
+
     const {
         emotionCategory,
         timeCategory,

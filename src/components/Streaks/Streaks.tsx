@@ -1,6 +1,8 @@
 import './Streaks.css';
 import Streak from './Streak';
 import countStreaks from '../../utils/countStreaks';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 type EmotionData = {
     [key: string]: {
@@ -9,15 +11,9 @@ type EmotionData = {
         time: string;
     }[];
 };
-export default function Streaks({
-    data,
-    language,
-}: {
-    data: EmotionData;
-    language: string;
-}) {
+export default function Streaks({ data }: { data: EmotionData }) {
     const streaks = countStreaks(data);
-
+    const language = useSelector((state: RootState) => state.lang.lang);
     return (
         <div
             style={{

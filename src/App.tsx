@@ -6,11 +6,14 @@ import * as React from 'react';
 import WordCloudCompoment from './components/WordCloud/WordCloud';
 import Streaks from './components/Streaks/Streaks';
 import Statistic from './components/Statistic/Statistic';
-import { useTheme } from './hook/useTheme';
 import config from './config';
 import { useDebouncedEffect } from './hook/useDebouncedEffect';
 import Socials from './components/Socials/Socials';
 import { Toaster, toast } from 'react-hot-toast';
+
+import { useSelector } from 'react-redux';
+import { RootState } from './store';
+import { useDispatch } from 'react-redux';
 
 declare global {
     interface Window {
@@ -70,17 +73,13 @@ function App() {
             : config.initialData;
     });
 
-    // Сохранение данных в localStorage при изменении состояния
     useDebouncedEffect(
         () => {
-            // setData(removeEmptyArrays(data));
             localStorage.setItem('emotionData', JSON.stringify(data));
         },
         [data],
         500,
     );
-
-    const [theme, handleChange] = useTheme('light');
 
     React.useEffect(() => {
         if (!data[new Date().toLocaleDateString('en-GB')]) {
@@ -91,46 +90,16 @@ function App() {
         }
     }, [data]);
 
-    const [language, setLanguage] = React.useState(() => {
-        const storedLang = localStorage.getItem('lang');
-        return storedLang ? storedLang : 'EN';
-    });
-
-    React.useEffect(() => {
-        // setData(removeEmptyArrays(data));
-        localStorage.setItem('lang', language);
-    }, [language]);
-
-    const handleChangeLang = (value: string) => {
-        setLanguage(value);
-    };
-
     return (
         <div className="App">
             <Toaster position="top-right" reverseOrder={false} />
-            <Header
-                exportData={exportData}
-                theme={theme}
-                handleChange={handleChange}
-                language={language}
-                handleChangeLang={handleChangeLang}
-            />
-
-            <Streaks data={data} language={language} />
-
-            <DailyEmotionHistory
-                data={data}
-                setData={setData}
-                language={language}
-            />
-
-            <MonthlyEmotionHistory data={data} language={language} />
-
-            <Statistic data={data} language={language} />
-
-            <WordCloudCompoment data={data} theme={theme} />
-
-            <Socials language={language} />
+            <Header exportData={exportData} />
+            <Streaks data={data} />
+            <DailyEmotionHistory data={data} setData={setData} />
+            <MonthlyEmotionHistory data={data} />
+            <Statistic data={data} />
+            <WordCloudCompoment data={data} />
+            <Socials />
         </div>
     );
 }
