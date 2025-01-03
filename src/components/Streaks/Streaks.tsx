@@ -26,6 +26,7 @@ export default function Streaks({
                 gap: '10px',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
+                margin: '0px 30px',
             }}
         >
             {/* Количество дней подряд, когда пользователь вносил записи без пропусков. */}
