@@ -53,26 +53,16 @@ function getFirstDayIndexOfMonths(year: number) {
     const firstDayIndices: { [key: string]: number } = {};
 
     for (let month = 0; month < 12; month++) {
-        // Создаем дату первого дня текущего месяца
         const date = new Date(year, month, 1);
-        // Получаем индекс дня недели (число от 0 до 6) и смещаем так, чтобы понедельник был 0
         const dayOfWeekIndex = (date.getDay() + 6) % 7;
-        // Сохраняем индекс дня недели в объект, где ключ — название месяца
         firstDayIndices[monthNames[month]] = dayOfWeekIndex;
     }
 
     return firstDayIndices;
 }
 
-interface EmotionData {
-    [key: string]: {
-        emotion: string;
-        description: string;
-        time: string;
-    }[];
-}
-
-function MonthlyEmotionHistory({ data }: { data: EmotionData }) {
+function MonthlyEmotionHistory() {
+    const data = useSelector((state: RootState) => state.data);
     const {
         currentMonth,
         setCurrentMonth,

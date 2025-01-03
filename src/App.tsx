@@ -6,14 +6,12 @@ import * as React from 'react';
 import WordCloudCompoment from './components/WordCloud/WordCloud';
 import Streaks from './components/Streaks/Streaks';
 import Statistic from './components/Statistic/Statistic';
-import config from './config';
-import { useDebouncedEffect } from './hook/useDebouncedEffect';
 import Socials from './components/Socials/Socials';
 import { Toaster, toast } from 'react-hot-toast';
-
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
 import { useDispatch } from 'react-redux';
+import { setData } from './slices/dataSlice';
 
 declare global {
     interface Window {
@@ -64,41 +62,51 @@ function App() {
         tele.ready();
     });
 
-    const [data, setData] = React.useState<EmotionData>(() => {
-        const storedData = localStorage.getItem('emotionData');
-        return storedData
-            ? {
-                  ...JSON.parse(storedData),
-              }
-            : config.initialData;
-    });
+    // const [data, setData] = React.useState<EmotionData>(() => {
+    //     const storedData = localStorage.getItem('emotionData');
+    //     return storedData
+    //         ? {
+    //               ...JSON.parse(storedData),
+    //           }
+    //         : config.initialData;
+    // });
 
-    useDebouncedEffect(
-        () => {
-            localStorage.setItem('emotionData', JSON.stringify(data));
-        },
-        [data],
-        500,
-    );
+    // useDebouncedEffect(
+    //     () => {
+    //         localStorage.setItem('emotionData', JSON.stringify(data));
+    //     },
+    //     [data],
+    //     500,
+    // );
+
+    const dispatch = useDispatch();
+
+    const data = useSelector((state: RootState) => state.data);
 
     React.useEffect(() => {
         if (!data[new Date().toLocaleDateString('en-GB')]) {
-            setData({
-                ...data,
-                [new Date().toLocaleDateString('en-GB')]: [],
-            });
+            dispatch(
+                setData({
+                    ...data,
+                    [new Date().toLocaleDateString('en-GB')]: [],
+                }),
+            );
         }
     }, [data]);
 
+    function setEmotionData(data: EmotionData) {
+        dispatch(setData(data));
+        console.log(data);
+    }
     return (
         <div className="App">
             <Toaster position="top-right" reverseOrder={false} />
             <Header exportData={exportData} />
-            <Streaks data={data} />
-            <DailyEmotionHistory data={data} setData={setData} />
-            <MonthlyEmotionHistory data={data} />
-            <Statistic data={data} />
-            <WordCloudCompoment data={data} />
+            <Streaks />
+            <DailyEmotionHistory setData={setEmotionData} />
+            <MonthlyEmotionHistory />
+            <Statistic />
+            <WordCloudCompoment />
             <Socials />
         </div>
     );

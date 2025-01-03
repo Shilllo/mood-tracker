@@ -65,12 +65,11 @@ interface EmotionData {
 type SetDataFn = (data: EmotionData) => void;
 
 export default function DailyEmotionHistory({
-    data,
     setData,
 }: {
-    data: EmotionData;
     setData: SetDataFn;
 }) {
+    const data = useSelector((state: RootState) => state.data);
     const {
         open,
         handleOpen,

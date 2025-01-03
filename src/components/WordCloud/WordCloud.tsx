@@ -6,17 +6,9 @@ import { useWordCloudController } from './WordCloudController';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
-interface EmotionData {
-    [key: string]: {
-        emotion: string;
-        description: string;
-        time: string;
-    }[];
-}
-
-function WordCloudComponent({ data }: { data: EmotionData }) {
+function WordCloudComponent() {
     const theme = useSelector((state: RootState) => state.theme.theme);
-
+    const data = useSelector((state: RootState) => state.data);
     const {
         emotionCategory,
         timeCategory,
