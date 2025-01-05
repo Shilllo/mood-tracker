@@ -1,8 +1,11 @@
 import './Socials.css';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
-export default function Socials({ language }: { language: string }) {
+export default function Socials() {
+    const language = useSelector((state: RootState) => state.lang.lang);
     return (
         <nav
             style={{

@@ -6,21 +6,12 @@ import Top5PositiveWords from './Top5PositiveWords';
 import Top5NegativeWords from './Top5NegativeWords';
 import Top5NeutralWords from './Top5NeutralWords';
 import './Statistic.css';
-type EmotionData = {
-    [key: string]: {
-        emotion: string;
-        description: string;
-        time: string;
-    }[];
-};
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
-export default function Statistic({
-    data,
-    language,
-}: {
-    data: EmotionData;
-    language: string;
-}) {
+export default function Statistic() {
+    const data = useSelector((state: RootState) => state.data);
+    const language = useSelector((state: RootState) => state.lang.lang);
     return (
         <div
             style={{

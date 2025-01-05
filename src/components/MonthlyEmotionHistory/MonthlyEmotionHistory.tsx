@@ -11,6 +11,9 @@ import CardModal from './Card';
 import { useMonthlyEmotionHistoryController } from './MontlyEmotionHistoryController';
 import styled from 'styled-components';
 import CalendarDay from './CalendarDay';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -50,32 +53,16 @@ function getFirstDayIndexOfMonths(year: number) {
     const firstDayIndices: { [key: string]: number } = {};
 
     for (let month = 0; month < 12; month++) {
-        // Создаем дату первого дня текущего месяца
         const date = new Date(year, month, 1);
-        // Получаем индекс дня недели (число от 0 до 6) и смещаем так, чтобы понедельник был 0
         const dayOfWeekIndex = (date.getDay() + 6) % 7;
-        // Сохраняем индекс дня недели в объект, где ключ — название месяца
         firstDayIndices[monthNames[month]] = dayOfWeekIndex;
     }
 
     return firstDayIndices;
 }
 
-interface EmotionData {
-    [key: string]: {
-        emotion: string;
-        description: string;
-        time: string;
-    }[];
-}
-
-function MonthlyEmotionHistory({
-    data,
-    language,
-}: {
-    data: EmotionData;
-    language: string;
-}) {
+function MonthlyEmotionHistory() {
+    const data = useSelector((state: RootState) => state.data);
     const {
         currentMonth,
         setCurrentMonth,
@@ -88,7 +75,7 @@ function MonthlyEmotionHistory({
         currentYear,
         setCurrentYear,
     } = useMonthlyEmotionHistoryController({ data });
-
+    const language = useSelector((state: RootState) => state.lang.lang);
     return (
         <div
             className="monthly-emotion-history"

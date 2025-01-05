@@ -20,6 +20,8 @@ import SpeechRecognition from '../SpeechRecognition/SpeechRecognition';
 import { useDailyEmotionHistoryController } from './DailyEmotionHistoryController';
 import { useState } from 'react';
 import HideButton from './HideButton';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -63,14 +65,11 @@ interface EmotionData {
 type SetDataFn = (data: EmotionData) => void;
 
 export default function DailyEmotionHistory({
-    data,
     setData,
-    language,
 }: {
-    data: EmotionData;
     setData: SetDataFn;
-    language: string;
 }) {
+    const data = useSelector((state: RootState) => state.data);
     const {
         open,
         handleOpen,
@@ -87,7 +86,7 @@ export default function DailyEmotionHistory({
         addEmotion,
     } = useDailyEmotionHistoryController({ data, setData });
     const [hidden, setHidden] = useState(false);
-
+    const language = useSelector((state: RootState) => state.lang.lang);
     return (
         <TableContainer
             sx={{

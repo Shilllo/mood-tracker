@@ -10,6 +10,11 @@ import { toast } from 'react-hot-toast';
 import SettingsButton from './SettingsButton/SettingsButton';
 import SwitcherMobile from './SwitcherMobile';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { useDispatch } from 'react-redux';
+import { setLang } from '../../slices/langSlice';
+import { setTheme } from '../../slices/themeSlice';
 
 type EmotionData = {
     [key: string]: {
@@ -39,19 +44,7 @@ const HeaderDate = () => (
     <h2 className="current-date">{new Date().toLocaleDateString('en-GB')}</h2>
 );
 
-function Header({
-    exportData,
-    theme,
-    handleChange,
-    language,
-    handleChangeLang,
-}: {
-    exportData: () => void;
-    theme: string;
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    language: string;
-    handleChangeLang: (value: string) => void;
-}) {
+function Header({ exportData }: { exportData: () => void }) {
     const style = {
         position: 'absolute',
         top: '50%',
@@ -66,6 +59,18 @@ function Header({
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: 'var(--background)',
+    };
+    const dispatch = useDispatch();
+
+    const language = useSelector((state: RootState) => state.lang.lang);
+    const theme = useSelector((state: RootState) => state.theme.theme);
+
+    const toggleTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        dispatch(setTheme(newTheme));
+    };
+    const toggleLang = (value: string) => {
+        dispatch(setLang(value));
     };
 
     const [open, setOpen] = React.useState(false);
@@ -86,13 +91,10 @@ function Header({
             const reader = new FileReader();
             reader.onload = (e) => {
                 try {
-                    // Чтение данных из файла
                     const content = e.target?.result as string;
                     const importedData = JSON.parse(content);
 
-                    // Валидация данных (по необходимости)
                     if (isEmotionData(importedData)) {
-                        // Сохранение данных в LocalStorage
                         localStorage.setItem(
                             'emotionData',
                             JSON.stringify(importedData),
@@ -112,6 +114,11 @@ function Header({
             }, 1000);
         }
     };
+
+    React.useEffect(() => {
+        document.documentElement.setAttribute('lang', language);
+        document.documentElement.setAttribute('data-theme', theme);
+    });
 
     return (
         <div className="header">
@@ -236,12 +243,12 @@ function Header({
                             >
                                 <SwitcherMobile
                                     theme={theme}
-                                    handleChange={handleChange}
+                                    handleChange={toggleTheme}
                                 />
                             </motion.div>
                         </div>
                         <LanguageSwitcher
-                            handleChangeLang={handleChangeLang}
+                            handleChangeLang={toggleLang}
                             language={language}
                         />
                     </div>
@@ -309,7 +316,7 @@ function Header({
                         </Button>
                     </motion.div>
                     <LanguageSwitcher
-                        handleChangeLang={handleChangeLang}
+                        handleChangeLang={toggleLang}
                         language={language}
                     />
                     <div>
@@ -319,7 +326,7 @@ function Header({
                         >
                             <Switcher
                                 theme={theme}
-                                handleChange={handleChange}
+                                handleChange={toggleTheme}
                             />
                         </motion.div>
                     </div>
