@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import themeReducer from './slices/themeSlice';
-import dataSlice from './slices/dataSlice';
-import langSlice from './slices/langSlice';
+import dataReducer from './slices/dataSlice';
+import langReducer from './slices/langSlice';
 
 const store = configureStore({
     reducer: {
         theme: themeReducer,
-        data: dataSlice,
-        lang: langSlice,
+        data: dataReducer,
+        lang: langReducer,
     },
 });
 
