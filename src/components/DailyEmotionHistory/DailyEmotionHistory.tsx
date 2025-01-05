@@ -20,8 +20,9 @@ import SpeechRecognition from '../SpeechRecognition/SpeechRecognition';
 import { useDailyEmotionHistoryController } from './DailyEmotionHistoryController';
 import { useState } from 'react';
 import HideButton from './HideButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
+import { setData } from '../../slices/dataSlice';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -62,13 +63,12 @@ interface EmotionData {
     }[];
 }
 
-type SetDataFn = (data: EmotionData) => void;
-
-export default function DailyEmotionHistory({
-    setData,
-}: {
-    setData: SetDataFn;
-}) {
+export default function DailyEmotionHistory() {
+    const dispatch = useDispatch();
+    function setEmotionData(data: EmotionData) {
+        dispatch(setData(data));
+        console.log(data);
+    }
     const data = useSelector((state: RootState) => state.data);
     const {
         open,
@@ -84,9 +84,10 @@ export default function DailyEmotionHistory({
         handleDescriptionChange,
         handleTimeChange,
         addEmotion,
-    } = useDailyEmotionHistoryController({ data, setData });
+    } = useDailyEmotionHistoryController({ data, setData: setEmotionData });
     const [hidden, setHidden] = useState(false);
     const language = useSelector((state: RootState) => state.lang.lang);
+
     return (
         <TableContainer
             sx={{
@@ -384,7 +385,7 @@ export default function DailyEmotionHistory({
                                   (row) => (
                                       <StyledTableRowComponent
                                           data={data}
-                                          setData={setData}
+                                          setData={setEmotionData}
                                           row={row}
                                           language={language}
                                       />

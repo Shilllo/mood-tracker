@@ -44,7 +44,19 @@ const HeaderDate = () => (
     <h2 className="current-date">{new Date().toLocaleDateString('en-GB')}</h2>
 );
 
-function Header({ exportData }: { exportData: () => void }) {
+const exportData = () => {
+    const data = localStorage.getItem('emotionData');
+    const blob = new Blob([data ?? ''], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `mood-tracker-data-${new Date().toLocaleDateString()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast.success('Data exported successfully!');
+};
+
+function Header() {
     const style = {
         position: 'absolute',
         top: '50%',

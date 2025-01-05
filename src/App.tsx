@@ -7,7 +7,7 @@ import WordCloudCompoment from './components/WordCloud/WordCloud';
 import Streaks from './components/Streaks/Streaks';
 import Statistic from './components/Statistic/Statistic';
 import Socials from './components/Socials/Socials';
-import { Toaster, toast } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
 import { useDispatch } from 'react-redux';
@@ -34,26 +34,6 @@ declare global {
         };
     }
 }
-
-type EmotionData = {
-    [key: string]: {
-        emotion: string;
-        description: string;
-        time: string;
-    }[];
-};
-// Экспорт данных
-const exportData = () => {
-    const data = localStorage.getItem('emotionData');
-    const blob = new Blob([data ?? ''], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `mood-tracker-data-${new Date().toLocaleDateString()}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-    toast.success('Data exported successfully!');
-};
 
 const tele = window.Telegram.WebApp;
 
@@ -94,16 +74,12 @@ function App() {
         }
     }, [data]);
 
-    function setEmotionData(data: EmotionData) {
-        dispatch(setData(data));
-        console.log(data);
-    }
     return (
         <div className="App">
             <Toaster position="top-right" reverseOrder={false} />
-            <Header exportData={exportData} />
+            <Header />
             <Streaks />
-            <DailyEmotionHistory setData={setEmotionData} />
+            <DailyEmotionHistory />
             <MonthlyEmotionHistory />
             <Statistic />
             <WordCloudCompoment />
